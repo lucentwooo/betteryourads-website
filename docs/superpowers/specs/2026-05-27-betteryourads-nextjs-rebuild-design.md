@@ -21,7 +21,7 @@ Deployment target is **Vercel, static, no backend**.
 | Primary styling | Existing CSS design tokens + co-located CSS Modules |
 | Secondary (demo) | One section rebuilt in Tailwind + shadcn/ui in a sample folder |
 | Waitlist form | Client-only inline confirmation, no persistence, no backend |
-| Fonts | `next/font/google`: DM Sans + JetBrains Mono only |
+| Fonts | `next/font/google`: **DM Sans only** (the marketing layer aliases `--font-mono` → `--font-sans`, so JetBrains Mono is never rendered) |
 | `legacy/` | Kept in the repo, untouched, as reference |
 | Hosting | Vercel static deploy (`next build`), no env vars, no API routes |
 
@@ -61,7 +61,7 @@ components/
 styles/
   tokens.css          # design-system custom properties, ported verbatim
 public/
-  logo-mark.png  favicon.svg  grain.svg  demo-clickup-ad.jpg
+  logo-mark.png  favicon.svg  demo-clickup-ad.jpg   # grain.svg dropped (unreferenced)
 samples/tailwind-shadcn/
   # Pricing section rebuilt with Tailwind + shadcn/ui, self-contained,
   # excluded from the page build, for format comparison only
@@ -84,10 +84,13 @@ final CTA), matching the legacy `data-waitlist` forms.
   co-located `*.module.css`; class names become module-scoped.
 - Inline styles in the legacy HTML (how-it-works visuals, pricing waitlist
   banner, footer) are ported into the relevant module files.
-- Fonts: `next/font/google` loads **DM Sans + JetBrains Mono only**. The three
-  unused alternative sans families (Inter / Open Sans / Plus Jakarta Sans) the
-  legacy CSS imported "to test" are dropped for performance; tokens.css keeps
-  them documented as comments.
+- Fonts: `next/font/google` loads **DM Sans only**. The legacy `@import`
+  pulled five families (DM Sans, Inter, Open Sans, Plus Jakarta Sans,
+  JetBrains Mono); the three alternative sans were "to test" and JetBrains Mono
+  is never rendered because the marketing layer aliases `--font-mono` →
+  `--font-sans`. tokens.css drops the `@import` entirely (next/font handles
+  loading) and collapses `--font-mono` to `var(--font-sans)`, removing the
+  alt-font variables.
 
 ## Samples folder (format comparison)
 
