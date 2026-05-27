@@ -97,13 +97,30 @@ into a Tailwind theme. Purpose: let the user compare "CSS Modules format" vs
 "Tailwind + shadcn format" on identical UI before committing the whole site to
 one approach. It is excluded from the Next.js build (not imported by `app/`).
 
+## Code hygiene
+
+The rebuild must carry over **only what is used**. During the port:
+
+- Drop unused CSS tokens, selectors, and rules that no rendered component
+  references (e.g. the commented `.serif` placeholder, alt-font variables for
+  families we no longer load, any orphan utility classes).
+- No dead JavaScript, commented-out blocks, or placeholder TODOs in shipped code.
+- No unused imports, props, exports, or files.
+- No speculative abstraction — components and helpers exist only because a
+  rendered section needs them.
+- `next lint` is configured to fail on unused vars/imports so this is enforced,
+  not just aspirational.
+
+`legacy/` is exempt (it is reference, left as-is).
+
 ## Verification
 
 - `npx tsc --noEmit` — clean
-- `next lint` — clean
+- `next lint` — clean (including no-unused-vars/imports)
 - `next build` — succeeds
 - Unit test for the `LiveDemo` reducer (pure phase-transition logic)
 - Manual visual parity check against `legacy/index.html`
+- No unreferenced files in `app/`, `components/`, `styles/`, or `public/`
 
 ## Out of scope (YAGNI)
 
