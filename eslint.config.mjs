@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Reference-only format sample; not part of the app build.
+    "samples/**",
   ]),
   {
     rules: {
