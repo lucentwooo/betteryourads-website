@@ -109,6 +109,10 @@
   color: var(--fg);
   font-weight: 600;
 }
+.anchorBar a {
+  text-decoration: none;
+  font-weight: 600;
+}
 
 /* Waitlist offer banner (was inline-styled in legacy index.html:368-376). */
 .offer {
