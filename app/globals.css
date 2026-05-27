@@ -1,0 +1,37 @@
+@import "../styles/tokens.css";
+
+html, body { margin: 0; background: var(--bg); }
+body { overflow-x: hidden; }
+
+/* =================================================================
+   Global layout + marketing type classes (cross-section)
+   Values from legacy/styles/landing.css.
+   ================================================================= */
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+.wrap-narrow { max-width: 980px; margin: 0 auto; padding: 0 32px; }
+
+.section { padding: 96px 0; position: relative; }
+.section + .section { border-top: 1px solid var(--fg); }
+
+.accent { color: var(--accent); font-weight: 700; font-style: normal; }
+
+.lead {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--fg-2);
+  max-width: 480px;
+  margin: 0;
+  text-wrap: pretty;
+}
+.sub {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--fg-2);
+  margin: 0;
+}
+
+@media (max-width: 960px) {
+  .section { padding: 64px 0; }
+}
