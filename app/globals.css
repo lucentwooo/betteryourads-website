@@ -1,49 +1,37 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "../styles/tokens.css";
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+html, body { margin: 0; background: var(--bg); }
+body { overflow-x: hidden; }
 
-html {
-  height: 100%;
-}
+/* =================================================================
+   Global layout + marketing type classes (cross-section)
+   Values from legacy/styles/landing.css.
+   ================================================================= */
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+.wrap-narrow { max-width: 980px; margin: 0 auto; padding: 0 32px; }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
+.section { padding: 96px 0; position: relative; }
+.section + .section { border-top: 1px solid var(--fg); }
 
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+.accent { color: var(--accent); font-weight: 700; font-style: normal; }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
+.lead {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--fg-2);
+  max-width: 480px;
+  margin: 0;
+  text-wrap: pretty;
+}
+.sub {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--fg-2);
   margin: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+@media (max-width: 960px) {
+  .section { padding: 64px 0; }
 }
