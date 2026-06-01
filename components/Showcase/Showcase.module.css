@@ -206,6 +206,9 @@
   border-radius: var(--radius-md);
   overflow: hidden;
   background: var(--bg-raised);
+  /* smooths the scroll-linked zoom-parallax transform */
+  will-change: transform, opacity;
+  transform-origin: center;
 }
 .adImg {
   object-fit: cover;

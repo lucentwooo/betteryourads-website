@@ -2,7 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+  type MotionValue,
+} from 'motion/react';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { REFERENCE_AD, VARIATION_ADS, VARIATION_COUNT } from '@/lib/demoAds';
 import styles from './Showcase.module.css';
@@ -125,19 +131,18 @@ export function Showcase() {
                 </span>
               </div>
 
-              {/* THE GRID — 4×2 large, the real output payoff */}
+              {/* THE GRID — 4×2 large, the real output payoff. Each tile
+                  zoom-parallaxes in on scroll (staggered cascade) so the
+                  batch visibly populates as you read down the section. */}
               <div className={styles.grid}>
-                {VARIATION_ADS.map((ad) => (
-                  <figure className={styles.cell} key={ad.src}>
-                    <Image
-                      src={ad.src}
-                      alt={ad.alt}
-                      fill
-                      sizes="(max-width: 560px) 50vw, (max-width: 960px) 25vw, 240px"
-                      className={styles.adImg}
-                    />
-                    <figcaption className={styles.angle}>{ad.angle}</figcaption>
-                  </figure>
+                {VARIATION_ADS.map((ad, i) => (
+                  <ZoomTile
+                    key={ad.src}
+                    ad={ad}
+                    index={i}
+                    progress={scrollYProgress}
+                    animate={animate}
+                  />
                 ))}
               </div>
             </motion.div>
@@ -145,6 +150,48 @@ export function Showcase() {
         </div>
       </div>
     </section>
+  );
+}
+
+/* ----- Zoom-parallax tile -------------------------------------------
+   Each real ad scales + rises + fades in as the section scrolls, on a
+   staggered range so the eight tiles cascade into view — a Lenis-smooth
+   "the batch populates as you scroll" reveal. `useTransform` is always
+   called (hooks rule); the parent only APPLIES the style when animating,
+   so the first paint AND reduced-motion both render the full static grid
+   (no hydration branch). All ranges finish by ~0.6 of the section travel,
+   safely inside the pinned-visible window. */
+function ZoomTile({
+  ad,
+  index,
+  progress,
+  animate,
+}: {
+  ad: (typeof VARIATION_ADS)[number];
+  index: number;
+  progress: MotionValue<number>;
+  animate: boolean;
+}) {
+  const start = 0.1 + index * 0.04;
+  const end = start + 0.22;
+  const scale = useTransform(progress, [start, end], [0.74, 1]);
+  const opacity = useTransform(progress, [start, end - 0.06], [0, 1]);
+  const y = useTransform(progress, [start, end], [22, 0]);
+
+  return (
+    <motion.figure
+      className={styles.cell}
+      style={animate ? { scale, opacity, y } : undefined}
+    >
+      <Image
+        src={ad.src}
+        alt={ad.alt}
+        fill
+        sizes="(max-width: 560px) 50vw, (max-width: 960px) 25vw, 240px"
+        className={styles.adImg}
+      />
+      <figcaption className={styles.angle}>{ad.angle}</figcaption>
+    </motion.figure>
   );
 }
 
