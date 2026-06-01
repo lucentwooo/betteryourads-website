@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { VARIATION_COUNT } from '@/lib/demoAds';
 import {
   Phase,
   PHASE_COUNT,
@@ -6,116 +7,94 @@ import {
   LOOP_MS,
   phaseStartMs,
   phaseLabel,
-  CONCEPTS,
-  CONCEPT_COUNT,
-  SELECTED_ORDER,
-  SELECTED_COUNT,
-  PICK_STEP_MS,
-  selectedCountAt,
-  selectedSetAt,
-  showsWall,
+  showsGrid,
+  REVEAL_STAGGER_MS,
+  revealedCountAt,
+  revealDelayMs,
   footerLine,
-  AD_WALL,
-  AD_COUNT,
 } from './batchDemoMachine';
 
 describe('phase timeline', () => {
-  it('has 6 phases that sum to the loop length', () => {
-    expect(PHASE_COUNT).toBe(6);
+  it('has 4 phases that sum to the loop length', () => {
+    expect(PHASE_COUNT).toBe(4);
     const sum = (Object.values(PHASE_MS) as number[]).reduce((a, b) => a + b, 0);
     expect(LOOP_MS).toBe(sum);
-    // Sanity: the whole loop sits in the intended ~6–7s window.
-    expect(LOOP_MS).toBeGreaterThanOrEqual(6000);
-    expect(LOOP_MS).toBeLessThanOrEqual(7000);
+    // Deliberately slow + legible: the whole loop sits in the ~9–10s window.
+    expect(LOOP_MS).toBeGreaterThanOrEqual(9000);
+    expect(LOOP_MS).toBeLessThanOrEqual(10000);
+  });
+
+  it('holds each beat long enough to read (reference + hold are generous)', () => {
+    expect(PHASE_MS[Phase.Reference]).toBeGreaterThanOrEqual(2000);
+    expect(PHASE_MS[Phase.Hold]).toBeGreaterThanOrEqual(3000);
   });
 
   it('computes cumulative phase start offsets', () => {
-    expect(phaseStartMs(Phase.Brand)).toBe(0);
-    expect(phaseStartMs(Phase.Concepts)).toBe(PHASE_MS[Phase.Brand]);
-    expect(phaseStartMs(Phase.Pick)).toBe(PHASE_MS[Phase.Brand] + PHASE_MS[Phase.Concepts]);
-    expect(phaseStartMs(Phase.Payoff)).toBe(LOOP_MS - PHASE_MS[Phase.Payoff]);
+    expect(phaseStartMs(Phase.Reference)).toBe(0);
+    expect(phaseStartMs(Phase.Generate)).toBe(PHASE_MS[Phase.Reference]);
+    expect(phaseStartMs(Phase.Reveal)).toBe(
+      PHASE_MS[Phase.Reference] + PHASE_MS[Phase.Generate],
+    );
+    expect(phaseStartMs(Phase.Hold)).toBe(LOOP_MS - PHASE_MS[Phase.Hold]);
   });
 
   it('labels every phase with its honest copy', () => {
-    expect(phaseLabel(Phase.Brand)).toMatch(/^1 · learns your brand$/);
-    expect(phaseLabel(Phase.Concepts)).toBe('2 · 12 concepts');
-    expect(phaseLabel(Phase.Pick)).toBe('3 · pick what you want');
-    expect(phaseLabel(Phase.Batch)).toBe('4 · batch');
-    expect(phaseLabel(Phase.Wall)).toContain('10 on-brand ads');
+    expect(phaseLabel(Phase.Reference)).toBe('1 · your reference ad');
+    expect(phaseLabel(Phase.Generate)).toBe('2 · generating variations');
+    expect(phaseLabel(Phase.Reveal)).toBe('3 · 8 on-brand variations');
+    // Reveal and Hold share the "8 on-brand variations" label (continuous beat).
+    expect(phaseLabel(Phase.Hold)).toBe(phaseLabel(Phase.Reveal));
   });
 });
 
-describe('concepts + pick cascade', () => {
-  it('offers exactly 12 concepts and picks 10 of them', () => {
-    expect(CONCEPT_COUNT).toBe(12);
-    expect(CONCEPTS).toHaveLength(12);
-    expect(SELECTED_COUNT).toBe(10);
-    expect(SELECTED_ORDER).toHaveLength(10);
-    // Two are left unselected to imply real choice.
-    expect(CONCEPT_COUNT - SELECTED_COUNT).toBe(2);
+describe('grid visibility', () => {
+  it('shows the grid from the Reveal phase onward', () => {
+    expect(showsGrid(Phase.Reference)).toBe(false);
+    expect(showsGrid(Phase.Generate)).toBe(false);
+    expect(showsGrid(Phase.Reveal)).toBe(true);
+    expect(showsGrid(Phase.Hold)).toBe(true);
+  });
+});
+
+describe('reveal cascade', () => {
+  it('reveals one cell per stagger step and clamps at 8', () => {
+    expect(revealedCountAt(-1)).toBe(0);
+    expect(revealedCountAt(0)).toBe(1); // first cell is in from t=0
+    expect(revealedCountAt(REVEAL_STAGGER_MS - 1)).toBe(1);
+    expect(revealedCountAt(REVEAL_STAGGER_MS)).toBe(2);
+    expect(revealedCountAt(REVEAL_STAGGER_MS * 3)).toBe(4);
+    // The 8th (last) cell is in by its delay.
+    expect(revealedCountAt(REVEAL_STAGGER_MS * (VARIATION_COUNT - 1))).toBe(
+      VARIATION_COUNT,
+    );
+    // Well past the cascade: clamps to the full count, never more.
+    expect(revealedCountAt(REVEAL_STAGGER_MS * 50)).toBe(VARIATION_COUNT);
+    expect(revealedCountAt(999999)).toBe(VARIATION_COUNT);
   });
 
-  it('only ever references valid, unique concept indices', () => {
-    const unique = new Set(SELECTED_ORDER);
-    expect(unique.size).toBe(SELECTED_ORDER.length);
-    for (const i of SELECTED_ORDER) {
-      expect(i).toBeGreaterThanOrEqual(0);
-      expect(i).toBeLessThan(CONCEPT_COUNT);
+  it('matches revealDelayMs — a cell is counted once its delay has elapsed', () => {
+    for (let i = 0; i < VARIATION_COUNT; i++) {
+      // At exactly the cell's delay it should be counted (>= i + 1 revealed).
+      expect(revealedCountAt(revealDelayMs(i))).toBeGreaterThanOrEqual(i + 1);
     }
+    expect(revealDelayMs(0)).toBe(0);
+    expect(revealDelayMs(1)).toBe(REVEAL_STAGGER_MS);
   });
 
-  it('reveals selections one-per-step and clamps at 10', () => {
-    expect(selectedCountAt(0)).toBe(0);
-    expect(selectedCountAt(1)).toBe(1);
-    expect(selectedCountAt(PICK_STEP_MS)).toBe(2);
-    expect(selectedCountAt(PICK_STEP_MS * 4)).toBe(5);
-    // Well past the cascade end: clamps to the full 10, never more.
-    expect(selectedCountAt(PICK_STEP_MS * 50)).toBe(SELECTED_COUNT);
-    expect(selectedCountAt(999999)).toBe(SELECTED_COUNT);
-  });
-
-  it('builds the selected set incrementally in cascade order', () => {
-    expect(selectedSetAt(0).size).toBe(0);
-    const mid = selectedSetAt(PICK_STEP_MS * 2); // 3 selected
-    expect(mid.size).toBe(3);
-    expect(mid).toEqual(new Set(SELECTED_ORDER.slice(0, 3)));
-    expect(selectedSetAt(999999)).toEqual(new Set(SELECTED_ORDER));
+  it('finishes the cascade within the Reveal phase, leaving a beat to rest', () => {
+    const lastDelay = revealDelayMs(VARIATION_COUNT - 1);
+    // The last cell starts animating before the Reveal phase ends.
+    expect(lastDelay).toBeLessThan(PHASE_MS[Phase.Reveal]);
   });
 });
 
-describe('wall visibility + footer', () => {
-  it('shows the wall from the Wall phase onward', () => {
-    expect(showsWall(Phase.Brand)).toBe(false);
-    expect(showsWall(Phase.Pick)).toBe(false);
-    expect(showsWall(Phase.Batch)).toBe(false);
-    expect(showsWall(Phase.Wall)).toBe(true);
-    expect(showsWall(Phase.Payoff)).toBe(true);
-  });
-
-  it('swaps the footer to the competitor contrast only on the payoff beat', () => {
-    expect(footerLine(Phase.Wall)).not.toContain('agencies');
-    const payoff = footerLine(Phase.Payoff);
-    expect(payoff).toContain('agencies');
-    expect(payoff).toContain('betteryourads');
-    // Honest: no fabricated precise stat like "10 ads in 90 seconds".
-    expect(payoff).not.toMatch(/\d+\s*ads?\s*in\s*\d+/i);
-  });
-});
-
-describe('the ad wall', () => {
-  it('renders 10 ads with distinct layout kinds', () => {
-    expect(AD_COUNT).toBe(10);
-    expect(AD_WALL).toHaveLength(10);
-    const kinds = new Set(AD_WALL.map((a) => a.kind));
-    // Every ad is a different layout — not 10 identical boxes.
-    expect(kinds.size).toBe(10);
-  });
-
-  it('uses a varied but on-brand palette across the wall', () => {
-    const tints = new Set(AD_WALL.map((a) => a.tint));
-    // More than one tint in play, all from the allowed creative set.
-    expect(tints.size).toBeGreaterThan(1);
-    const allowed = new Set(['accent', 'forest', 'rust', 'paper', 'ink']);
-    for (const t of tints) expect(allowed.has(t)).toBe(true);
+describe('footer', () => {
+  it('states the one→eight USP honestly', () => {
+    const line = footerLine();
+    expect(line).toContain('one reference');
+    expect(line).toContain('eight');
+    expect(line).toContain('on-brand');
+    // Honest: no fabricated precise stat like "8 ads in 12 seconds".
+    expect(line).not.toMatch(/\d+\s*ads?\s*in\s*\d+/i);
   });
 });
