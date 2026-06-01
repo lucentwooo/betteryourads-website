@@ -77,3 +77,27 @@ export function canvasOpacities(progress: number) {
     img: clamp((progress - 0.5) / 0.42),
   };
 }
+
+/** Strip scheme/path/www, lowercase, validate "label.tld". Returns null if implausible. */
+export function normalizeDomain(input: string): string | null {
+  const raw = input.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '');
+  const host = raw.split(/[/?#]/)[0];
+  if (!/^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(host)) return null;
+  return host;
+}
+
+/** First letter of the main label, uppercased. "stripe.com" -> "S". */
+export function domainMonogram(domain: string): string {
+  return (domain[0] ?? '?').toUpperCase();
+}
+
+/** Deterministic decorative hue from the string. Saturation/lightness fixed for legibility. */
+export function domainAccent(domain: string): string {
+  let h = 0;
+  for (let i = 0; i < domain.length; i++) h = (h * 31 + domain.charCodeAt(i)) >>> 0;
+  return `hsl(${h % 360} 72% 52%)`;
+}
+
+export function faviconUrl(domain: string): string {
+  return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+}

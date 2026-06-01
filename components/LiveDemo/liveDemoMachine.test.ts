@@ -5,6 +5,10 @@ import {
   stepLabel,
   canvasOpacities,
   FEED_DEFS,
+  normalizeDomain,
+  domainMonogram,
+  domainAccent,
+  faviconUrl,
 } from './liveDemoMachine';
 
 describe('statusText', () => {
@@ -50,5 +54,29 @@ describe('canvasOpacities', () => {
     const end = canvasOpacities(1);
     expect(end.wire).toBe(0);
     expect(end.img).toBeGreaterThan(0.9);
+  });
+});
+
+describe('personalization helpers', () => {
+  it('normalizes valid domains and strips scheme/path/www', () => {
+    expect(normalizeDomain('https://www.Stripe.com/pricing')).toBe('stripe.com');
+    expect(normalizeDomain('linear.app')).toBe('linear.app');
+    expect(normalizeDomain('  notion.so  ')).toBe('notion.so');
+  });
+  it('rejects junk', () => {
+    expect(normalizeDomain('')).toBeNull();
+    expect(normalizeDomain('not a domain')).toBeNull();
+    expect(normalizeDomain('localhost')).toBeNull();
+  });
+  it('derives a single uppercase monogram from the main label', () => {
+    expect(domainMonogram('stripe.com')).toBe('S');
+    expect(domainMonogram('linear.app')).toBe('L');
+  });
+  it('derives a deterministic hsl accent', () => {
+    expect(domainAccent('stripe.com')).toBe(domainAccent('stripe.com'));
+    expect(domainAccent('stripe.com')).toMatch(/^hsl\(\d+(\.\d+)? \d+% \d+%\)$/);
+  });
+  it('builds a favicon url', () => {
+    expect(faviconUrl('stripe.com')).toBe('https://www.google.com/s2/favicons?domain=stripe.com&sz=128');
   });
 });
