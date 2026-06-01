@@ -1,0 +1,29 @@
+.btn {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid var(--fg);
+  background: var(--bg);
+  color: var(--fg);
+  letter-spacing: -0.005em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+  transition: background 120ms var(--ease), color 120ms var(--ease),
+    border-color 120ms var(--ease);
+  will-change: transform;
+}
+.btn:hover { background: var(--bg-raised); }
+.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+.sm { font-size: 13px; padding: 8px 14px; }
