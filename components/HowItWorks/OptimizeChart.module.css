@@ -20,61 +20,64 @@
 .rows {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
 }
 .row {
   display: grid;
-  grid-template-columns: 1fr 56px;
-  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) 1.5fr 38px;
+  gap: 10px;
   align-items: center;
 }
+.name {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* The spend bar — a track with a fill whose width animates each day. */
 .bar {
   position: relative;
-  height: 22px;
+  height: 20px;
   background: var(--bg-raised);
   border-radius: 2px;
   overflow: hidden;
 }
 .fill {
   position: absolute;
-  inset: 0;
-  transform-origin: 0 50%;
-  animation: bar-grow var(--reveal-dur) var(--ease) both;
-  animation-timeline: view();
-  animation-range: entry 0% cover 24%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: var(--bya-ink-4);
+  transition:
+    width 0.7s var(--ease),
+    background 0.4s var(--ease);
+  will-change: width;
 }
-@keyframes bar-grow {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
+.win {
+  background: var(--accent);
 }
-@supports not (animation-timeline: view()) {
-  .fill { animation: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .fill { animation: none; }
-}
-.barLabel {
-  position: relative;
-  padding: 0 8px;
-  line-height: 22px;
-  font-size: 11px;
-  font-weight: 500;
-  display: flex;
-  justify-content: space-between;
-}
-.barName {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.signups {
+/* Spend % sits at the right of the track, over the always-unfilled area
+   (max fill is ~46%), so it stays legible. */
+.pct {
+  position: absolute;
+  right: 7px;
+  top: 0;
+  line-height: 20px;
   font-family: var(--font-mono);
-  margin-left: 6px;
+  font-size: 10px;
+  color: var(--fg-3);
 }
 .cps {
   font-family: var(--font-mono);
   font-size: 11px;
   text-align: right;
+  color: var(--fg-3);
+}
+.cpsWin {
+  color: var(--fg);
 }
 .foot {
   margin-top: auto;
@@ -85,4 +88,17 @@
   border-top: 1px solid var(--border-hairline);
   display: flex;
   justify-content: space-between;
+  gap: 10px;
+}
+.totals {
+  color: var(--fg-2);
+  white-space: nowrap;
+}
+
+/* Reduced motion: the component holds the settled final day; kill the
+   bar transition so there's no movement. */
+@media (prefers-reduced-motion: reduce) {
+  .fill {
+    transition: none;
+  }
 }
