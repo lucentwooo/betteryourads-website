@@ -37,14 +37,15 @@ export function Showcase() {
     offset: ['start end', 'end start'],
   });
 
-  // The flatten completes early (by ~0.4 of the section's travel) so the user
-  // watches the screen settle while it's comfortably pinned in view, then reads
-  // the ads. rotateX: 22deg (tilted back) → 0 (flat). scale: 1.04 → 1.
-  const rotateX = useTransform(scrollYProgress, [0.05, 0.42], [22, 0]);
-  const scale = useTransform(scrollYProgress, [0.05, 0.42], [1.04, 1]);
+  // The flatten completes gradually (by ~0.5 of the section's travel) so the
+  // user watches the screen settle — Lenis-smooth — while it's comfortably
+  // pinned in view, then reads the ads. rotateX: 22deg (tilted back) → 0 (flat).
+  // scale: 1.04 → 1. Ranges widened in the Phase S smoothing pass.
+  const rotateX = useTransform(scrollYProgress, [0.05, 0.5], [22, 0]);
+  const scale = useTransform(scrollYProgress, [0.05, 0.5], [1.04, 1]);
   // Title lifts and fades in slightly as the screen approaches flat.
-  const titleY = useTransform(scrollYProgress, [0.05, 0.42], [40, 0]);
-  const titleOpacity = useTransform(scrollYProgress, [0.05, 0.3], [0.4, 1]);
+  const titleY = useTransform(scrollYProgress, [0.05, 0.5], [40, 0]);
+  const titleOpacity = useTransform(scrollYProgress, [0.05, 0.34], [0.4, 1]);
 
   useEffect(() => {
     // Post-mount only (client). Deferred out of the effect body for

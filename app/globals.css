@@ -3,6 +3,15 @@
 html, body { margin: 0; background: var(--bg); }
 body { overflow-x: hidden; }
 
+/* Lenis (smooth scroll) — recommended resets. These only take effect once
+   Lenis adds its `.lenis` classes to <html>, so they no-op under
+   reduced-motion (where the SmoothScroll island never initialises Lenis). */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
 /* =================================================================
    Global layout + marketing type classes (cross-section)
    Values from legacy/styles/landing.css.

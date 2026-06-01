@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { DM_Sans } from 'next/font/google';
 import './globals.css';
+import { SmoothScroll } from '@/components/ui/SmoothScroll';
 import { StickyCta } from '@/components/StickyCta/StickyCta';
 
 const dmSans = DM_Sans({
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={dmSans.variable}>
       <body>
+        <SmoothScroll />
         <div className="scrollProgress" aria-hidden />
         {children}
         <StickyCta />

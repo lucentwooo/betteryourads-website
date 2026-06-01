@@ -23,14 +23,16 @@ export const PHASE_COUNT = 4;
 
 /**
  * Per-phase dwell times (ms). Deliberately SLOW and legible — the
- * founder's note was the old reel felt "too fast and glitchy".
- *   reference 2.0s · generate 1.3s · reveal 3.0s · hold 3.0s  => 9.3s loop.
+ * founder's note was the old reel felt "too fast and glitchy". Nudged a
+ * touch longer in the Phase S smoothing pass so the opening reference and
+ * the resting grid breathe.
+ *   reference 2.2s · generate 1.3s · reveal 3.0s · hold 3.3s  => 9.8s loop.
  */
 export const PHASE_MS: Record<Phase, number> = {
-  [Phase.Reference]: 2000,
+  [Phase.Reference]: 2200,
   [Phase.Generate]: 1300,
   [Phase.Reveal]: 3000,
-  [Phase.Hold]: 3000,
+  [Phase.Hold]: 3300,
 };
 
 /** Total loop duration in ms. */

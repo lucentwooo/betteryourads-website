@@ -49,7 +49,12 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-const SPRING = { type: 'spring', stiffness: 120, damping: 20, mass: 0.9 } as const;
+// The project's single easing curve (--ease: cubic-bezier(0.2,0,0,1)).
+const EASE: [number, number, number, number] = [0.2, 0, 0, 1];
+// Calm, jitter-free fan-out. Was a near-critical spring; a tween on the
+// project easing keeps the reveal legible and on ONE motion language with
+// the reference fade above (Phase S smoothing pass).
+const CELL_TRANSITION = { duration: 0.7, ease: EASE };
 
 export function BatchDemo() {
   const reduce = useReducedMotion();
@@ -223,7 +228,10 @@ export function BatchDemo() {
                 transition={
                   still
                     ? { duration: 0 }
-                    : { ...SPRING, delay: gridVisible ? revealDelaySec(i) : 0 }
+                    : {
+                        ...CELL_TRANSITION,
+                        delay: gridVisible ? revealDelaySec(i) : 0,
+                      }
                 }
               >
                 <div className={styles.cellFrame}>
