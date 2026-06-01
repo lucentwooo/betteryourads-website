@@ -1,101 +1,139 @@
-.steps {
+/* =================================================================
+   HowItWorks — sticky-rail scrollytelling pipeline.
+   Left: a sticky stage tracker (dots + a spine that fills to the active
+   step). Right: a column of stage panels that scroll past.
+   ================================================================= */
+.grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
+  grid-template-columns: 190px 1fr;
+  gap: 56px;
   margin-top: 56px;
-  /* Left gutter for the scroll-drawn step beam */
-  padding-left: var(--space-5);
-  position: relative;
+  align-items: start;
 }
 
-/* Hairline track — always visible */
-.steps::before {
+/* ----- Sticky rail ------------------------------------------------- */
+.rail {
+  position: sticky;
+  top: 22vh;
+  align-self: start;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.railItem {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding-bottom: 34px;
+  position: relative;
+}
+.railItem:last-child {
+  padding-bottom: 0;
+}
+/* the spine segment below each dot */
+.railItem:not(:last-child)::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 7px;
+  top: 16px;
   bottom: 0;
   width: 2px;
   background: var(--border-hairline);
+  transition: background 0.4s var(--ease);
 }
-
-/* Accent beam — draws downward as section scrolls into view */
-.steps::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 2px;
-  height: 100%;
-  background: var(--accent);
-  transform-origin: 50% 0;
-  transform: scaleY(0);
-  animation: beam-draw linear both;
-  animation-timeline: view();
-  animation-range: cover 0% cover 70%;
-}
-
-@keyframes beam-draw {
-  to { transform: scaleY(1); }
-}
-
-/* Degrade gracefully when scroll-driven animations aren't supported */
-@supports not (animation-timeline: view()) {
-  .steps::after { display: none; }
-}
-
-/* Respect reduced-motion preference */
-@media (prefers-reduced-motion: reduce) {
-  .steps::after { display: none; }
-}
-.step {
-  display: grid;
-  grid-template-columns: 80px 1fr 1fr;
-  gap: 32px;
-  align-items: center;
-  border: 1px solid var(--fg);
-  border-radius: 8px;
+.railDot {
+  width: 12px;
+  height: 12px;
+  margin-top: 3px;
+  border-radius: 50%;
+  border: 2px solid var(--border-hairline);
   background: var(--bg);
-  padding: 32px 40px;
+  transition:
+    border-color 0.3s var(--ease),
+    background 0.3s var(--ease);
 }
-.step .n {
+.railLabel {
   font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--accent);
-  letter-spacing: 0.1em;
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  color: var(--fg-3);
+  transition: color 0.3s var(--ease);
+  margin-top: 1px;
 }
-.step .text {
+/* completed + active steps light up; the spine fills to the active dot */
+.railOn .railDot {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+.railOn .railLabel {
+  color: var(--fg);
+}
+.railOn:not(:last-child)::before {
+  background: var(--accent);
+}
+
+/* ----- Scrolling stage panels ------------------------------------- */
+.panels {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: center;
+  border: 1px solid var(--border-hairline);
+  border-radius: 10px;
+  background: var(--bg);
+  padding: 32px 36px;
+  transition: border-color 0.4s var(--ease);
+}
+.panelActive {
+  border-color: var(--fg);
+}
+.panelText {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.step .text h3 {
+.panelN {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+.panelTitle {
   font-family: var(--font-sans);
-  font-size: 28px;
+  font-size: 27px;
   font-weight: 500;
   letter-spacing: -0.02em;
-  line-height: 1.1;
+  line-height: 1.12;
   margin: 0;
   color: var(--fg);
 }
-.step .text p {
+.panelDesc {
   font-family: var(--font-sans);
   font-size: 15px;
   line-height: 1.5;
   color: var(--fg-2);
   margin: 0;
   max-width: 440px;
+  text-wrap: pretty;
 }
-.step .visual {
+.visual {
   border: 1px solid var(--fg);
   border-radius: 6px;
   background: var(--bg-raised);
-  height: 200px;
+  height: 240px;
   overflow: hidden;
   position: relative;
 }
 
-/* ----- Step 01 visual: "We read your site" (legacy index.html:224-249) ----- */
+/* ----- Stage 01 visual: "We read your site" ----- */
 .learn {
   height: 100%;
   padding: 20px 24px;
@@ -172,11 +210,146 @@
   color: var(--accent);
 }
 
-@media (max-width: 960px) {
-  .step {
-    grid-template-columns: 1fr;
+/* ----- Stage 03 visual: the BATCH (8 real creatives) ----- */
+.batch {
+  height: 100%;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--bg);
+}
+.batchHead {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+.batchDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.batchGrid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 6px;
+}
+.batchCell {
+  position: relative;
+  border: 1px solid var(--fg);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg-raised);
+}
+.batchImg {
+  object-fit: cover;
+}
+
+/* ----- Stage 04 visual: ship to Meta (a placement) ----- */
+.ship {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+.shipBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-hairline);
+}
+.shipAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  flex-shrink: 0;
+}
+.shipName {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fg);
+}
+.shipMeta {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--fg-3);
+}
+.shipMedia {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  background: var(--bg-raised);
+}
+.shipImg {
+  object-fit: cover;
+}
+.shipActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 9px 14px;
+  border-top: 1px solid var(--border-hairline);
+}
+.shipAction {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: var(--fg-3);
+}
+.shipCta {
+  margin-left: auto;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-full);
+  padding: 4px 12px;
+  background: var(--accent-soft);
+}
+
+/* ----- Reduced motion: the rail + spine are state, not motion — keep
+   them, but drop the fill/colour transitions so nothing animates. ----- */
+@media (prefers-reduced-motion: reduce) {
+  .railItem::before,
+  .railDot,
+  .railLabel,
+  .panel {
+    transition: none;
   }
-  .step .visual {
-    height: 240px;
+}
+
+/* ----- Responsive -------------------------------------------------- */
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  /* The panel numbers carry the sequence on mobile; hide the rail. */
+  .rail {
+    display: none;
+  }
+  .panel {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 28px 24px;
   }
 }
