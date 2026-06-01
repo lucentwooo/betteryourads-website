@@ -1,4 +1,5 @@
 import { SectionHead } from '@/components/ui/SectionHead';
+import { SpotlightCard } from '@/components/ui/SpotlightCard';
 import styles from './PilotProof.module.css';
 
 const PILOTS = [
@@ -40,7 +41,7 @@ export function PilotProof() {
         />
         <div className={styles.grid}>
           {PILOTS.map((p) => (
-            <div className={styles.card} key={p.num}>
+            <SpotlightCard className={`${styles.card} ${styles.beam} reveal`} key={p.num}>
               <div className={styles.mark}>
                 <span className={styles.num}>{p.num}</span>
                 <span className={styles.status}>
@@ -57,7 +58,7 @@ export function PilotProof() {
                   </div>
                 ))}
               </div>
-            </div>
+            </SpotlightCard>
           ))}
         </div>
         <div className={styles.foot}>Both go public when the numbers do.</div>
