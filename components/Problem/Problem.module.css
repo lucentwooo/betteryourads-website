@@ -14,6 +14,10 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  transition: border-color var(--dur-base) var(--ease);
+}
+.cell:hover {
+  border-color: var(--fg);
 }
 .cell:last-child {
   border-right: 0;
@@ -48,6 +52,11 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color var(--dur-base) var(--ease), opacity var(--dur-base) var(--ease);
+}
+.cell:hover .verdict {
+  color: var(--bya-rust);
+  opacity: 1;
 }
 @media (max-width: 960px) {
   .grid {

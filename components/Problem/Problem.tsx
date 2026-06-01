@@ -40,7 +40,7 @@ export function Problem() {
         />
         <div className={styles.grid}>
           {OPTIONS.map((o) => (
-            <div className={styles.cell} key={o.tag}>
+            <div className={`${styles.cell} reveal`} key={o.tag}>
               <Eyebrow>{o.tag}</Eyebrow>
               <div className={styles.title}>{o.title}</div>
               <div className={styles.body}>{o.body}</div>
