@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { DM_Sans } from 'next/font/google';
 import './globals.css';
+import { StickyCta } from '@/components/StickyCta/StickyCta';
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body>
         <div className="scrollProgress" aria-hidden />
         {children}
+        <StickyCta />
       </body>
     </html>
   );
