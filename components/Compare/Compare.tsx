@@ -1,4 +1,5 @@
 import { SectionHead } from '@/components/ui/SectionHead';
+import { MetricMorph } from './MetricMorph';
 import styles from './Compare.module.css';
 
 const ROWS = [
@@ -23,6 +24,7 @@ export function Compare() {
           }
           sub='Most "AI ads" tools were trained on Shopify stores. Most agencies grew up on ecom retainers. SaaS sells differently. Long cycles, multi-stakeholder, trial-to-paid. Your ads need to know that.'
         />
+        <MetricMorph />
         <div className={`${styles.compare} ${styles.four}`}>
           <div className={`${styles.row} ${styles.header}`}>
             <div />
