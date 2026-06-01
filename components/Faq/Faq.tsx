@@ -31,7 +31,7 @@ export function Faq() {
         <SectionHead eyebrow="questions, mostly heard twice" title="Frequently asked." />
         <div className={styles.list}>
           {FAQS.map((f, i) => (
-            <details className={styles.item} key={f.q} open={i === 0}>
+            <details className={styles.item} name="faq" key={f.q} open={i === 0}>
               <summary className={styles.q}>
                 <span>{f.q}</span>
                 <span className={styles.toggle}>+</span>

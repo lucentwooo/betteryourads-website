@@ -28,7 +28,7 @@
   color: var(--fg-3);
   flex-shrink: 0;
   margin-top: 2px;
-  transition: transform 200ms var(--ease);
+  transition: transform var(--dur-base) var(--ease);
 }
 .item[open] .q .toggle {
   transform: rotate(45deg);
@@ -40,4 +40,18 @@
   color: var(--fg-2);
   margin: 14px 0 0;
   max-width: 760px;
+}
+
+@supports (interpolate-size: allow-keywords) {
+  :root { interpolate-size: allow-keywords; }
+  .item::details-content {
+    block-size: 0; overflow: hidden;
+    transition: block-size var(--dur-slow) var(--ease), content-visibility var(--dur-slow) allow-discrete;
+  }
+  .item[open]::details-content { block-size: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item .toggle { transition: none; }
+  .item::details-content { transition: none; }
 }
