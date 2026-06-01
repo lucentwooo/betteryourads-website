@@ -1,6 +1,8 @@
 import { SectionHead } from '@/components/ui/SectionHead';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Button } from '@/components/ui/Button';
+import { SpotlightCard } from '@/components/ui/SpotlightCard';
+import { MagneticButton } from '@/components/ui/MagneticButton';
 import styles from './Pricing.module.css';
 
 export function Pricing() {
@@ -23,13 +25,13 @@ export function Pricing() {
               <strong>30 ads on us</strong>.
             </span>
           </div>
-          <Button href="#waitlist" primary sm>
+          <MagneticButton href="#waitlist" primary sm>
             claim my spot →
-          </Button>
+          </MagneticButton>
         </div>
 
         <div className={styles.grid}>
-          <div className={styles.card}>
+          <div className={`${styles.card} reveal`}>
             <div className={styles.tierName}>founder</div>
             <div className={styles.amount}>
               <span>$499</span>
@@ -50,7 +52,7 @@ export function Pricing() {
             </Button>
           </div>
 
-          <div className={`${styles.card} ${styles.featured}`}>
+          <SpotlightCard className={`${styles.card} ${styles.featured} ${styles.beam} reveal`}>
             <div className={styles.tierRow}>
               <div className={styles.tierName}>scale</div>
               <span className={styles.badge}>most teams</span>
@@ -69,10 +71,10 @@ export function Pricing() {
               <li>Dedicated account, shared Slack with our team</li>
             </ul>
             <div className={styles.footnote}>white-glove onboarding included</div>
-            <Button href="#waitlist" primary className={styles.cardCta}>
+            <MagneticButton href="#waitlist" primary className={styles.cardCta}>
               join the waitlist
-            </Button>
-          </div>
+            </MagneticButton>
+          </SpotlightCard>
         </div>
 
         <div className={styles.anchorBar}>
