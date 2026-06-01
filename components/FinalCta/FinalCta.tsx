@@ -9,10 +9,10 @@ export function FinalCta() {
         <Eyebrow accent className={styles.kicker}>
           join the waitlist
         </Eyebrow>
-        <h2>
+        <h2 className="reveal">
           Stop guessing.
           <br />
-          Start <span className="accent">shipping</span>.
+          Start <span className="accent sheen">shipping</span>.
         </h2>
         <p className="sub" style={{ maxWidth: 580, margin: '0 auto 36px' }}>
           First month free. 30 ads on us. We email you when your seat is ready.

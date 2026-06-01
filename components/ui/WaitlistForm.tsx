@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
+import { fireConfetti } from '@/lib/confetti';
 import styles from './WaitlistForm.module.css';
 
 export function WaitlistForm({
@@ -20,6 +21,7 @@ export function WaitlistForm({
       return;
     }
     setDone(true);
+    fireConfetti();
   }
 
   if (done) {

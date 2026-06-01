@@ -4,6 +4,7 @@
   z-index: 50;
   background: rgba(244, 239, 230, 0.92);
   border-bottom: 1px solid var(--fg);
+  transition: background var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
 }
 .inner {
   display: flex;
@@ -21,6 +22,15 @@
 .links a { font-size: 14px; color: var(--fg-2); text-decoration: none; transition: color 120ms var(--ease); }
 .links a:hover { color: var(--fg); }
 .ctaGroup { display: flex; align-items: center; gap: 10px; }
+.scrolled {
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-hairline);
+}
+.links a.active { color: var(--accent); }
 @media (max-width: 960px) {
   .links { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav { transition: none; }
 }
