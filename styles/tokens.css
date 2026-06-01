@@ -112,6 +112,18 @@
   --dur-fast:         120ms;
   --dur-base:         200ms;
   --dur-slow:         320ms;
+
+  /* Motion — scroll-driven reveal + beam (additions) */
+  --reveal-dur:  640ms;
+  --reveal-rise: 16px;
+  --reveal-blur: 6px;
+  --beam-dur:    1100ms;
+}
+
+@property --beam-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
 }
 
 /* =================================================================

@@ -21,7 +21,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={dmSans.variable}>
-      <body>{children}</body>
+      <body>
+        <div className="scrollProgress" aria-hidden />
+        {children}
+      </body>
     </html>
   );
 }
