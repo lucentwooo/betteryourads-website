@@ -1,5 +1,6 @@
 import { SectionHead } from '@/components/ui/SectionHead';
 import { OptimizeChart } from './OptimizeChart';
+import { AnglePicker } from './AnglePicker';
 import styles from './HowItWorks.module.css';
 
 export function HowItWorks() {
@@ -13,7 +14,7 @@ export function HowItWorks() {
           sub="Three stages. About 90 seconds per ad. Tuned for what shows up in your Stripe dashboard, not your CTR column."
         />
         <div className={styles.steps}>
-          <div className={styles.step}>
+          <div className={`${styles.step} reveal`}>
             <div className={styles.n}>01 //</div>
             <div className={styles.text}>
               <h3>We read your site.</h3>
@@ -27,7 +28,7 @@ export function HowItWorks() {
             </div>
           </div>
 
-          <div className={styles.step}>
+          <div className={`${styles.step} reveal`}>
             <div className={styles.n}>02 //</div>
             <div className={styles.text}>
               <h3>We write five angles.</h3>
@@ -38,11 +39,11 @@ export function HowItWorks() {
               </p>
             </div>
             <div className={styles.visual}>
-              <VisualLaunch />
+              <AnglePicker />
             </div>
           </div>
 
-          <div className={styles.step}>
+          <div className={`${styles.step} reveal`}>
             <div className={styles.n}>03 //</div>
             <div className={styles.text}>
               <h3>We ship to Meta and tune for signups.</h3>
@@ -88,37 +89,6 @@ function VisualLearn() {
       <div className={styles.learnFoot}>
         <span className={styles.learnFootKey}>5 angles drafted</span>
         <span className={styles.learnFootAccent}>continue →</span>
-      </div>
-    </div>
-  );
-}
-
-function VisualLaunch() {
-  return (
-    <div className={styles.launch}>
-      <div className={styles.launchHead}>5 angles · pick or ship all</div>
-      <div className={`${styles.angle} ${styles.angleSelected}`}>
-        <div className={styles.radio}>
-          <div className={styles.radioDot} />
-        </div>
-        <div className={styles.angleText}>
-          <div className={styles.angleTitle}>ship without the standup.</div>
-          <div className={styles.angleTag}>process</div>
-        </div>
-      </div>
-      <div className={styles.angle}>
-        <div className={styles.radio} />
-        <div className={styles.angleText}>
-          <div className={styles.angleTitle}>speed is the feature.</div>
-          <div className={styles.angleTag}>manifesto</div>
-        </div>
-      </div>
-      <div className={styles.angle}>
-        <div className={styles.radio} />
-        <div className={styles.angleText}>
-          <div className={styles.angleTitle}>the issue tracker for shipping.</div>
-          <div className={styles.angleTag}>category</div>
-        </div>
       </div>
     </div>
   );
