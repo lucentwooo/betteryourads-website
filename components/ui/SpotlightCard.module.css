@@ -1,0 +1,10 @@
+.card { position: relative; isolation: isolate; transition: border-color var(--dur-base) var(--ease); }
+.card::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  border-radius: inherit; opacity: 0; transition: opacity var(--dur-base) var(--ease);
+  background: radial-gradient(220px circle at var(--spot-x, 50%) var(--spot-y, 0),
+    color-mix(in srgb, var(--accent) 9%, transparent), transparent 60%);
+}
+.card:hover::before { opacity: 1; }
+.card:hover { border-color: var(--fg); }
+@media (prefers-reduced-motion: reduce) { .card::before { transition: none; } }
