@@ -31,7 +31,7 @@ export function Compare() {
             <div className={styles.us}>betteryourads</div>
           </div>
           {ROWS.map(([label, them1, them2, us]) => (
-            <div className={styles.row} key={label}>
+            <div className={`${styles.row} reveal`} key={label}>
               <div>{label}</div>
               <div className={styles.them}>{them1}</div>
               <div className={styles.them}>{them2}</div>
