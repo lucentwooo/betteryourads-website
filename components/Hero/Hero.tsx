@@ -1,4 +1,4 @@
-import { LiveDemo } from '@/components/LiveDemo/LiveDemo';
+import { BatchDemo } from '@/components/Hero/BatchDemo';
 import { WaitlistForm } from '@/components/ui/WaitlistForm';
 import styles from './Hero.module.css';
 
@@ -29,7 +29,7 @@ export function Hero() {
             </div>
           </div>
           <div className={styles.right}>
-            <LiveDemo />
+            <BatchDemo />
           </div>
         </div>
       </div>
