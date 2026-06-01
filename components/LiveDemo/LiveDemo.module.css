@@ -125,6 +125,8 @@
   51%, 100% { opacity: 0; }
 }
 .analyzeBtn {
+  font-family: var(--font-sans);
+  cursor: pointer;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: -0.005em;
