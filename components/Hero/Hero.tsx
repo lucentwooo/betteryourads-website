@@ -13,7 +13,7 @@ export function Hero() {
               <span>meta ads · for b2b saas</span>
             </div>
             <h1>
-              Meta ads, <span className="accent">run for you</span>.
+              Meta ads, <span className="accent sheen">run for you</span>.
             </h1>
             <p className="lead">
               We learn your product, write the angles, and run the creative.

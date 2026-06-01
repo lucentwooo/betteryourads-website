@@ -91,9 +91,28 @@
   color: var(--fg);
   min-height: 40px;
   min-width: 0;
+  transition: border-color var(--dur-base) var(--ease);
 }
-.urlScheme { color: var(--fg-3); }
-.urlTyped  { color: var(--fg); font-weight: 500; }
+.urlInput:focus-within { border-color: var(--accent); }
+.urlScheme { color: var(--fg-3); flex-shrink: 0; }
+.urlTyped  { color: var(--fg); font-weight: 500; white-space: nowrap; }
+
+/* Real, editable site input. Inherits the url-row look: transparent, no chrome,
+   the global :focus-visible ring lives on .urlInput via :focus-within. */
+.urlField {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--fg);
+  padding: 0;
+  outline: none; /* ring is on the wrapper; no double outline */
+}
+.urlField::placeholder { color: var(--fg-3); opacity: 0.7; font-weight: 400; }
 .caret {
   display: inline-block;
   width: 2px; height: 16px;
@@ -268,6 +287,30 @@
 }
 .canvasImg.in { transform: scale(1); }
 
+/* Personalized mode: the visitor's real favicon (or monogram fallback) on the canvas. */
+.canvasMarkWrap {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  transition: opacity 480ms var(--ease);
+  pointer-events: none;
+}
+.brandFavicon,
+.brandSwatch {
+  width: 96px; height: 96px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--fg);
+  background: var(--bg);
+}
+.brandFavicon { object-fit: contain; padding: 14px; }
+.brandSwatch {
+  display: grid; place-items: center;
+  font-family: var(--font-sans);
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--bg);
+}
+
 /* Wireframe placeholder */
 .wire {
   position: absolute; inset: 0;
@@ -336,6 +379,22 @@
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+/* ----- Honest preview caption --------------------------------- */
+.caption {
+  padding: 0 20px 14px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--fg-3);
+  letter-spacing: -0.005em;
+}
+
+/* ----- Reduced motion ----------------------------------------- */
+/* Guard the NEW transitions introduced by the interactive layer. */
+@media (prefers-reduced-motion: reduce) {
+  .urlInput,
+  .canvasMarkWrap { transition: none; }
 }
 
 /* ----- Responsive --------------------------------------------- */

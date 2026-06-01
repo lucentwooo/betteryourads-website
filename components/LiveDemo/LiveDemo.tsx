@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import Image from 'next/image';
 import {
   DEMO_URL,
@@ -10,6 +10,10 @@ import {
   feedRowState,
   stepLabel,
   canvasOpacities,
+  normalizeDomain,
+  domainMonogram,
+  domainAccent,
+  faviconUrl,
 } from './liveDemoMachine';
 import styles from './LiveDemo.module.css';
 
@@ -34,8 +38,31 @@ const TYPE_MS = 700;
 const T = { typed: 950, audit: 1750, cust: 2550, brand: 3350, concept: 4150, render: 4950, shipped: 7050, cycle: 9300 };
 const RENDER_STEPS = 28;
 
+/**
+ * Generic, honest "work in progress" feed copy for personalized mode.
+ * We cannot scrape the visitor's site client-side, so we never claim findings:
+ * these are clearly-in-progress labels, never fabricated specifics.
+ * (The clickup autoplay copy lives untouched in FEED_DEFS / liveDemoMachine.ts.)
+ */
+const PERSONAL_FEED: Record<string, (phase: number) => string> = {
+  audit: () => 'reading your site…',
+  customers: () => 'mapping your ICP…',
+  brand: () => '__PALETTE__', // component renders the favicon/accent mark for this sentinel
+  concepts: () => 'drafting angles…',
+  creative: (p) => (p === 7 ? 'preview ready' : 'composing…'),
+};
+
 export function LiveDemo() {
   const [state, dispatch] = useReducer(reducer, { phase: 0, typedChars: 0, progress: 0 });
+
+  // Interactive layer. `domain === null` => untouched clickup autoplay showreel.
+  const [domain, setDomain] = useState<string | null>(null);
+  const [draft, setDraft] = useState('');
+  const [focused, setFocused] = useState(false);
+  const [faviconFailed, setFaviconFailed] = useState(false);
+
+  const activeDomain = domain ?? DEMO_URL;
+  const personalized = domain !== null;
 
   useEffect(() => {
     const timers: ReturnType<typeof setTimeout>[] = [];
@@ -43,8 +70,8 @@ export function LiveDemo() {
 
     function runCycle() {
       dispatch({ type: 'reset' });
-      for (let i = 1; i <= DEMO_URL.length; i++) {
-        at((TYPE_MS * i) / DEMO_URL.length, () => dispatch({ type: 'typed', n: i }));
+      for (let i = 1; i <= activeDomain.length; i++) {
+        at((TYPE_MS * i) / activeDomain.length, () => dispatch({ type: 'typed', n: i }));
       }
       at(T.typed, () => dispatch({ type: 'phase', p: 1 }));
       at(T.audit, () => dispatch({ type: 'phase', p: 2 }));
@@ -61,13 +88,33 @@ export function LiveDemo() {
 
     runCycle();
     return () => timers.forEach(clearTimeout);
-  }, []);
+    // Submitting a domain changes activeDomain, which cleanly restarts the cycle
+    // (the cleanup above clears all pending timers first).
+  }, [activeDomain]);
 
   const { phase, typedChars, progress } = state;
   const generated = phase >= 1;
   const { wire, grad, img } = canvasOpacities(progress);
 
   const gradStyle = `linear-gradient(135deg, ${DEMO_PALETTE[0]} 0%, ${DEMO_PALETTE[1]} 50%, ${DEMO_PALETTE[2]} 100%)`;
+
+  // The animated typed span is the showreel affordance; once the visitor focuses
+  // or types, the real <input> takes over. In personalized mode it always shows
+  // their submitted domain being re-typed.
+  const showTypedSpan = !personalized && !focused && draft === '';
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const d = normalizeDomain(draft);
+    if (d) {
+      setDomain(d);
+      setFaviconFailed(false); // a fresh domain deserves a fresh favicon attempt
+    }
+    // invalid/empty => do nothing
+  }
+
+  const showMonogram = personalized && faviconFailed;
+  const accentColor = personalized ? domainAccent(domain!) : undefined;
 
   return (
     <div className={styles.ldg}>
@@ -81,22 +128,45 @@ export function LiveDemo() {
         <div className={styles.live}><span className={styles.tick} />live</div>
       </div>
 
-      <div className={styles.urlRow}>
-        <div className={styles.urlLabel}>your site</div>
+      <form className={styles.urlRow} onSubmit={handleSubmit}>
+        <label className={styles.urlLabel} htmlFor="ldg-site">your site</label>
         <div className={styles.urlInput}>
           <span className={styles.urlScheme}>https://</span>
-          <span className={styles.urlTyped}>{DEMO_URL.slice(0, typedChars)}</span>
-          {phase === 0 ? <span className={styles.caret} /> : null}
+          {showTypedSpan ? (
+            <span className={styles.urlTyped} aria-hidden="true">
+              {activeDomain.slice(0, typedChars)}
+            </span>
+          ) : null}
+          {showTypedSpan && phase === 0 ? <span className={styles.caret} /> : null}
+          <input
+            id="ldg-site"
+            className={styles.urlField}
+            type="text"
+            inputMode="url"
+            autoComplete="off"
+            spellCheck={false}
+            placeholder={showTypedSpan ? '' : 'your-saas.com'}
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+          />
         </div>
-        <div className={`${styles.analyzeBtn} ${generated ? styles.done : ''}`.trim()}>
-          {generated ? <Check /> : 'generate'}
-        </div>
-      </div>
+        <button
+          type="submit"
+          className={`${styles.analyzeBtn} ${generated && !personalized ? styles.done : ''}`.trim()}
+          aria-label="generate ad preview"
+        >
+          {generated && !personalized ? <Check /> : 'generate'}
+        </button>
+      </form>
 
       <div className={styles.body}>
         <div className={styles.feed}>
           {FEED_DEFS.map((def) => {
             const rs = feedRowState(def, phase);
+            const valueFn = personalized ? (PERSONAL_FEED[def.label] ?? def.value) : def.value;
+            const raw = valueFn(phase);
             return (
               <div key={def.label} className={`${styles.feedRow} ${styles[rs]}`}>
                 <div className={styles.feedMark}>
@@ -108,8 +178,9 @@ export function LiveDemo() {
                   <div className={styles.feedLabel}>{def.label}</div>
                   <div className={styles.feedValue}>
                     {rs === 'idle' ? <span className={styles.feedWait}>·</span>
-                      : def.value(phase) === '__PALETTE__' ? <Palette />
-                      : def.value(phase)}
+                      : raw === '__PALETTE__'
+                        ? (personalized ? <BrandMark accent={accentColor!} /> : <Palette />)
+                      : raw}
                   </div>
                 </div>
               </div>
@@ -126,17 +197,44 @@ export function LiveDemo() {
               <div className={styles.wireBar} style={{ width: '26%', bottom: '16%', height: '11%' }} />
             </div>
             <div className={styles.canvasBg} style={{ background: gradStyle, opacity: grad }} />
-            <Image
-              className={`${styles.canvasImg} ${img > 0.6 ? styles.in : ''}`.trim()}
-              style={{ opacity: img }}
-              src="/demo-clickup-ad.jpg"
-              alt="clickup ad mockup"
-              width={240}
-              height={240}
-            />
+            {personalized ? (
+              <div className={styles.canvasMarkWrap} style={{ opacity: img }}>
+                {showMonogram ? (
+                  <div
+                    className={styles.brandSwatch}
+                    style={{ background: domainAccent(domain!) }}
+                    aria-hidden="true"
+                  >
+                    {domainMonogram(domain!)}
+                  </div>
+                ) : (
+                  // Plain <img> (not next/image): a remote favicon we don't want to
+                  // route through next.config remotePatterns. The visitor's real
+                  // brand mark — an honest personalization, not a scrape.
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    className={styles.brandFavicon}
+                    src={faviconUrl(domain!)}
+                    alt=""
+                    width={64}
+                    height={64}
+                    onError={() => setFaviconFailed(true)}
+                  />
+                )}
+              </div>
+            ) : (
+              <Image
+                className={`${styles.canvasImg} ${img > 0.6 ? styles.in : ''}`.trim()}
+                style={{ opacity: img }}
+                src="/demo-clickup-ad.jpg"
+                alt="clickup ad mockup"
+                width={240}
+                height={240}
+              />
+            )}
             {phase === 7 ? (
               <div className={styles.canvasBadge}>
-                <span className={styles.tick} />running on meta
+                <span className={styles.tick} />{personalized ? 'preview ready' : 'running on meta'}
               </div>
             ) : null}
           </div>
@@ -148,8 +246,16 @@ export function LiveDemo() {
           className={styles.statusDot}
           style={{ background: phase === 7 ? 'var(--bya-forest)' : 'var(--accent)' }}
         />
-        <span className={styles.statusText}>{statusText(phase)}</span>
+        <span className={styles.statusText}>
+          {personalized && phase === 7 ? 'preview ready — join to go live' : statusText(phase)}
+        </span>
         <span className={styles.footMeta}>{stepLabel(phase)}</span>
+      </div>
+
+      <div className={styles.caption}>
+        {personalized
+          ? 'preview — runs on your real site once you join'
+          : 'type your site to preview — real creative once you join'}
       </div>
     </div>
   );
@@ -171,6 +277,16 @@ function Palette() {
         <span key={c} style={{ background: c, transitionDelay: `${i * 80}ms` }} />
       ))}
       <span className={styles.feedPaletteText}>+ bold all-caps</span>
+    </span>
+  );
+}
+
+/** Personalized brand row: the visitor's derived accent swatch (clearly decorative). */
+function BrandMark({ accent }: { accent: string }) {
+  return (
+    <span className={styles.feedPalette}>
+      <span style={{ background: accent }} />
+      <span className={styles.feedPaletteText}>preview palette</span>
     </span>
   );
 }
