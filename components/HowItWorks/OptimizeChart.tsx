@@ -1,3 +1,6 @@
+'use client';
+
+import { Counter } from '@/components/ui/Counter';
 import styles from './OptimizeChart.module.css';
 
 const ROWS = [
@@ -33,7 +36,7 @@ export function OptimizeChart() {
                   style={{ color: r.pct > 50 ? 'var(--bg)' : 'var(--fg)' }}
                 >
                   <span className={styles.barName}>{r.name}</span>
-                  <span className={styles.signups}>{r.signups}</span>
+                  <span className={styles.signups}><Counter value={r.signups} /></span>
                 </div>
               </div>
               <span
@@ -48,7 +51,7 @@ export function OptimizeChart() {
       </div>
       <div className={styles.foot}>
         <span>spend shifted to top signup drivers · auto</span>
-        <span>127 signups · $2,841 mrr</span>
+        <span><Counter value={127} /> signups · <Counter value={2841} format={(n) => `$${Math.round(n).toLocaleString()}`} /> mrr</span>
       </div>
     </div>
   );
