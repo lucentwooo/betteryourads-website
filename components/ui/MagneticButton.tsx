@@ -4,9 +4,19 @@ import { useRef, type ReactNode } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 import styles from './MagneticButton.module.css';
 
+type ExtraProps = Record<`data-${string}`, string | undefined>;
+
+type MagneticButtonProps = ExtraProps & {
+  href?: string;
+  children: ReactNode;
+  primary?: boolean;
+  sm?: boolean;
+  className?: string;
+};
+
 export function MagneticButton({
-  href, children, primary = false, sm = false, className,
-}: { href: string; children: ReactNode; primary?: boolean; sm?: boolean; className?: string }) {
+  href, children, primary = false, sm = false, className, ...rest
+}: MagneticButtonProps) {
   const ref = useRef<HTMLAnchorElement>(null);
   const x = useMotionValue(0); const y = useMotionValue(0);
   const sx = useSpring(x, { stiffness: 220, damping: 18, mass: 0.4 });
@@ -25,7 +35,8 @@ export function MagneticButton({
 
   return (
     <motion.a ref={ref} href={href} className={classes}
-      style={{ x: sx, y: sy }} onPointerMove={onMove} onPointerLeave={reset}>
+      style={{ x: sx, y: sy }} onPointerMove={onMove} onPointerLeave={reset}
+      {...rest}>
       {children}
     </motion.a>
   );
