@@ -50,19 +50,19 @@ export function Showcase() {
   // already smooths the scroll; this rounds the section's own motion on top,
   // which is what makes the reveal feel seamless rather than mechanical.
   const progress = useSpring(scrollYProgress, {
-    stiffness: 130,
-    damping: 30,
-    restDelta: 0.001,
+    stiffness: 70,
+    damping: 28,
+    restDelta: 0.0005,
   });
 
   // The flatten completes gradually (by ~0.5 of the section's travel) so the
   // user watches the screen settle while it's comfortably pinned in view, then
   // reads the ads. rotateX: 22deg (tilted back) → 0 (flat). scale: 1.04 → 1.
-  const rotateX = useTransform(progress, [0.05, 0.5], [22, 0]);
-  const scale = useTransform(progress, [0.05, 0.5], [1.04, 1]);
+  const rotateX = useTransform(progress, [0.05, 0.55], [22, 0]);
+  const scale = useTransform(progress, [0.05, 0.55], [1.04, 1]);
   // Title lifts and fades in slightly as the screen approaches flat.
-  const titleY = useTransform(progress, [0.05, 0.5], [40, 0]);
-  const titleOpacity = useTransform(progress, [0.05, 0.34], [0.4, 1]);
+  const titleY = useTransform(progress, [0.05, 0.55], [40, 0]);
+  const titleOpacity = useTransform(progress, [0.05, 0.36], [0.4, 1]);
 
   useEffect(() => {
     // Post-mount only (client). Deferred out of the effect body for
@@ -91,7 +91,8 @@ export function Showcase() {
             </h2>
             <p className={styles.sub}>
               These are real, on-brand ad variations — the kind we batch-generate
-              and ship to Meta. Pick the winners; we optimise spend toward signups.
+              and ship to Meta. Pick the winners; we report what’s working and
+              generate more.
             </p>
           </motion.div>
 
@@ -183,11 +184,14 @@ function ZoomTile({
   progress: MotionValue<number>;
   animate: boolean;
 }) {
-  const start = 0.1 + index * 0.045;
-  const end = start + 0.26;
-  const scale = useTransform(progress, [start, end], [0.74, 1]);
-  const opacity = useTransform(progress, [start, end - 0.08], [0, 1]);
-  const y = useTransform(progress, [start, end], [26, 0]);
+  // Gentle, near-unison cascade: small stagger + a long range so the eight
+  // tiles ease in slowly together (one seamless reveal) rather than popping in
+  // as discrete, clicky steps.
+  const start = 0.08 + index * 0.022;
+  const end = start + 0.36;
+  const scale = useTransform(progress, [start, end], [0.88, 1]);
+  const opacity = useTransform(progress, [start, end - 0.12], [0, 1]);
+  const y = useTransform(progress, [start, end], [16, 0]);
 
   return (
     <motion.figure
