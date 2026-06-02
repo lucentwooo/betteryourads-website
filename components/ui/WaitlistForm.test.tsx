@@ -1,23 +1,31 @@
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, it, expect } from 'vitest';
 import { WaitlistForm } from './WaitlistForm';
 
-describe('WaitlistForm', () => {
-  it('shows the confirmation message after a valid submit', async () => {
-    const user = userEvent.setup();
-    render(<WaitlistForm />);
-    await user.type(screen.getByPlaceholderText('founder@yoursaas.com'), 'a@b.com');
-    await user.click(screen.getByRole('button', { name: /join the waitlist/i }));
-    expect(screen.getByText(/you’re on the list/i)).toBeInTheDocument();
-    expect(screen.queryByPlaceholderText('founder@yoursaas.com')).not.toBeInTheDocument();
-  });
+const action = vi.hoisted(() => vi.fn());
+vi.mock('@/lib/waitlist/action', () => ({ joinWaitlist: action }));
+vi.mock('@/lib/confetti', () => ({ fireConfetti: vi.fn() }));
 
-  it('does not confirm when the email is empty/invalid', async () => {
-    const user = userEvent.setup();
+beforeEach(() => action.mockReset());
+
+describe('WaitlistForm', () => {
+  it('has an accessible label on the email field', () => {
     render(<WaitlistForm />);
-    await user.click(screen.getByRole('button', { name: /join the waitlist/i }));
-    expect(screen.queryByText(/you’re on the list/i)).not.toBeInTheDocument();
-    expect(screen.getByPlaceholderText('founder@yoursaas.com')).toBeInTheDocument();
+    expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
+  });
+  it('shows success on ok result', async () => {
+    action.mockResolvedValue({ ok: true });
+    render(<WaitlistForm />);
+    await userEvent.type(screen.getByLabelText(/email/i), 'founder@yoursaas.com');
+    await userEvent.click(screen.getByRole('button', { name: /waitlist/i }));
+    expect(await screen.findByText(/on the list/i)).toBeInTheDocument();
+  });
+  it('shows an error message on error result', async () => {
+    action.mockResolvedValue({ ok: false, reason: 'error' });
+    render(<WaitlistForm />);
+    await userEvent.type(screen.getByLabelText(/email/i), 'founder@yoursaas.com');
+    await userEvent.click(screen.getByRole('button', { name: /waitlist/i }));
+    expect(await screen.findByText(/something went wrong/i)).toBeInTheDocument();
   });
 });
