@@ -4,7 +4,10 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import Image from 'next/image';
 import { SectionHead } from '@/components/ui/SectionHead';
 import { AnglePicker } from './AnglePicker';
-import { VARIATION_ADS, VARIATION_COUNT } from '@/lib/demoAds';
+import { WORKED_EXAMPLE } from '@/lib/creatives';
+
+const NOTION = WORKED_EXAMPLE.ads;
+const NOTION_COUNT = NOTION.length;
 import styles from './HowItWorks.module.css';
 
 /* HowItWorks — the done-for-you pipeline as scroll-driven narrative.
@@ -149,22 +152,22 @@ function VisualLearn() {
     <div className={styles.learn}>
       <div className={styles.learnRow}>
         <div className={styles.learnDot} />
-        <span className={styles.learnUrl}>https://yoursaas.com</span>
+        <span className={styles.learnUrl}>https://notion.so</span>
         <span className={styles.learnTime}>analyzed in 12s</span>
       </div>
       <div className={styles.learnGrid}>
         <span className={styles.learnKey}>positioning</span>
-        <span>speed is the feature</span>
+        <span>the all-in-one workspace</span>
         <span className={styles.learnKey}>category</span>
-        <span>project tracking</span>
+        <span>knowledge &amp; docs</span>
         <span className={styles.learnKey}>icp</span>
-        <span>technical founders, 10-200 eng</span>
+        <span>ops &amp; founder-led teams</span>
         <span className={styles.learnKey}>palette</span>
         <span className={styles.learnSwatches}>
-          <span className={styles.learnSwatch} style={{ background: '#5e6ad2' }} />
-          <span className={styles.learnSwatch} style={{ background: '#0b0c10' }} />
-          <span className={styles.learnSwatch} style={{ background: '#f4f5f8' }} />
-          <span className={styles.learnSwatch} style={{ background: '#9aa0b4' }} />
+          <span className={styles.learnSwatch} style={{ background: '#0a0a0a' }} />
+          <span className={styles.learnSwatch} style={{ background: '#ffffff' }} />
+          <span className={styles.learnSwatch} style={{ background: '#eb5757' }} />
+          <span className={styles.learnSwatch} style={{ background: '#f7f6f3' }} />
         </span>
       </div>
       <div className={styles.learnFoot}>
@@ -181,10 +184,10 @@ function VisualBatch() {
     <div className={styles.batch}>
       <div className={styles.batchHead}>
         <span className={styles.batchDot} />
-        {VARIATION_COUNT} on-brand variations · one batch
+        {NOTION_COUNT} on-brand variations · one batch
       </div>
       <div className={styles.batchGrid}>
-        {VARIATION_ADS.map((ad) => (
+        {NOTION.map((ad) => (
           <span className={styles.batchCell} key={ad.src}>
             <Image
               src={ad.src}
@@ -202,13 +205,13 @@ function VisualBatch() {
 
 /* ----- Stage 04 — ship to Meta: a real placement ----- */
 function VisualShip() {
-  const ad = VARIATION_ADS[0];
+  const ad = NOTION[0];
   return (
     <div className={styles.ship}>
       <div className={styles.shipBar}>
         <span className={styles.shipAvatar} />
         <span className={styles.shipName}>
-          Your SaaS
+          Notion
           <span className={styles.shipMeta}>Sponsored · Meta</span>
         </span>
       </div>
@@ -237,7 +240,7 @@ function VisualShip() {
    won, and generate fresh variations off it so the founder iterates in a click.
    Fully autonomous optimisation is the roadmap. ----- */
 function VisualOptimize() {
-  const ad = VARIATION_ADS[3];
+  const ad = NOTION[3];
   return (
     <div className={styles.read}>
       <div className={styles.readHead}>
