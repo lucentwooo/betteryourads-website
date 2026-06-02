@@ -5,6 +5,7 @@ import Image from 'next/image';
 import {
   motion,
   useScroll,
+  useSpring,
   useTransform,
   useReducedMotion,
   type MotionValue,
@@ -43,15 +44,25 @@ export function Showcase() {
     offset: ['start end', 'end start'],
   });
 
+  // Smooth the raw scroll into ONE eased progress value that drives BOTH the
+  // 3D flatten and the tile cascade — so the whole section moves as a single
+  // fluid, momentum-eased system instead of tracking the wheel 1:1. Lenis
+  // already smooths the scroll; this rounds the section's own motion on top,
+  // which is what makes the reveal feel seamless rather than mechanical.
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 130,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
   // The flatten completes gradually (by ~0.5 of the section's travel) so the
-  // user watches the screen settle — Lenis-smooth — while it's comfortably
-  // pinned in view, then reads the ads. rotateX: 22deg (tilted back) → 0 (flat).
-  // scale: 1.04 → 1. Ranges widened in the Phase S smoothing pass.
-  const rotateX = useTransform(scrollYProgress, [0.05, 0.5], [22, 0]);
-  const scale = useTransform(scrollYProgress, [0.05, 0.5], [1.04, 1]);
+  // user watches the screen settle while it's comfortably pinned in view, then
+  // reads the ads. rotateX: 22deg (tilted back) → 0 (flat). scale: 1.04 → 1.
+  const rotateX = useTransform(progress, [0.05, 0.5], [22, 0]);
+  const scale = useTransform(progress, [0.05, 0.5], [1.04, 1]);
   // Title lifts and fades in slightly as the screen approaches flat.
-  const titleY = useTransform(scrollYProgress, [0.05, 0.5], [40, 0]);
-  const titleOpacity = useTransform(scrollYProgress, [0.05, 0.34], [0.4, 1]);
+  const titleY = useTransform(progress, [0.05, 0.5], [40, 0]);
+  const titleOpacity = useTransform(progress, [0.05, 0.34], [0.4, 1]);
 
   useEffect(() => {
     // Post-mount only (client). Deferred out of the effect body for
@@ -140,7 +151,7 @@ export function Showcase() {
                     key={ad.src}
                     ad={ad}
                     index={i}
-                    progress={scrollYProgress}
+                    progress={progress}
                     animate={animate}
                   />
                 ))}
@@ -172,11 +183,11 @@ function ZoomTile({
   progress: MotionValue<number>;
   animate: boolean;
 }) {
-  const start = 0.1 + index * 0.04;
-  const end = start + 0.22;
+  const start = 0.1 + index * 0.045;
+  const end = start + 0.26;
   const scale = useTransform(progress, [start, end], [0.74, 1]);
-  const opacity = useTransform(progress, [start, end - 0.06], [0, 1]);
-  const y = useTransform(progress, [start, end], [22, 0]);
+  const opacity = useTransform(progress, [start, end - 0.08], [0, 1]);
+  const y = useTransform(progress, [start, end], [26, 0]);
 
   return (
     <motion.figure
