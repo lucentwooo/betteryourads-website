@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import Image from 'next/image';
 import { SectionHead } from '@/components/ui/SectionHead';
-import { OptimizeChart } from './OptimizeChart';
 import { AnglePicker } from './AnglePicker';
 import { VARIATION_ADS, VARIATION_COUNT } from '@/lib/demoAds';
 import styles from './HowItWorks.module.css';
@@ -65,11 +64,11 @@ const STAGES: Stage[] = [
   },
   {
     key: 'optimize',
-    rail: 'optimize for signups',
+    rail: 'analyze & iterate',
     n: '05',
-    title: 'We tune spend toward signups.',
-    desc: 'Every day we shift budget to the angles driving trial signups at the lowest cost — measured against your Stripe, not your CTR.',
-    visual: <OptimizeChart />,
+    title: 'We find what’s working — and why.',
+    desc: 'Each week we analyze performance and show you why a creative is winning — the hook, the angle, the proof — then generate fresh variations off the winners so iterating is one click. Fully autonomous optimization is on the way.',
+    visual: <VisualOptimize />,
   },
 ];
 
@@ -214,13 +213,15 @@ function VisualShip() {
         </span>
       </div>
       <div className={styles.shipMedia}>
-        <Image
-          src={ad.src}
-          alt={ad.alt}
-          fill
-          sizes="320px"
-          className={styles.shipImg}
-        />
+        <div className={styles.shipMediaInner}>
+          <Image
+            src={ad.src}
+            alt={ad.alt}
+            fill
+            sizes="280px"
+            className={styles.shipImg}
+          />
+        </div>
       </div>
       <div className={styles.shipActions}>
         <span className={styles.shipAction}>Like</span>
@@ -228,5 +229,69 @@ function VisualShip() {
         <span className={styles.shipCta}>Start free trial</span>
       </div>
     </div>
+  );
+}
+
+/* ----- Stage 05 visual: "this week's read" — analyze → why → re-generate.
+   We don't touch spend (yet): we surface the winning creative, explain WHY it
+   won, and generate fresh variations off it so the founder iterates in a click.
+   Fully autonomous optimisation is the roadmap. ----- */
+function VisualOptimize() {
+  const ad = VARIATION_ADS[3];
+  return (
+    <div className={styles.read}>
+      <div className={styles.readHead}>
+        <span className={styles.readDot} />
+        this week’s read
+      </div>
+      <div className={styles.readWinner}>
+        <span className={styles.readThumb}>
+          <Image
+            src={ad.src}
+            alt={ad.alt}
+            fill
+            sizes="48px"
+            className={styles.readImg}
+          />
+        </span>
+        <span className={styles.readWinText}>
+          <span className={styles.readWinName}>
+            “standups are killing your velocity”
+          </span>
+          <span className={styles.readWinSub}>your top performer · problem-aware</span>
+        </span>
+      </div>
+      <ul className={styles.readWhy}>
+        <li>
+          <Tick /> names the pain in one line
+        </li>
+        <li>
+          <Tick /> founder voice, not corporate
+        </li>
+        <li>
+          <Tick /> proof point up front
+        </li>
+      </ul>
+      <div className={styles.readFoot}>→ briefed + 3 fresh variations generated</div>
+    </div>
+  );
+}
+
+function Tick() {
+  return (
+    <svg
+      width="13"
+      height="13"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={styles.tick}
+    >
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
   );
 }

@@ -300,16 +300,23 @@
   color: var(--fg-3);
 }
 .shipMedia {
-  position: relative;
   flex: 1;
   min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: var(--bg-raised);
+}
+/* The creative is square — show it whole, height-bound and centred, so it
+   reads as a complete placement instead of a cropped strip. */
+.shipMediaInner {
+  position: relative;
+  height: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
 }
 .shipImg {
   object-fit: cover;
-  /* Frame the ad's headline and crop its own footer button so it doesn't
-     collide with the post's actions bar below. */
-  object-position: center 24%;
 }
 .shipActions {
   display: flex;
@@ -333,6 +340,99 @@
   border-radius: var(--radius-full);
   padding: 4px 12px;
   background: var(--accent-soft);
+}
+
+/* ----- Stage 05 visual: "this week's read" insight brief ----- */
+.read {
+  height: 100%;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  background: var(--bg);
+}
+.readHead {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-3);
+}
+.readDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.readWinner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.readThumb {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border: 1px solid var(--fg);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--bg-raised);
+}
+.readImg {
+  object-fit: cover;
+}
+.readWinText {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.readWinName {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+}
+.readWinSub {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+.readWhy {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.readWhy li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--fg-2);
+}
+.tick {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.readFoot {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-hairline);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  color: var(--accent);
 }
 
 /* ----- Reduced motion: the rail + spine are state, not motion — keep
