@@ -1,13 +1,15 @@
 import { SectionHead } from '@/components/ui/SectionHead';
-import { MetricMorph } from './MetricMorph';
 import styles from './Compare.module.css';
 
-const ROWS = [
-  ['What it optimizes for', 'whatever you brief', 'add-to-cart, ROAS', 'trial signups, MRR, CAC payback'],
-  ['Time to first ad live', 'weeks', 'a few days', 'about 90 seconds'],
-  ['Reports you actually read', 'a monthly deck', 'clicks, CPM, impressions', 'signups, cost per signup, MRR added'],
-  ["How it's priced", 'retainer + creative hours', 'subscription + your hours', 'flat monthly, month-to-month'],
-] as const;
+// Capability comparison — BetterYourAds is the first (and only all-✓) column;
+// the alternatives sit to its right. have = [betteryourads, agency, ecom-ai].
+const ROWS: { cap: string; have: [boolean, boolean, boolean] }[] = [
+  { cap: 'Built for SaaS funnels, not ecommerce', have: [true, false, false] },
+  { cap: 'A full batch of on-brand angles at once', have: [true, false, false] },
+  { cap: 'Optimizes for trial signups, not ROAS', have: [true, false, false] },
+  { cap: 'First ads live in about 90 seconds', have: [true, false, false] },
+  { cap: 'Flat monthly — no retainer, no creative hours', have: [true, false, false] },
+];
 
 export function Compare() {
   return (
@@ -22,26 +24,68 @@ export function Compare() {
               Not for ecommerce.
             </>
           }
-          sub='Most "AI ads" tools were trained on Shopify stores. Most agencies grew up on ecom retainers. SaaS sells differently. Long cycles, multi-stakeholder, trial-to-paid. Your ads need to know that.'
+          sub='Most "AI ads" tools were trained on Shopify stores. Most agencies grew up on ecom retainers. SaaS sells differently — long cycles, multi-stakeholder, trial-to-paid. Your ads need to know that.'
         />
-        <MetricMorph />
-        <div className={`${styles.compare} ${styles.four}`}>
+        <div className={styles.table}>
           <div className={`${styles.row} ${styles.header}`}>
-            <div />
-            <div>meta-ads agency</div>
-            <div>ecom-trained ai tools</div>
-            <div className={styles.us}>betteryourads</div>
+            <div className={styles.cap} />
+            <div className={`${styles.col} ${styles.us}`}>betteryourads</div>
+            <div className={styles.col}>meta-ads agency</div>
+            <div className={styles.col}>ecom-trained ai</div>
           </div>
-          {ROWS.map(([label, them1, them2, us]) => (
-            <div className={`${styles.row} reveal`} key={label}>
-              <div>{label}</div>
-              <div className={styles.them}>{them1}</div>
-              <div className={styles.them}>{them2}</div>
-              <div className={styles.us}>{us}</div>
+          {ROWS.map(({ cap, have }) => (
+            <div className={`${styles.row} reveal`} key={cap}>
+              <div className={styles.cap}>{cap}</div>
+              <div className={`${styles.col} ${styles.us}`}>
+                {have[0] ? <Check /> : <Cross />}
+              </div>
+              <div className={styles.col}>{have[1] ? <Check /> : <Cross />}</div>
+              <div className={styles.col}>{have[2] ? <Check /> : <Cross />}</div>
             </div>
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function Check() {
+  return (
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      role="img"
+      aria-label="yes"
+      className={styles.check}
+    >
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  );
+}
+
+function Cross() {
+  return (
+    <svg
+      width="19"
+      height="19"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      role="img"
+      aria-label="no"
+      className={styles.cross}
+    >
+      <line x1="6" y1="6" x2="18" y2="18" />
+      <line x1="18" y1="6" x2="6" y2="18" />
+    </svg>
   );
 }
