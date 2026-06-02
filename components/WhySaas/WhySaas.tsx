@@ -23,11 +23,11 @@ import styles from './WhySaas.module.css';
    ================================================================= */
 
 const ROWS: { cap: string }[] = [
-  { cap: 'Built for SaaS funnels, not ecommerce' },
-  { cap: 'Unlimited on-brand angles in one batch' },
-  { cap: 'Optimizes for trial signups, not ROAS' },
-  { cap: 'First ads live in about 90 seconds' },
-  { cap: 'Flat monthly — no retainer, no creative hours' },
+  { cap: 'Optimized for trials that convert to paid — not vanity signups' },
+  { cap: 'B2B attribution windows (30-day click), not Meta defaults' },
+  { cap: 'Unlimited on-brand ad variations per brief' },
+  { cap: 'First ads live in days, not weeks of onboarding' },
+  { cap: 'One flat price — no % of ad spend, no per-asset fees' },
 ];
 
 // Stagger ~75ms/row for the crosses; the BYA column lands a beat after
@@ -98,32 +98,32 @@ export function WhySaas() {
     <section className="section" id="why">
       <div className="wrap">
         <SectionHead
-          eyebrow="why nothing else works"
+          eyebrow="what actually matters"
           title={
             <>
-              Three ways to run paid social.
+              Cheap signups are easy.
               <br />
-              None built for SaaS.
+              Ones that pay are the job.
             </>
           }
-          sub="Agencies are ecom-trained and slow. Freelancers ship once. DIY is Canva at midnight. We’re the only one built for SaaS trial-to-paid funnels."
+          sub="A low cost-per-signup looks great in a dashboard and can still do nothing for revenue — most trials never even activate. For SaaS, success is trials that convert to paid, at a CAC that pays back fast. Here’s where we’re built differently."
         />
 
         <motion.div className={styles.table} {...viewProps}>
           <div className={`${styles.row} ${styles.header}`}>
             <div className={styles.cap} />
             <div className={styles.col}>
-              <span>meta-ads agency</span>
-              <span className={styles.colSub}>weeks · retainers</span>
+              <span>typical agency</span>
+              <span className={styles.colSub}>retainer + % of spend</span>
             </div>
             <div className={styles.col}>
               <span>freelancer / DIY</span>
-              <span className={styles.colSub}>one-off · guesswork</span>
+              <span className={styles.colSub}>one-off · manual</span>
             </div>
             <div className={`${styles.col} ${styles.us}`}>
               <span className={styles.usBadge}>does all five</span>
               <span>betteryourads</span>
-              <span className={styles.colSub}>done-for-you · live in minutes</span>
+              <span className={styles.colSub}>built for trial → paid</span>
             </div>
           </div>
 

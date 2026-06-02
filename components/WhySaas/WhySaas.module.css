@@ -7,9 +7,9 @@
    ================================================================= */
 .table {
   position: relative;
-  margin-top: 48px;
+  margin-top: 64px;
   border: 1px solid var(--fg);
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
 }
 
@@ -25,10 +25,10 @@
 .cap {
   display: flex;
   align-items: center;
-  padding: 18px 24px;
+  padding: 24px 32px;
   font-family: var(--font-sans);
   font-size: 15px;
-  line-height: 1.35;
+  line-height: 1.4;
   color: var(--fg);
 }
 
@@ -37,8 +37,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 18px 16px;
+  padding: 24px 16px;
   border-left: 1px solid var(--border-hairline);
+}
+
+.header .col {
+  padding-top: 22px;
+  padding-bottom: 22px;
 }
 
 /* Header */

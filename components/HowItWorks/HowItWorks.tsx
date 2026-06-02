@@ -163,10 +163,10 @@ function VisualLearn() {
         <span>ops &amp; founder-led teams</span>
         <span className={styles.learnKey}>palette</span>
         <span className={styles.learnSwatches}>
-          <span className={styles.learnSwatch} style={{ background: '#0a0a0a' }} />
+          <span className={styles.learnSwatch} style={{ background: '#191919' }} />
           <span className={styles.learnSwatch} style={{ background: '#ffffff' }} />
-          <span className={styles.learnSwatch} style={{ background: '#eb5757' }} />
           <span className={styles.learnSwatch} style={{ background: '#f7f6f3' }} />
+          <span className={styles.learnSwatch} style={{ background: '#9b9a97' }} />
         </span>
       </div>
       <div className={styles.learnFoot}>
