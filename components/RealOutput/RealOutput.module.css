@@ -1,0 +1,24 @@
+/* =================================================================
+   RealOutput — section shell.
+
+   The SectionHead sits in the standard .wrap; the LivingWall is
+   full-bleed (its own component spans the viewport so the edge-fade
+   reaches the edges). The nested <PilotProof> brings its own
+   .section padding, so we collapse the gap between the wall and the
+   pilot block to avoid a double-whitespace canyon.
+   ================================================================= */
+
+.section {
+  /* Standard top padding from .section (96px) for the header; the nested
+     PilotProof supplies its own bottom rhythm, so trim our own bottom. */
+  padding-bottom: 0;
+}
+
+/* The nested PilotProof section draws a top border via `.section + .section`
+   only when it's a sibling — here it's a child, so add a hairline rule above
+   it for the same calm separation, and tighten its top padding so the wall
+   and pilots read as one connected beat. */
+.section :global(.section#pilot) {
+  border-top: none;
+  padding-top: 88px;
+}

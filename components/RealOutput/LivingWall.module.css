@@ -1,0 +1,138 @@
+/* =================================================================
+   LivingWall — two opposite-direction marquee rows, cream edge-fade.
+
+   The animated track is doubled and translated -50% over a long, linear,
+   infinite loop so it reads smooth and expensive — never frenetic. A
+   cream gradient mask fades cards in/out at both horizontal edges.
+
+   Reduced-motion + the static first-paint fallback use .staticStrip:
+   a plain overflow-x:auto strip with NO animation.
+   ================================================================= */
+
+.wall {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 56px;
+  /* Cream edge-fade: cards melt in/out at both ends. */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 9%,
+    #000 91%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 9%,
+    #000 91%,
+    transparent 100%
+  );
+}
+
+/* ----- Animated row ------------------------------------------------ */
+.row {
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  will-change: transform;
+  /* duration set inline per-row; one shared easing: linear for a constant
+     glide (a non-linear curve would visibly pulse on an infinite loop). */
+  animation-name: marquee-left;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  cursor: grab;
+  touch-action: pan-y;
+}
+.track:active {
+  cursor: grabbing;
+}
+.dragging {
+  cursor: grabbing;
+}
+
+.left {
+  animation-name: marquee-left;
+}
+.right {
+  animation-name: marquee-right;
+}
+
+/* The track holds the sequence twice; -50% lands exactly on the start of
+   the duplicate, so the loop is seamless. */
+@keyframes marquee-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+@keyframes marquee-right {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ----- Static fallback strip (server + reduced motion) ------------- */
+.staticStrip {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+.staticStrip > * {
+  scroll-snap-align: start;
+}
+
+/* ----- Card -------------------------------------------------------- */
+.card {
+  position: relative;
+  flex: 0 0 auto;
+  width: 200px;
+  height: 200px;
+  margin: 0;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-raised);
+  user-select: none;
+}
+
+.img {
+  object-fit: cover;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .card {
+    width: 156px;
+    height: 156px;
+  }
+  .wall {
+    gap: 16px;
+  }
+  .track,
+  .staticStrip {
+    gap: 16px;
+  }
+}
+
+/* Hard guard: if a user has reduced motion at the OS level, kill any
+   marquee animation even if the JS path were to render it. */
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none !important;
+    transform: none !important;
+  }
+}
