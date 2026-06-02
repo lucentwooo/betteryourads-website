@@ -34,8 +34,10 @@ import styles from './BatchCascade.module.css';
 const EASE: [number, number, number, number] = [0.2, 0, 0, 1];
 const STAGGER = 0.07; // ~70ms between children in a beat
 
-// Beat windows (ms). Auto-advance, then loop. 0–2.4 · 2.4–4.8 · 4.8–6.6 · 6.6–9.2
-const DURATIONS = [2400, 2400, 1800, 2600];
+// Beat windows (ms). Auto-advance, then loop. Slower on the parts that carry
+// the most to read/understand: the audit kit and the five angles, then a long
+// beat to take in the generated batch. ~14.4s loop.
+const DURATIONS = [3600, 4400, 2800, 3600];
 
 const [REFERENCE, ...VARIATIONS] = HERO_BRAND.ads;
 
