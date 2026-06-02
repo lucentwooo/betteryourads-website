@@ -132,6 +132,12 @@
   overflow: hidden;
   position: relative;
 }
+/* The ship-to-Meta placement is a full feed post (header + media + actions),
+   so it needs more vertical room than the other stage visuals — otherwise the
+   ad media gets squeezed into a thin, cropped strip. */
+.visual:has(.ship) {
+  height: 320px;
+}
 
 /* ----- Stage 01 visual: "We read your site" ----- */
 .learn {
@@ -301,6 +307,9 @@
 }
 .shipImg {
   object-fit: cover;
+  /* Frame the ad's headline and crop its own footer button so it doesn't
+     collide with the post's actions bar below. */
+  object-position: center 24%;
 }
 .shipActions {
   display: flex;
