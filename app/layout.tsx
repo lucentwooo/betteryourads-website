@@ -11,11 +11,29 @@ const dmSans = DM_Sans({
   display: 'swap',
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://betteryourads.com';
+const TITLE = 'betteryourads — meta ads, run for you';
+const DESCRIPTION =
+  'Done-for-you Meta ads for B2B SaaS. We learn your product, batch the creative, and run it on Facebook & Instagram — built for trial signups, not add-to-carts.';
+
 export const metadata: Metadata = {
-  title: 'betteryourads — meta ads, built for b2b saas',
-  description:
-    'We learn your product, write the angles, ship the creative, and run the Meta ads. Built for SaaS funnels — not ecommerce.',
+  metadataBase: new URL(SITE_URL),
+  title: TITLE,
+  description: DESCRIPTION,
   icons: { icon: '/favicon.svg' },
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    siteName: 'betteryourads',
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 };
 
 export default function RootLayout({
