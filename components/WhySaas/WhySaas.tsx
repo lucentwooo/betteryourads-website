@@ -24,7 +24,7 @@ import styles from './WhySaas.module.css';
 
 const ROWS: { cap: string }[] = [
   { cap: 'Built for SaaS funnels, not ecommerce' },
-  { cap: 'A full batch of on-brand angles at once' },
+  { cap: 'Unlimited on-brand angles in one batch' },
   { cap: 'Optimizes for trial signups, not ROAS' },
   { cap: 'First ads live in about 90 seconds' },
   { cap: 'Flat monthly — no retainer, no creative hours' },
@@ -112,9 +112,19 @@ export function WhySaas() {
         <motion.div className={styles.table} {...viewProps}>
           <div className={`${styles.row} ${styles.header}`}>
             <div className={styles.cap} />
-            <div className={styles.col}>meta-ads agency</div>
-            <div className={styles.col}>freelancer / DIY</div>
-            <div className={`${styles.col} ${styles.us}`}>betteryourads</div>
+            <div className={styles.col}>
+              <span>meta-ads agency</span>
+              <span className={styles.colSub}>weeks · retainers</span>
+            </div>
+            <div className={styles.col}>
+              <span>freelancer / DIY</span>
+              <span className={styles.colSub}>one-off · guesswork</span>
+            </div>
+            <div className={`${styles.col} ${styles.us}`}>
+              <span className={styles.usBadge}>does all five</span>
+              <span>betteryourads</span>
+              <span className={styles.colSub}>done-for-you · live in minutes</span>
+            </div>
           </div>
 
           {/* The BYA column highlight overlay — lights up electric-blue last. */}

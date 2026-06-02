@@ -3,36 +3,34 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion, useReducedMotion } from 'motion/react';
-import { WORKED_EXAMPLE } from '@/lib/creatives';
+import { HERO_BRAND } from '@/lib/creatives';
 import styles from './BatchCascade.module.css';
 
 /* =================================================================
    BatchCascade — the signature hero moment.
 
-   One reference creative fans out into a full batch of on-brand
-   variations: the USP (batch creation) shown in ~2 seconds.
+   One reference creative fans out into an on-brand batch — and keeps
+   going. We render the real HERO_BRAND (Asana) variations, then a few
+   shimmering "generating" cells so the batch reads as UNLIMITED, not a
+   fixed count (we don't stop at N).
 
-   Layout: a larger "reference" card on the left, then the four
-   WORKED_EXAMPLE (Notion) ads revealing in a staggered cascade to
-   the right — reference → batch, on-brand.
+   The reference is shown on its own (left); the batch on the right is
+   the OTHER variations — the reference never repeats inside the batch.
 
-   SSR + reduced-motion (Manifesto discipline): FIRST PAINT renders
-   the final composed grid statically and deterministically. Motion
-   is applied ONLY after mount (requestAnimationFrame → setMounted)
-   and NEVER under useReducedMotion(). Reduced-motion users — and the
-   server render — get the finished batch, fully legible.
+   SSR + reduced-motion (Manifesto discipline): FIRST PAINT renders the
+   final composed grid statically and deterministically. The reveal
+   motion applies ONLY after mount and NEVER under useReducedMotion();
+   the generating shimmer is CSS and is disabled under reduced motion.
 
    The reference is the LCP image → priority. Borders over shadows;
    cream / ink / one blue only.
    ================================================================= */
 
 const EASE: [number, number, number, number] = [0.2, 0, 0, 1];
-const STAGGER = 0.08; // ~80ms between variation cards
-
-// `--reveal-rise` / `--reveal-blur` as raw values for the motion tween
-// (matches globals.css reveal: 16px rise, 6px blur).
-const RISE = 16;
-const BLUR = 6;
+const STAGGER = 0.08; // ~80ms between cards
+const RISE = 16; // matches --reveal-rise
+const BLUR = 6; // matches --reveal-blur
+const GHOSTS = 2; // "still generating" cells — communicates "unlimited"
 
 export function BatchCascade() {
   const reduce = useReducedMotion();
@@ -45,8 +43,15 @@ export function BatchCascade() {
 
   const animate = mounted && !reduce;
 
-  const [reference] = WORKED_EXAMPLE.ads;
-  const variations = WORKED_EXAMPLE.ads; // the full on-brand batch
+  const [reference, ...variations] = HERO_BRAND.ads; // batch excludes the reference
+
+  function reveal(i: number) {
+    return {
+      initial: animate ? { opacity: 0, y: RISE, filter: `blur(${BLUR}px)` } : false,
+      animate: animate ? { opacity: 1, y: 0, filter: 'blur(0px)' } : undefined,
+      transition: animate ? { duration: 0.64, ease: EASE, delay: i * STAGGER } : undefined,
+    };
+  }
 
   return (
     <figure className={styles.root}>
@@ -72,29 +77,11 @@ export function BatchCascade() {
           <FanIcon />
         </div>
 
-        {/* ----- the on-brand batch ----- */}
+        {/* ----- the on-brand batch (real variations + generating cells) ----- */}
         <div className={styles.batchCol}>
           <div className={styles.grid}>
             {variations.map((ad, i) => (
-              <motion.div
-                key={ad.src}
-                className={styles.cell}
-                // SSR + reduced-motion: final state (visible) is the default;
-                // we only animate FROM hidden after mount on the motion path.
-                initial={
-                  animate ? { opacity: 0, y: RISE, filter: `blur(${BLUR}px)` } : false
-                }
-                animate={
-                  animate
-                    ? { opacity: 1, y: 0, filter: 'blur(0px)' }
-                    : undefined
-                }
-                transition={
-                  animate
-                    ? { duration: 0.64, ease: EASE, delay: i * STAGGER }
-                    : undefined
-                }
-              >
+              <motion.div key={ad.src} className={styles.cell} {...reveal(i)}>
                 <div className={styles.cellFrame}>
                   <Image
                     src={ad.src}
@@ -106,13 +93,28 @@ export function BatchCascade() {
                 </div>
               </motion.div>
             ))}
+
+            {Array.from({ length: GHOSTS }).map((_, g) => (
+              <motion.div
+                key={`ghost-${g}`}
+                className={styles.cell}
+                aria-hidden="true"
+                {...reveal(variations.length + g)}
+              >
+                <div className={`${styles.cellFrame} ${styles.ghost}`}>
+                  <span className={styles.ghostDots}>
+                    <i /><i /><i />
+                  </span>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
 
       <figcaption className={styles.caption}>
         <span className={styles.live} aria-hidden="true" />
-        one reference → a full batch, on-brand
+        one reference → unlimited on-brand variations
       </figcaption>
     </figure>
   );

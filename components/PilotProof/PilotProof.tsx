@@ -6,20 +6,16 @@ const PILOTS = [
   {
     num: 'pilot 01',
     name: 'A Startmate-backed startup',
-    rows: [
-      ['stage', 'pre-seed'],
-      ['funnel', 'self-serve, trial to paid'],
-      ['running', 'facebook + instagram'],
-    ],
+    stage: 'pre-seed',
+    model: 'Self-serve SaaS · trial → paid',
+    channels: ['Facebook', 'Instagram'],
   },
   {
     num: 'pilot 02',
-    name: 'A Melbourne accelerator company',
-    rows: [
-      ['stage', 'seed'],
-      ['funnel', 'sales-led, demo to close'],
-      ['running', 'facebook + instagram'],
-    ],
+    name: 'A Melbourne accelerator app',
+    stage: 'seed',
+    model: 'Mobile app · driving app installs',
+    channels: ['Facebook', 'Instagram'],
   },
 ] as const;
 
@@ -37,7 +33,7 @@ export function PilotProof() {
               Shipping daily.
             </>
           }
-          sub="We're running ads right now for two B2B SaaS teams. Anonymous until the data is. Specific because we owe you specifics."
+          sub="We're running ads right now for two funded startups — one self-serve SaaS, one mobile app. Anonymous until the data is. Specific because we owe you specifics."
         />
         <div className={styles.grid}>
           {PILOTS.map((p) => (
@@ -49,14 +45,21 @@ export function PilotProof() {
                   shipping daily
                 </span>
               </div>
-              <div className={styles.name}>{p.name}</div>
-              <div className={styles.rows}>
-                {p.rows.map(([k, v]) => (
-                  <div className={styles.row} key={k}>
-                    <span className={styles.k}>{k}</span>
-                    <span className={styles.v}>{v}</span>
-                  </div>
-                ))}
+
+              <div className={styles.head}>
+                <div className={styles.name}>{p.name}</div>
+                <span className={styles.stagePill}>{p.stage}</span>
+              </div>
+
+              <div className={styles.body}>
+                <div className={styles.model}>{p.model}</div>
+                <div className={styles.chips}>
+                  {p.channels.map((c) => (
+                    <span className={styles.chip} key={c}>
+                      {c}
+                    </span>
+                  ))}
+                </div>
               </div>
             </SpotlightCard>
           ))}

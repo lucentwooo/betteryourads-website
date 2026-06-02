@@ -46,6 +46,8 @@
   background: var(--bg-raised);
 }
 .header .col {
+  flex-direction: column;
+  gap: 5px;
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 500;
@@ -53,6 +55,32 @@
   letter-spacing: 0.1em;
   color: var(--fg-3);
   text-align: center;
+}
+.header .us {
+  padding-top: 14px;
+}
+.colSub {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--fg-3);
+}
+.header .us .colSub {
+  color: var(--accent);
+  opacity: 0.85;
+}
+.usBadge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #fff;
+  background: var(--accent);
+  border-radius: var(--radius-full);
+  padding: 3px 9px;
 }
 
 /* The winning column — BetterYourAds — lifted in accent down the table. */
@@ -130,5 +158,9 @@
   .header .col {
     font-size: 8.5px;
     letter-spacing: 0.03em;
+  }
+  .colSub,
+  .usBadge {
+    display: none;
   }
 }
