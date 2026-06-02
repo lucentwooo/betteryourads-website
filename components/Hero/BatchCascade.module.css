@@ -89,36 +89,127 @@
   flex-direction: column;
 }
 
-/* ============ Beat 0 — AUDIT ============ */
+/* ============ Beat 0 — AUDIT (live scan) ============ */
 .audit {
+  display: grid;
+  grid-template-columns: 45% 1fr;
+  gap: 18px;
+  align-items: stretch;
+  height: 100%;
+}
+
+/* LEFT — mini browser + scanned wireframe */
+.scanCol {
+  display: flex;
+  min-width: 0;
+}
+.miniBrowser {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-deep);
+  overflow: hidden;
 }
-.browserRow {
+.miniBar {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding-bottom: 12px;
+  gap: 8px;
+  padding: 7px 9px;
   border-bottom: 1px solid var(--border-hairline);
-}
-.browserDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--bya-forest);
+  background: var(--bg);
   flex: none;
 }
-.url {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--fg-2);
+.miniDots {
+  display: flex;
+  gap: 4px;
 }
-.analyzed {
-  margin-left: auto;
+.miniDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--fg-3);
+}
+.miniUrl {
   font-family: var(--font-mono);
   font-size: 10px;
-  color: var(--bya-forest);
+  color: var(--fg-2);
+  padding: 1px 8px;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-full);
+  background: var(--bg);
+}
+.wireframe {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  overflow: hidden;
+}
+.wireBlock,
+.wireBar,
+.wireBtn {
+  background: var(--bg);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+}
+.wireHero {
+  width: 100%;
+  flex: 1;
+  min-height: 48px;
+  background: var(--bg-raised);
+}
+.wireBar {
+  height: 9px;
+}
+.wireBarWide { width: 90%; }
+.wireBarMid { width: 64%; }
+.wireBtn {
+  width: 38%;
+  height: 16px;
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+/* the scan beam — a thin accent line sweeping top→bottom with a soft glow */
+.scanBeam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 10px 1px var(--accent);
+  opacity: 0.9;
+}
+.scanBeam::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--accent-soft), transparent);
+  opacity: 0.5;
+}
+
+/* RIGHT — extracted brand kit */
+.kit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  min-width: 0;
+}
+.kitLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: var(--track-caps);
+  color: var(--accent);
 }
 .kvGrid {
   display: flex;
@@ -126,10 +217,23 @@
   gap: 12px;
 }
 .kvRow {
+  position: relative;
   display: grid;
-  grid-template-columns: 84px 1fr;
+  grid-template-columns: 70px 1fr;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  padding-left: 10px;
+}
+/* left accent tick — makes each row read as a "detected" token */
+.kvRow::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  bottom: 2px;
+  width: 2px;
+  background: var(--accent);
+  border-radius: var(--radius-full);
 }
 .k {
   font-family: var(--font-mono);
@@ -146,41 +250,89 @@
   display: flex;
 }
 .swatch {
-  width: 26px;
-  height: 18px;
+  width: 22px;
+  height: 16px;
   border: 1px solid var(--fg);
 }
 .swatch + .swatch {
   border-left: 0;
 }
 
-/* ============ Beat 1 — ANGLES ============ */
+/* ============ Beat 1 — ANGLES (streaming concepts) ============ */
 .angles {
   display: flex;
   flex-direction: column;
   gap: 10px;
   height: 100%;
+  min-height: 0;
 }
 .angleHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-mono);
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: var(--track-caps);
   color: var(--fg-3);
+  flex: none;
 }
-.angleList {
+.angleDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+  animation: anglePulse 1.6s var(--ease) infinite;
+}
+.angleCount {
+  margin-left: auto;
+  color: var(--accent);
+}
+/* masked viewport — fades top + bottom, clips the stream */
+.angleViewport {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 14%,
+    #000 86%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 14%,
+    #000 86%,
+    transparent 100%
+  );
+}
+.angleTrack {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  will-change: transform;
+  animation: angleScroll 8s linear infinite;
+}
+.angleStatic {
+  animation: none;
+  transform: none;
 }
 .angleRow {
   display: flex;
   align-items: baseline;
   gap: 12px;
+  /* gap lives on the row (margin), not the flex container, so the track
+     height is an exact multiple of the row pitch → -50% lands on a clean
+     seam and the loop is truly gapless. */
+  margin-bottom: 6px;
   padding: 9px 12px;
   border: 1px solid var(--border-hairline);
   border-radius: var(--radius-sm);
   background: var(--bg);
+  flex: none;
 }
 .angleStage {
   flex: none;
@@ -194,6 +346,32 @@
 .angleHook {
   font-size: 13px;
   color: var(--fg);
+}
+
+/* full cycle translates the first sequence out (the duplicate takes its
+   place) → seamless. 28 rows doubled, so -50% lands exactly on the seam. */
+@keyframes angleScroll {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+@keyframes anglePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.7); }
+}
+
+/* scan beam sweep — top→bottom on a ~1.8s loop */
+@keyframes scanSweep {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+.scanBeam {
+  animation: scanSweep 1.8s var(--ease) infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .angleTrack { animation: none; transform: none; }
+  .angleDot { animation: none; }
+  .scanBeam { animation: none; opacity: 0.5; }
 }
 
 /* ============ Beat 2 — SEED (reference) ============ */
@@ -309,9 +487,13 @@
   .seedFrame {
     width: 180px;
   }
+  .audit {
+    grid-template-columns: 42% 1fr;
+    gap: 12px;
+  }
   .kvRow {
-    grid-template-columns: 72px 1fr;
-    gap: 10px;
+    grid-template-columns: 64px 1fr;
+    gap: 8px;
   }
   .angleStage {
     width: 70px;

@@ -44,12 +44,38 @@ const [REFERENCE, ...VARIATIONS] = HERO_BRAND.ads;
 const STEP_LABELS = ['01 · audit', '02 · angles', '03 · seed', '04 · generate'] as const;
 const VERBS = ['auditing', 'angling', 'seeding', 'generating'] as const;
 
+// A long stream of concepts — one per awareness stage, looping — to convey
+// VOLUME (dozens, not five). Order intentional; rendered twice for a gapless
+// vertical marquee.
 const ANGLES = [
   { stage: 'unaware', hook: 'Meetings are quietly killing focus.' },
+  { stage: 'unaware', hook: 'You lose 4 hours a week to tool-switching.' },
+  { stage: 'unaware', hook: 'Busywork is eating your best engineers.' },
+  { stage: 'unaware', hook: '“Quick sync?” is never quick.' },
   { stage: 'problem', hook: 'Too many tools, too many tabs.' },
+  { stage: 'problem', hook: 'Chat here, calls there, docs somewhere else.' },
+  { stage: 'problem', hook: 'Nobody can find the recording.' },
+  { stage: 'problem', hook: 'Context dies between apps.' },
   { stage: 'solution', hook: 'One app for meetings, chat & docs.' },
+  { stage: 'solution', hook: 'Stop switching. Start shipping.' },
+  { stage: 'solution', hook: 'Everything in one place, finally.' },
+  { stage: 'solution', hook: 'Your whole workflow, one window.' },
   { stage: 'product', hook: 'Built-in AI. No extra cost.' },
+  { stage: 'product', hook: 'AI notes & action items — automatic.' },
+  { stage: 'product', hook: 'Whiteboard, docs, clips — included.' },
+  { stage: 'product', hook: 'Set up in minutes, not weeks.' },
   { stage: 'most-aware', hook: 'Trusted by millions. 4.5/5 stars.' },
+  { stage: 'most-aware', hook: 'Emmy-winning engineering.' },
+  { stage: 'most-aware', hook: 'Dream workflow achieved.' },
+  { stage: 'most-aware', hook: 'Join 300k+ teams.' },
+  { stage: 'unaware', hook: 'Your calendar is quietly out of control.' },
+  { stage: 'problem', hook: 'Switching tools 1,200× a day.' },
+  { stage: 'solution', hook: 'Async + live, one platform.' },
+  { stage: 'product', hook: 'Onboarding that takes a coffee.' },
+  { stage: 'most-aware', hook: 'Designed for how you actually work.' },
+  { stage: 'solution', hook: 'Less admin. More building.' },
+  { stage: 'product', hook: 'Ship the all-hands recap automatically.' },
+  { stage: 'most-aware', hook: 'The workplace that works for you.' },
 ] as const;
 
 // Shared beat enter/exit — crossfade + lift with a touch of blur.
@@ -190,56 +216,92 @@ function Stagger({
   );
 }
 
-/* Beat 0 — AUDIT */
+/* Beat 0 — AUDIT (an AI scanning the site, brand kit populating) */
 function BeatAudit({ animated }: { animated: boolean }) {
   return (
     <div className={styles.audit}>
-      <Stagger i={0} animated={animated} className={styles.browserRow}>
-        <span className={styles.browserDot} />
-        <span className={styles.url}>zoom.com</span>
-        <span className={styles.analyzed}>analyzed in 12s</span>
+      {/* LEFT — a mini browser with a wireframe of the site + scan beam */}
+      <Stagger i={0} animated={animated} className={styles.scanCol}>
+        <div className={styles.miniBrowser}>
+          <div className={styles.miniBar}>
+            <span className={styles.miniDots} aria-hidden="true">
+              <span className={styles.miniDot} />
+              <span className={styles.miniDot} />
+              <span className={styles.miniDot} />
+            </span>
+            <span className={styles.miniUrl}>zoom.com</span>
+          </div>
+          <div className={styles.wireframe}>
+            <span className={`${styles.wireBlock} ${styles.wireHero}`} />
+            <span className={`${styles.wireBar} ${styles.wireBarWide}`} />
+            <span className={`${styles.wireBar} ${styles.wireBarMid}`} />
+            <span className={styles.wireBtn} />
+            {/* scan beam sweeps top→bottom; gated to motion via CSS */}
+            <span className={styles.scanBeam} aria-hidden="true" />
+          </div>
+        </div>
       </Stagger>
 
-      <div className={styles.kvGrid}>
-        <Stagger i={1} animated={animated} className={styles.kvRow}>
-          <span className={styles.k}>positioning</span>
-          <span className={styles.v}>one app for meetings, chat &amp; docs</span>
+      {/* RIGHT — the extracted brand kit, detected token by token */}
+      <div className={styles.kit}>
+        <Stagger i={1} animated={animated} className={styles.kitLabel}>
+          extracting brand kit…
         </Stagger>
-        <Stagger i={2} animated={animated} className={styles.kvRow}>
-          <span className={styles.k}>category</span>
-          <span className={styles.v}>workplace communication</span>
-        </Stagger>
-        <Stagger i={3} animated={animated} className={styles.kvRow}>
-          <span className={styles.k}>icp</span>
-          <span className={styles.v}>distributed teams</span>
-        </Stagger>
-        <Stagger i={4} animated={animated} className={styles.kvRow}>
-          <span className={styles.k}>palette</span>
-          <span className={styles.swatches}>
-            {/* Zoom brand swatches — the only literal hexes allowed. */}
-            <span className={styles.swatch} style={{ background: '#0B5CFF' }} />
-            <span className={styles.swatch} style={{ background: '#2D8CFF' }} />
-            <span className={styles.swatch} style={{ background: '#1A1A2E' }} />
-            <span className={styles.swatch} style={{ background: '#FFFFFF' }} />
-          </span>
-        </Stagger>
+        <div className={styles.kvGrid}>
+          <Stagger i={2} animated={animated} className={styles.kvRow}>
+            <span className={styles.k}>positioning</span>
+            <span className={styles.v}>one app for meetings, chat &amp; docs</span>
+          </Stagger>
+          <Stagger i={3} animated={animated} className={styles.kvRow}>
+            <span className={styles.k}>category</span>
+            <span className={styles.v}>workplace communication</span>
+          </Stagger>
+          <Stagger i={4} animated={animated} className={styles.kvRow}>
+            <span className={styles.k}>icp</span>
+            <span className={styles.v}>distributed teams</span>
+          </Stagger>
+          <Stagger i={5} animated={animated} className={styles.kvRow}>
+            <span className={styles.k}>palette</span>
+            <span className={styles.swatches}>
+              {/* Zoom brand swatches — the only literal hexes allowed. */}
+              <span className={styles.swatch} style={{ background: '#0B5CFF' }} />
+              <span className={styles.swatch} style={{ background: '#2D8CFF' }} />
+              <span className={styles.swatch} style={{ background: '#1A1A2E' }} />
+              <span className={styles.swatch} style={{ background: '#FFFFFF' }} />
+            </span>
+          </Stagger>
+        </div>
       </div>
     </div>
   );
 }
 
-/* Beat 1 — ANGLES */
+/* Beat 1 — ANGLES (a fast, continuous stream of dozens of concepts) */
 function BeatAngles({ animated }: { animated: boolean }) {
   return (
     <div className={styles.angles}>
-      <div className={styles.angleHead}>five angles to test · one per awareness stage</div>
-      <div className={styles.angleList}>
-        {ANGLES.map((a, i) => (
-          <Stagger key={a.stage} i={i} animated={animated} className={styles.angleRow}>
-            <span className={styles.angleStage}>{a.stage}</span>
-            <span className={styles.angleHook}>{a.hook}</span>
-          </Stagger>
-        ))}
+      <div className={styles.angleHead}>
+        <span className={styles.angleDot} aria-hidden="true" />
+        <span>concepts · every awareness stage</span>
+        <span className={styles.angleCount}>48 generated</span>
+      </div>
+      {/* masked viewport — rows scroll upward on a seamless -50% loop */}
+      <div className={styles.angleViewport}>
+        <div className={`${styles.angleTrack} ${animated ? '' : styles.angleStatic}`}>
+          {ANGLES.map((a, i) => (
+            <div key={`a-${i}`} className={styles.angleRow}>
+              <span className={styles.angleStage}>{a.stage}</span>
+              <span className={styles.angleHook}>{a.hook}</span>
+            </div>
+          ))}
+          {/* duplicate sequence for the gapless loop — hidden from a11y */}
+          {ANGLES.map((a, i) => (
+            <div key={`b-${i}`} className={styles.angleRow} aria-hidden="true">
+              <span className={styles.angleStage}>{a.stage}</span>
+              <span className={styles.angleHook}>{a.hook}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
