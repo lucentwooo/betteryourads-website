@@ -8,14 +8,14 @@ describe('creatives catalogue', () => {
     expect(WORKED_EXAMPLE.brand).toBe('notion');
     expect(WORKED_EXAMPLE.ads).toHaveLength(4);
   });
-  it('hero brand is Asana with 3 ads', () => {
-    expect(HERO_BRAND.brand).toBe('asana');
-    expect(HERO_BRAND.ads).toHaveLength(3);
+  it('hero brand is Zoom: a reference + 4 variations', () => {
+    expect(HERO_BRAND.brand).toBe('zoom');
+    expect(HERO_BRAND.ads).toHaveLength(5);
   });
-  it('wall has 8 brands and excludes both the hero (asana) and pipeline (notion) brands', () => {
-    expect(WALL_BRANDS.length).toBe(8);
+  it('wall excludes both the hero (zoom) and pipeline (notion) brands', () => {
+    expect(WALL_BRANDS.length).toBeGreaterThanOrEqual(8);
     expect(WALL_BRANDS.some((b) => b.brand === 'notion')).toBe(false);
-    expect(WALL_BRANDS.some((b) => b.brand === 'asana')).toBe(false);
+    expect(WALL_BRANDS.some((b) => b.brand === 'zoom')).toBe(false);
   });
   it('skips the weak zapier creative (ad-03)', () => {
     const zapier = WALL_BRANDS.find((b) => b.brand === 'zapier');

@@ -9,13 +9,11 @@ import styles from './BatchCascade.module.css';
 /* =================================================================
    BatchCascade — the signature hero moment.
 
-   One reference creative fans out into an on-brand batch — and keeps
-   going. We render the real HERO_BRAND (Asana) variations, then a few
-   shimmering "generating" cells so the batch reads as UNLIMITED, not a
-   fixed count (we don't stop at N).
+   One reference creative (Zoom Workplace) fans out into a 2×2 batch of
+   four hand-picked on-brand variations — the USP in ~2 seconds.
 
    The reference is shown on its own (left); the batch on the right is
-   the OTHER variations — the reference never repeats inside the batch.
+   the variations — the reference never repeats inside the batch.
 
    SSR + reduced-motion (Manifesto discipline): FIRST PAINT renders the
    final composed grid statically and deterministically. The reveal
@@ -30,7 +28,6 @@ const EASE: [number, number, number, number] = [0.2, 0, 0, 1];
 const STAGGER = 0.08; // ~80ms between cards
 const RISE = 16; // matches --reveal-rise
 const BLUR = 6; // matches --reveal-blur
-const GHOSTS = 2; // "still generating" cells — communicates "unlimited"
 
 export function BatchCascade() {
   const reduce = useReducedMotion();
@@ -90,21 +87,6 @@ export function BatchCascade() {
                     sizes="(max-width: 720px) 40vw, 150px"
                     className={styles.img}
                   />
-                </div>
-              </motion.div>
-            ))}
-
-            {Array.from({ length: GHOSTS }).map((_, g) => (
-              <motion.div
-                key={`ghost-${g}`}
-                className={styles.cell}
-                aria-hidden="true"
-                {...reveal(variations.length + g)}
-              >
-                <div className={`${styles.cellFrame} ${styles.ghost}`}>
-                  <span className={styles.ghostDots}>
-                    <i /><i /><i />
-                  </span>
                 </div>
               </motion.div>
             ))}

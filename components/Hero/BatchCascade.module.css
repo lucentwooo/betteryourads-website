@@ -91,50 +91,6 @@
   object-fit: cover;
 }
 
-/* ----- "still generating" cells — communicate unlimited output ----- */
-.ghost {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:
-    linear-gradient(100deg,
-      var(--bg-deep) 30%,
-      color-mix(in srgb, var(--accent) 10%, var(--bg-raised)) 50%,
-      var(--bg-deep) 70%);
-  background-size: 220% 100%;
-  animation: ghost-sweep 1500ms var(--ease) infinite;
-}
-
-@keyframes ghost-sweep {
-  from { background-position: 140% 0; }
-  to   { background-position: -40% 0; }
-}
-
-.ghostDots {
-  display: inline-flex;
-  gap: 5px;
-}
-.ghostDots i {
-  width: 5px;
-  height: 5px;
-  border-radius: var(--radius-full);
-  background: var(--accent);
-  opacity: 0.35;
-  animation: ghost-pulse 1100ms var(--ease) infinite;
-}
-.ghostDots i:nth-child(2) { animation-delay: 160ms; }
-.ghostDots i:nth-child(3) { animation-delay: 320ms; }
-
-@keyframes ghost-pulse {
-  0%, 100% { opacity: 0.25; transform: translateY(0); }
-  50%      { opacity: 0.9;  transform: translateY(-2px); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ghost { animation: none; }
-  .ghostDots i { animation: none; opacity: 0.5; }
-}
-
 /* ----- caption ----- */
 .caption {
   display: inline-flex;
