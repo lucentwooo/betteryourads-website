@@ -33,7 +33,7 @@ export function PilotProof() {
               Shipping daily.
             </>
           }
-          sub="We're running ads right now for two funded startups — one self-serve SaaS, one mobile app. Anonymous until the data is. Specific because we owe you specifics."
+          sub="We're running ads right now for two funded startups: one self-serve SaaS, one mobile app. Anonymous until the data is. Specific because we owe you specifics."
         />
         <div className={styles.grid}>
           {PILOTS.map((p) => (

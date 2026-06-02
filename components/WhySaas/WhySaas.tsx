@@ -23,11 +23,11 @@ import styles from './WhySaas.module.css';
    ================================================================= */
 
 const ROWS: { cap: string }[] = [
-  { cap: 'Optimized for trials that convert to paid — not vanity signups' },
-  { cap: 'B2B attribution windows (30-day click), not Meta defaults' },
+  { cap: 'Optimized for paying customers, not vanity signups' },
+  { cap: 'Finds the winning angle that tells you what your market wants' },
   { cap: 'Unlimited on-brand ad variations per brief' },
-  { cap: 'First ads live in days, not weeks of onboarding' },
-  { cap: 'One flat price — no % of ad spend, no per-asset fees' },
+  { cap: 'First ads live in hours, not weeks of onboarding' },
+  { cap: 'One flat price, no % of ad spend or per-asset fees' },
 ];
 
 // Stagger ~75ms/row for the crosses; the BYA column lands a beat after
@@ -106,7 +106,7 @@ export function WhySaas() {
               Ones that pay are the job.
             </>
           }
-          sub="A low cost-per-signup looks great in a dashboard and can still do nothing for revenue — most trials never even activate. For SaaS, success is trials that convert to paid, at a CAC that pays back fast. Here’s where we’re built differently."
+          sub="A low cost-per-signup looks great in a dashboard and can still do nothing for revenue. Most trials never even activate. For SaaS, success is paying customers at a CAC that pays back, and learning which message won them. Here’s where we’re built differently."
         />
 
         <motion.div className={styles.table} {...viewProps}>

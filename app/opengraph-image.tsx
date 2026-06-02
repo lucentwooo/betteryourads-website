@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'betteryourads — done-for-you Meta ads for B2B SaaS';
+export const alt = 'betteryourads · done-for-you Meta ads for B2B SaaS';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -29,7 +29,7 @@ export default function OpengraphImage() {
             Meta ads, <span style={{ color: '#1a3df0' }}>run for you</span>.
           </div>
           <div style={{ marginTop: 28, fontSize: 34, color: '#3a3a38', maxWidth: 920, lineHeight: 1.35 }}>
-            Done-for-you Meta advertising for B2B SaaS — built for trial signups, not add-to-carts.
+            Done-for-you Meta advertising for B2B SaaS. Built for paying customers, not vanity signups.
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', fontSize: 26, color: '#7a7771' }}>

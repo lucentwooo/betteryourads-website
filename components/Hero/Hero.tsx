@@ -27,9 +27,9 @@ export function Hero() {
           </h1>
 
           <p className={`lead ${styles.subhead}`}>
-            More trial signups for B2B SaaS — without touching your ad account,
-            hiring an agency, or opening Canva. We learn your product, batch the
-            creative, and run it on Facebook &amp; Instagram.
+            More paying customers for your B2B SaaS, without touching your ad
+            account, hiring an agency, or opening Canva. We learn your product,
+            batch the creative, and surface the angle that tells you why they buy.
           </p>
 
           <div className={styles.ctaRow}>

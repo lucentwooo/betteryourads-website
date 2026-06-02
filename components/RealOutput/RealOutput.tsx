@@ -29,7 +29,7 @@ export function RealOutput() {
               One engine. Every brand&rsquo;s voice.
             </>
           }
-          sub="These are real ad creatives our engine generates, in the style of SaaS brands you know — not stock, not templates. Your batch looks like you."
+          sub="These are real ad creatives our engine generates, in the style of SaaS brands you know. Not stock, not templates. Your batch looks like you."
         />
       </div>
 

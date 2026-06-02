@@ -33,13 +33,11 @@ const WORDS: { text: string; accent?: boolean }[] = [
   { text: 'Run' },
   { text: 'the' },
   { text: 'ads.' },
-  { text: 'Tuned' },
-  { text: 'for' },
-  { text: 'trial' },
-  { text: 'signups' },
-  { text: '—' },
-  { text: 'not' },
-  { text: 'add-to-carts.' },
+  { text: 'Win' },
+  { text: 'the' },
+  { text: 'customers' },
+  { text: 'who' },
+  { text: 'pay.' },
 ];
 
 /* Reveal sub-range for a non-sticky inline element.

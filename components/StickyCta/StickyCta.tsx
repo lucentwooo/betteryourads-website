@@ -18,7 +18,7 @@ export function StickyCta() {
   if (dismissed) return null;
   return (
     <div className={`${styles.bar} ${show ? styles.show : ''}`} aria-hidden={!show} inert={!show || undefined}>
-      <span className={styles.copy}>Meta ads, run for you — <strong>first month free</strong>.</span>
+      <span className={styles.copy}>Meta ads, run for you. <strong>First month free</strong>.</span>
       <a
         className={styles.cta}
         role="button"

@@ -45,7 +45,7 @@ const STAGES: Stage[] = [
     rail: 'generate the angles',
     n: '02',
     title: 'We generate angles to test.',
-    desc: 'One angle for each of the five stages of awareness — unaware to most-aware. You don’t guess which message lands; you test the whole spread and let signups pick the winner.',
+    desc: 'One angle for each of the five stages of awareness, unaware to most aware. You don’t guess which message lands. You test the whole spread and let real buyers pick the winner, which tells you what your market actually cares about.',
     visual: <AnglePicker />,
   },
   {
@@ -53,7 +53,7 @@ const STAGES: Stage[] = [
     rail: 'batch the creative',
     n: '03',
     title: 'One brief. Unlimited on-brand ads.',
-    desc: 'Every angle renders on-brand, in your palette and voice — a whole batch at once, not one ad at a time. We don’t cap it at a number: generate as many as the test needs. This is the part agencies and DIY tools can’t do.',
+    desc: 'Every angle renders on-brand, in your palette and voice: a whole batch at once, not one ad at a time. We don’t cap it at a number; generate as many as the test needs. This is the part agencies and DIY tools can’t do.',
     visual: <VisualBatch />,
   },
   {
@@ -61,15 +61,15 @@ const STAGES: Stage[] = [
     rail: 'ship to Meta',
     n: '04',
     title: 'We launch on Facebook & Instagram.',
-    desc: 'One click and the batch goes live as real Meta placements — no ad-account wrangling, no creative handoff.',
+    desc: 'One click and the batch goes live as real Meta placements. No ad-account wrangling, no creative handoff.',
     visual: <VisualShip />,
   },
   {
     key: 'optimize',
     rail: 'analyze & iterate',
     n: '05',
-    title: 'We find what’s working — and why.',
-    desc: 'Each week we analyze performance and show you why a creative is winning — the hook, the angle, the proof — then generate fresh variations off the winners so iterating is one click. Fully autonomous optimization is on the way.',
+    title: 'Your winning angle is customer research.',
+    desc: 'Each week we show you which angle is winning and why: the hook, the message, the proof. That winner is your market telling you what it cares about most, so you can point your positioning, your site, and your roadmap at it, not just your ads. Then we generate fresh variations off it, so iterating is one click.',
     visual: <VisualOptimize />,
   },
 ];
@@ -101,8 +101,8 @@ export function HowItWorks() {
         <SectionHead
           eyebrow="how it works"
           eyebrowAccent
-          title="Learns. Batches. Launches. Optimizes for signups."
-          sub="Five stages, about 90 seconds per ad, fully done for you. Tuned for what shows up in your Stripe dashboard — not your CTR column."
+          title="Learns. Batches. Launches. Optimizes for revenue."
+          sub="Five stages, about 90 seconds per ad, fully done for you. Tuned for what shows up in your Stripe dashboard, not your CTR column."
         />
 
         <div className={styles.grid}>

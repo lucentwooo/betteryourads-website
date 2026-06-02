@@ -8,7 +8,7 @@ import styles from './AnglePicker.module.css';
 const ANGLES = [
   { title: 'standups are killing your velocity.', tag: 'problem-aware' },
   { title: 'the tracker built for shipping speed.', tag: 'solution-aware' },
-  { title: 'start free — ship faster this week.', tag: 'most-aware' },
+  { title: 'start free, ship faster this week.', tag: 'most-aware' },
 ];
 
 export function AnglePicker() {

@@ -4,19 +4,23 @@ import styles from './Faq.module.css';
 const FAQS = [
   {
     q: 'Is it really done for me?',
-    a: 'Completely. Right now, for our early clients, we run it like your own personal Meta ads agency — fully done-for-you, end to end: angles, creative, launch, and weekly iteration. We’re doing this hands-on because we want the data, which means you get far more attention than a normal customer would. Our software does the heavy lifting; you stay a founder.',
+    a: 'Completely. Right now, for our early clients, we run it like your own personal Meta ads agency: fully done-for-you, end to end, covering angles, creative, launch, and weekly iteration. We’re doing this hands-on because we want the data, which means you get far more attention than a normal customer would. Our software does the heavy lifting; you stay a founder.',
+  },
+  {
+    q: 'What do I actually learn from this?',
+    a: 'Your winning angle is customer research. When one message out-converts the rest, that’s your market telling you what it cares about most. You can point your positioning, your site, and your roadmap at it, not just your ads.',
   },
   {
     q: 'What does it cost?',
-    a: "Flat monthly, no retainer and no per-creative hours. Your first month is free with 30 ads on us — we'll walk through pricing on the pilot call.",
+    a: "One flat monthly price. No % of your ad spend, no per-asset fees. Your first month is free with 30 ads on us, and we'll walk through pricing on the pilot call.",
   },
   {
     q: 'Why SaaS only?',
-    a: 'SaaS sells on trials and long cycles, not add-to-carts. Every angle and metric we optimize is built for trial-to-paid — not ecommerce ROAS.',
+    a: 'SaaS sells on long, considered cycles, not impulse add-to-carts. Every angle and metric we optimize is built for paying customers and CAC payback, not ecommerce ROAS.',
   },
   {
     q: 'What do you need from me?',
-    a: 'Your URL and ad-account access. No briefing docs, no creative direction — we extract positioning, ICP, and palette automatically.',
+    a: 'Your URL and ad-account access. No briefing docs, no creative direction. We extract positioning, ICP, and palette automatically.',
   },
   {
     q: 'When can I start?',
