@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import styles from './Nav.module.css';
 
-const SECTION_IDS = ['how', 'compare', 'pricing', 'faq'] as const;
+const SECTION_IDS = ['how', 'compare', 'faq'] as const;
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -79,9 +79,6 @@ export function Nav() {
           </a>
           <a href="#compare" className={activeId === 'compare' ? styles.active : ''}>
             compare
-          </a>
-          <a href="#pricing" className={activeId === 'pricing' ? styles.active : ''}>
-            pricing
           </a>
           <a href="#faq" className={activeId === 'faq' ? styles.active : ''}>
             faq

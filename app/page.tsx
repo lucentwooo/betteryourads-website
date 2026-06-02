@@ -6,7 +6,6 @@ import { Manifesto } from '@/components/Manifesto/Manifesto';
 import { Problem } from '@/components/Problem/Problem';
 import { HowItWorks } from '@/components/HowItWorks/HowItWorks';
 import { Compare } from '@/components/Compare/Compare';
-import { Pricing } from '@/components/Pricing/Pricing';
 import { Faq } from '@/components/Faq/Faq';
 import { FinalCta } from '@/components/FinalCta/FinalCta';
 import { Footer } from '@/components/Footer/Footer';
@@ -22,7 +21,6 @@ export default function Home() {
       <Problem />
       <HowItWorks />
       <Compare />
-      <Pricing />
       <Faq />
       <FinalCta />
       <Footer />
