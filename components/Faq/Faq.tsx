@@ -3,24 +3,24 @@ import styles from './Faq.module.css';
 
 const FAQS = [
   {
-    q: 'When does it actually launch?',
-    a: "We're in private beta now and opening seats in waves through 2026. Waitlist signups get the next available seat, plus the first-month-free and 30-ads offer. We email you when your seat is ready. You only pay when you connect your Meta account and ship your first ad.",
+    q: 'Is it really done for me?',
+    a: 'Yes. You book a call, share your product, and we run the ads end-to-end — angles, creative, launch, and weekly iteration. Our software does the heavy lifting; you stay a founder.',
   },
   {
-    q: 'What metric does it optimize for?',
-    a: "Trial signups by default, demo bookings if you're sales-led, paid conversions if you have self-serve checkout. We track cost per signup, MRR added per angle, and CAC payback. The numbers a founder actually defends in a board meeting. CTR and impressions are in the dashboard, just not what we tune against.",
+    q: 'What does it cost?',
+    a: "Flat monthly, no retainer and no per-creative hours. Your first month is free with 30 ads on us — we'll walk through pricing on the pilot call.",
   },
   {
-    q: 'How is this different from a Meta-ads agency?',
-    a: "We're a product, not a people business. Agencies bill for meetings, decks, and slow creative cycles. We bill for ads that ship and the signups they drive. The work that takes an agency weeks happens here in about 90 seconds, and the system gets better at your brand every time you use it.",
+    q: 'Why SaaS only?',
+    a: 'SaaS sells on trials and long cycles, not add-to-carts. Every angle and metric we optimize is built for trial-to-paid — not ecommerce ROAS.',
   },
   {
-    q: 'Will this actually work for SaaS, or is it ecom dressed up?',
-    a: "Built for SaaS funnels from day one. The angles, the audience model, the attribution window (28-day click, 7-day view), the conversion event (signup, not add-to-cart). All tuned for high-consideration software sales. We don't do shopify ads. If you sell shoes, you're in the wrong place.",
+    q: 'What do you need from me?',
+    a: 'Your URL and ad-account access. No briefing docs, no creative direction — we extract positioning, ICP, and palette automatically.',
   },
   {
-    q: 'What does it do with my Meta account?',
-    a: "We connect via Meta's official Marketing API. We create campaigns, ad sets, and creative inside your account. You own everything. You can pull our access any time and the ads keep running. We never touch budget beyond the daily cap you set.",
+    q: 'When can I start?',
+    a: "We're running two pilots now and opening seats in waves. Book a call and we'll tell you the next opening.",
   },
 ];
 
