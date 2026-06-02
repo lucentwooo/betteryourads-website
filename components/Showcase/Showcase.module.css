@@ -16,19 +16,16 @@
    the real creative output.
    ================================================================= */
 
-/* Tall section gives the scroll the room to drive the flatten. The top
-   border from .section + .section is kept (global rule). */
+/* No sticky pin — the section scrolls in normal flow, so the stage never
+   freezes mid-scroll. The flatten + cascade are tied to the section's natural
+   pass through the viewport (iPhone-smooth). Normal .section padding. */
 .section {
-  /* Override the global .section vertical padding: scroll room instead. */
-  padding: 0;
-  min-height: 168vh;
+  padding: 96px 0;
 }
 
-/* Pin the stage so the user watches it flatten in place. */
+/* Plain wrapper now (formerly the sticky pin). */
 .sticky {
-  position: sticky;
-  top: 11vh;
-  padding: 96px 0;
+  position: static;
 }
 
 /* ----- Section head ------------------------------------------------ */
@@ -231,24 +228,12 @@
 }
 
 /* ----- Reduced motion ---------------------------------------------- */
-/* The component already renders the screen flat + static under reduce
-   (no JS transforms). We also relax the sticky pin so the tall section
-   doesn't leave a large gap when nothing is animating. */
-@media (prefers-reduced-motion: reduce) {
-  .section {
-    min-height: 0;
-  }
-  .sticky {
-    position: static;
-    top: auto;
-  }
-}
+/* Nothing to relax: the component renders the screen flat + the grid fully
+   visible under reduce (animate=false → no JS transforms), and the section
+   scrolls in normal flow (no pin). */
 
 /* ----- Responsive -------------------------------------------------- */
 @media (max-width: 960px) {
-  .section {
-    min-height: 150vh;
-  }
   .grid {
     gap: 10px;
     padding: 16px;
@@ -257,12 +242,7 @@
 
 @media (max-width: 560px) {
   .section {
-    /* Less perspective drama on small screens; keep some scroll room. */
-    min-height: 132vh;
-  }
-  .sticky {
     padding: 64px 0;
-    top: 8vh;
   }
   .head {
     margin-bottom: 28px;
