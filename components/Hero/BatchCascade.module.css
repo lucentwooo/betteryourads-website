@@ -1,86 +1,276 @@
+/* =================================================================
+   BatchCascade — compact cinematic process film.
+
+   A single bounded "product window" (≤560px wide, ~420px tall) that
+   morphs through four beats. Borders over shadows; cream / ink / one
+   blue. Mono micro-labels mirror the HowItWorks visuals.
+   ================================================================= */
+
 .root {
-  margin: 0;
+  margin: 0 auto;
   width: 100%;
+  max-width: 560px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-4);
 }
 
-.board {
+/* ----- the product window ----- */
+.window {
   width: 100%;
-  display: grid;
-  grid-template-columns: minmax(0, 300px) auto minmax(0, 1fr);
-  align-items: center;
-  gap: var(--space-6);
-  padding: var(--space-6);
+  height: 420px;
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--bg-raised);
+  overflow: hidden;
 }
 
-/* ----- reference ----- */
-.referenceCol {
+/* ----- slim status bar ----- */
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-hairline);
+  background: var(--bg);
+  flex: none;
+}
+.barDot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-full);
+  background: var(--bya-forest);
+  box-shadow: 0 0 0 3px var(--bya-forest-soft);
+  flex: none;
+}
+.barLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: var(--track-caps);
+  color: var(--fg-2);
+}
+.progress {
+  margin-left: auto;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.seg {
+  width: 18px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--bya-cream-3);
+  transition: background var(--dur-base) var(--ease), width var(--dur-base) var(--ease);
+}
+.segDone {
+  background: var(--fg-3);
+}
+.segOn {
+  width: 26px;
+  background: var(--accent);
+}
+
+/* ----- stage: where beats crossfade ----- */
+.stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: grid;
+}
+.beat {
+  grid-area: 1 / 1;
+  min-height: 0;
+  padding: 20px 22px;
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  min-width: 0;
 }
 
+/* ============ Beat 0 — AUDIT ============ */
+.audit {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.browserRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-hairline);
+}
+.browserDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bya-forest);
+  flex: none;
+}
+.url {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fg-2);
+}
+.analyzed {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--bya-forest);
+}
+.kvGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.kvRow {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  align-items: center;
+  gap: 16px;
+}
+.k {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: var(--track-caps);
+  color: var(--fg-3);
+}
+.v {
+  font-size: 13px;
+  color: var(--fg);
+}
+.swatches {
+  display: flex;
+}
+.swatch {
+  width: 26px;
+  height: 18px;
+  border: 1px solid var(--fg);
+}
+.swatch + .swatch {
+  border-left: 0;
+}
+
+/* ============ Beat 1 — ANGLES ============ */
+.angles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+}
+.angleHead {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: var(--track-caps);
+  color: var(--fg-3);
+}
+.angleList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.angleRow {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 9px 12px;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+}
+.angleStage {
+  flex: none;
+  width: 84px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+.angleHook {
+  font-size: 13px;
+  color: var(--fg);
+}
+
+/* ============ Beat 2 — SEED (reference) ============ */
+.seed {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.seedTagRow {
+  display: flex;
+  justify-content: center;
+}
 .tag {
-  font-size: var(--size-12);
+  font-family: var(--font-mono);
+  font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: var(--track-caps);
   color: var(--fg-3);
 }
-
-.referenceFrame {
+.seedFrame {
   position: relative;
+  width: 220px;
   aspect-ratio: 1 / 1;
-  width: 100%;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   overflow: hidden;
   background: var(--bg-deep);
 }
-
-/* ----- bridge / fan-out ----- */
-.bridge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-2);
-  color: var(--accent);
+.seedCap {
+  font-size: 13px;
+  color: var(--fg-2);
 }
 
-.bridgeLabel {
-  font-size: var(--size-12);
-  font-weight: 600;
+/* ============ Beat 3 — BATCH ============ */
+.batch {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.batchHead {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: var(--track-caps);
   color: var(--accent);
 }
-
-/* ----- batch ----- */
-.batchCol {
-  min-width: 0;
+.batchDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
 }
-
-.grid {
+.batchGrid {
+  flex: 1;
+  min-height: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-3);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 10px;
 }
-
 .cell {
   min-width: 0;
+  min-height: 0;
 }
-
 .cellFrame {
   position: relative;
-  aspect-ratio: 1 / 1;
   width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -99,7 +289,6 @@
   font-size: var(--size-14);
   color: var(--fg-3);
 }
-
 .live {
   width: 7px;
   height: 7px;
@@ -109,21 +298,22 @@
   flex: none;
 }
 
-/* ----- responsive: stack reference above the batch ----- */
-@media (max-width: 720px) {
-  .board {
-    grid-template-columns: 1fr;
-    gap: var(--space-5);
-    padding: var(--space-5);
+/* ----- narrow screens: keep it bounded, just a touch tighter ----- */
+@media (max-width: 560px) {
+  .window {
+    height: 400px;
   }
-  .bridge {
-    flex-direction: row;
-    gap: var(--space-3);
+  .beat {
+    padding: 16px 16px;
   }
-  .bridge svg {
-    transform: rotate(90deg);
+  .seedFrame {
+    width: 180px;
   }
-  .referenceFrame {
-    max-width: 260px;
+  .kvRow {
+    grid-template-columns: 72px 1fr;
+    gap: 10px;
+  }
+  .angleStage {
+    width: 70px;
   }
 }
