@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { motion } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import styles from './MetricMorph.module.css';
 
 /* MetricMorph — the Compare section's hook.
@@ -117,17 +117,24 @@ export function MetricMorph() {
       <div className={`${styles.tiles} ${saas ? styles.tilesSaas : ''}`}>
         {metrics.map((m, i) => (
           <div className={styles.tile} key={i}>
-            <motion.div
-              key={mode}
-              className={styles.tileInner}
-              initial={animateMorph ? { opacity: 0, y: 10 } : false}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.42, ease: [0.2, 0, 0, 1], delay: i * 0.06 }}
-            >
-              <span className={styles.value}>{m.value}</span>
-              <span className={styles.label}>{m.label}</span>
-              <span className={styles.note}>{m.note}</span>
-            </motion.div>
+            <AnimatePresence mode="popLayout" initial={false}>
+              <motion.div
+                key={mode}
+                className={styles.tileInner}
+                initial={animateMorph ? { opacity: 0, y: 16 } : false}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={
+                  animateMorph
+                    ? { duration: 0.5, ease: [0.2, 0, 0, 1], delay: i * 0.07 }
+                    : { duration: 0 }
+                }
+              >
+                <span className={styles.value}>{m.value}</span>
+                <span className={styles.label}>{m.label}</span>
+                <span className={styles.note}>{m.note}</span>
+              </motion.div>
+            </AnimatePresence>
           </div>
         ))}
       </div>

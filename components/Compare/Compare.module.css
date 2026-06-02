@@ -1,5 +1,7 @@
 .compare {
-  margin-top: 56px;
+  /* The MetricMorph above already supplies the gap below the section head;
+     keep the table close so the two boxes group as one proof cluster. */
+  margin-top: 0;
   border: 1px solid var(--fg);
   border-radius: 8px;
   overflow: hidden;

@@ -1,7 +1,9 @@
 /* MetricMorph — the ecom ↔ SaaS dashboard that hooks the Compare section. */
 .wrap {
-  margin: 0 auto 44px;
-  max-width: 760px;
+  /* Full-width so it aligns with the comparison table below — the two read
+     as one "proof" cluster instead of a floating box. */
+  width: 100%;
+  margin: 0 0 20px;
   border: 1px solid var(--fg);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -62,8 +64,8 @@
 }
 .tile {
   background: var(--bg);
-  padding: 22px 18px;
-  transition: background 0.5s var(--ease);
+  padding: 28px 24px;
+  transition: background 0.6s var(--ease);
 }
 /* In SaaS mode the tiles tint to accent — "these are the ones that matter". */
 .tilesSaas .tile {
@@ -76,11 +78,12 @@
 }
 .value {
   font-family: var(--font-sans);
-  font-size: clamp(26px, 3vw, 34px);
+  font-size: clamp(28px, 3.2vw, 38px);
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1;
   color: var(--fg);
+  transition: color 0.6s var(--ease);
 }
 .tilesSaas .value {
   color: var(--accent);
