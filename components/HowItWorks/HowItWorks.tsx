@@ -41,10 +41,10 @@ const STAGES: Stage[] = [
   },
   {
     key: 'angles',
-    rail: 'write the angles',
+    rail: 'generate the angles',
     n: '02',
-    title: 'We write five angles.',
-    desc: 'Process, category, rebuttal, proof, manifesto — the angles SaaS founders actually use. Pick one, or ship all five.',
+    title: 'We generate angles to test.',
+    desc: 'One angle for each of the five stages of awareness — unaware to most-aware. You don’t guess which message lands; you test the whole spread and let signups pick the winner.',
     visual: <AnglePicker />,
   },
   {
@@ -169,7 +169,7 @@ function VisualLearn() {
         </span>
       </div>
       <div className={styles.learnFoot}>
-        <span className={styles.learnFootKey}>5 angles drafted</span>
+        <span className={styles.learnFootKey}>5 angles generated</span>
         <span className={styles.learnFootAccent}>continue →</span>
       </div>
     </div>

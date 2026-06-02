@@ -2,17 +2,20 @@
 import { useState } from 'react';
 import styles from './AnglePicker.module.css';
 
+// One ad angle per stage of awareness (Eugene Schwartz). The picker shows a
+// representative spread of the five; the founder tests them all and lets real
+// signups pick the winner.
 const ANGLES = [
-  { title: 'ship without the standup.', tag: 'process' },
-  { title: 'speed is the feature.', tag: 'manifesto' },
-  { title: 'the issue tracker for shipping.', tag: 'category' },
+  { title: 'standups are killing your velocity.', tag: 'problem-aware' },
+  { title: 'the tracker built for shipping speed.', tag: 'solution-aware' },
+  { title: 'start free — ship faster this week.', tag: 'most-aware' },
 ];
 
 export function AnglePicker() {
   const [sel, setSel] = useState(0);
   return (
     <div className={styles.launch}>
-      <div className={styles.launchHead}>5 angles · pick or ship all</div>
+      <div className={styles.launchHead}>5 angles · one per awareness stage</div>
       {ANGLES.map((a, i) => (
         <button
           type="button"
