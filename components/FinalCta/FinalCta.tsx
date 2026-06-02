@@ -30,13 +30,13 @@ export function FinalCta() {
         <div className={styles.ctas}>
           <BookCallButton />
           <span className={styles.or}>or</span>
-          <a href="#waitlist" className={styles.fallbackLink}>
+          <a href="#waitlist-final" className={styles.fallbackLink}>
             join the waitlist
           </a>
         </div>
 
         {/* Waitlist form (hidden until anchor navigates here) */}
-        <div id="waitlist" className={styles.waitlist}>
+        <div id="waitlist-final" className={styles.waitlist}>
           <WaitlistForm center />
         </div>
 

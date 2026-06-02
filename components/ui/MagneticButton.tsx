@@ -34,8 +34,22 @@ export function MagneticButton({
   }
   function reset() { x.set(0); y.set(0); }
 
+  // When used as a Cal.com trigger (no href), the click is bound via data-cal-*.
+  // Make it keyboard-reachable and operable: focusable, button semantics, and
+  // Enter/Space dispatch the click that Cal listens for.
+  const triggerOnly = !href;
+  function onKeyDown(e: React.KeyboardEvent<HTMLAnchorElement>) {
+    if (triggerOnly && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      e.currentTarget.click();
+    }
+  }
+
   return (
     <motion.a ref={ref} href={href} className={classes}
+      role={triggerOnly ? 'button' : undefined}
+      tabIndex={triggerOnly ? 0 : undefined}
+      onKeyDown={triggerOnly ? onKeyDown : undefined}
       style={{ x: sx, y: sy }} onPointerMove={onMove} onPointerLeave={reset}
       {...rest}>
       {children}

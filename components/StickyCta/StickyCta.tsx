@@ -21,10 +21,18 @@ export function StickyCta() {
       <span className={styles.copy}>Meta ads, run for you — <strong>first month free</strong>.</span>
       <a
         className={styles.cta}
+        role="button"
+        tabIndex={0}
         data-cal-namespace="15min"
         data-cal-link={CAL_LINK}
         data-cal-config='{"layout":"month_view"}'
         onClick={() => track('book_call_click')}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            e.currentTarget.click();
+          }
+        }}
       >
         book a pilot call →
       </a>

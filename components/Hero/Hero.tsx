@@ -35,12 +35,12 @@ export function Hero() {
 
           <div className={styles.ctaRow}>
             <BookCallButton />
-            <a href="#waitlist" className={styles.secondary}>
+            <a href="#waitlist-hero" className={styles.secondary}>
               or join the waitlist
             </a>
           </div>
 
-          <WaitlistForm center id="waitlist" />
+          <WaitlistForm center id="waitlist-hero" />
 
           <p className={styles.micro}>
             first month free · 30 ads on us · no card required
