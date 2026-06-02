@@ -140,40 +140,37 @@
   border-radius: var(--radius-full);
   background: var(--bg);
 }
-.wireframe {
+/* the live site preview — the real homepage scrolling through the frame */
+.siteViewport {
   position: relative;
   flex: 1;
   min-height: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 12px;
   overflow: hidden;
+  background: #fff;
 }
-.wireBlock,
-.wireBar,
-.wireBtn {
-  background: var(--bg);
-  border: 1px solid var(--border-hairline);
-  border-radius: var(--radius-sm);
-}
-.wireHero {
+.siteScroll {
+  /* absolute so the tall screenshot can't stretch the layout — it's clipped
+     by the viewport and only scrolled via transform */
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  flex: 1;
-  min-height: 48px;
-  background: var(--bg-raised);
+  /* scrolls down the page and back, as if being read top to bottom */
+  animation: siteScroll 8s ease-in-out infinite alternate;
 }
-.wireBar {
-  height: 9px;
+.siteStatic {
+  animation: none;
 }
-.wireBarWide { width: 90%; }
-.wireBarMid { width: 64%; }
-.wireBtn {
-  width: 38%;
-  height: 16px;
-  background: var(--accent-soft);
-  border-color: var(--accent);
+.siteImg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
+@keyframes siteScroll {
+  from { transform: translateY(0); }
+  to { transform: translateY(-78%); }
+}
+
 /* the scan beam — a thin accent line sweeping top→bottom with a soft glow */
 .scanBeam {
   position: absolute;
@@ -372,6 +369,7 @@
   .angleTrack { animation: none; transform: none; }
   .angleDot { animation: none; }
   .scanBeam { animation: none; opacity: 0.5; }
+  .siteScroll { animation: none; transform: none; }
 }
 
 /* ============ Beat 2 — SEED (reference) ============ */

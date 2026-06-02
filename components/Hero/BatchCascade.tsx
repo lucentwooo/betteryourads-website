@@ -220,7 +220,7 @@ function Stagger({
 function BeatAudit({ animated }: { animated: boolean }) {
   return (
     <div className={styles.audit}>
-      {/* LEFT — a mini browser with a wireframe of the site + scan beam */}
+      {/* LEFT — a mini browser scrolling through the real site + scan beam */}
       <Stagger i={0} animated={animated} className={styles.scanCol}>
         <div className={styles.miniBrowser}>
           <div className={styles.miniBar}>
@@ -231,11 +231,17 @@ function BeatAudit({ animated }: { animated: boolean }) {
             </span>
             <span className={styles.miniUrl}>zoom.com</span>
           </div>
-          <div className={styles.wireframe}>
-            <span className={`${styles.wireBlock} ${styles.wireHero}`} />
-            <span className={`${styles.wireBar} ${styles.wireBarWide}`} />
-            <span className={`${styles.wireBar} ${styles.wireBarMid}`} />
-            <span className={styles.wireBtn} />
+          <div className={styles.siteViewport}>
+            <div className={`${styles.siteScroll} ${animated ? '' : styles.siteStatic}`}>
+              <Image
+                src="/creatives/zoom/site.png"
+                alt=""
+                width={259}
+                height={2000}
+                className={styles.siteImg}
+                aria-hidden="true"
+              />
+            </div>
             {/* scan beam sweeps top→bottom; gated to motion via CSS */}
             <span className={styles.scanBeam} aria-hidden="true" />
           </div>
