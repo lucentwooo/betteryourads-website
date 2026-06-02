@@ -2,7 +2,7 @@ import Image from 'next/image';
 import styles from './Footer.module.css';
 
 const COLUMNS = [
-  { h: 'product', links: [['how it works', '#how'], ['compare', '#compare']] },
+  { h: 'product', links: [['how it works', '#how'], ['why saas', '#why']] },
   { h: 'company', links: [['about', '#'], ['contact', '#'], ['careers', '#']] },
   { h: 'resources', links: [['faq', '#faq'], ['privacy', '#'], ['terms', '#']] },
 ] as const;
