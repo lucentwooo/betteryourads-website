@@ -13,7 +13,7 @@ export function TrustStrip() {
     <div className={styles.strip}>
       <span className={styles.item}>
         <span className={styles.live} aria-hidden="true" />
-        Running ads right now for 2 funded B2B SaaS startups
+        Running ads right now for 2 funded startups
       </span>
       <span className={styles.sep} aria-hidden="true">
         ·
