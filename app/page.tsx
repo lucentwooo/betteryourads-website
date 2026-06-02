@@ -1,10 +1,8 @@
 import { Nav } from '@/components/Nav/Nav';
 import { Hero } from '@/components/Hero/Hero';
-import { PilotProof } from '@/components/PilotProof/PilotProof';
-import { Showcase } from '@/components/Showcase/Showcase';
-import { Manifesto } from '@/components/Manifesto/Manifesto';
 import { WhySaas } from '@/components/WhySaas/WhySaas';
 import { HowItWorks } from '@/components/HowItWorks/HowItWorks';
+import { RealOutput } from '@/components/RealOutput/RealOutput';
 import { Faq } from '@/components/Faq/Faq';
 import { FinalCta } from '@/components/FinalCta/FinalCta';
 import { Footer } from '@/components/Footer/Footer';
@@ -13,14 +11,12 @@ export default function Home() {
   return (
     <>
       <Nav />
-      <Hero />
-      <PilotProof />
-      <Showcase />
-      <Manifesto />
-      <WhySaas />
-      <HowItWorks />
-      <Faq />
-      <FinalCta />
+      <Hero />        {/* 01 — hero + batch cascade */}
+      <WhySaas />     {/* 02 — why nothing else works (the resolve) */}
+      <HowItWorks />  {/* 03 — the engine */}
+      <RealOutput />  {/* 04 — living wall + pilots */}
+      <Faq />         {/* 05 — objections */}
+      <FinalCta />    {/* 06 — book a pilot call + sign-off */}
       <Footer />
     </>
   );
