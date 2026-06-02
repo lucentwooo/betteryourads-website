@@ -1,7 +1,6 @@
 import { BatchCascade } from '@/components/Hero/BatchCascade';
 import { TrustStrip } from '@/components/Hero/TrustStrip';
 import { BookCallButton } from '@/components/ui/BookCallButton';
-import { WaitlistForm } from '@/components/ui/WaitlistForm';
 import styles from './Hero.module.css';
 
 /* =================================================================
@@ -35,12 +34,7 @@ export function Hero() {
 
           <div className={styles.ctaRow}>
             <BookCallButton />
-            <a href="#waitlist-hero" className={styles.secondary}>
-              or join the waitlist
-            </a>
           </div>
-
-          <WaitlistForm center id="waitlist-hero" />
 
           <p className={styles.micro}>
             first month free · 30 ads on us · no card required

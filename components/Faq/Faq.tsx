@@ -4,7 +4,7 @@ import styles from './Faq.module.css';
 const FAQS = [
   {
     q: 'Is it really done for me?',
-    a: 'Yes. You book a call, share your product, and we run the ads end-to-end — angles, creative, launch, and weekly iteration. Our software does the heavy lifting; you stay a founder.',
+    a: 'Completely. Right now, for our early clients, we run it like your own personal Meta ads agency — fully done-for-you, end to end: angles, creative, launch, and weekly iteration. We’re doing this hands-on because we want the data, which means you get far more attention than a normal customer would. Our software does the heavy lifting; you stay a founder.',
   },
   {
     q: 'What does it cost?',

@@ -1,4 +1,4 @@
-type Event = 'book_call_click' | 'waitlist_submit' | 'section_view';
+type Event = 'book_call_click' | 'section_view';
 
 /** Fire-and-forget analytics event. Safe no-op on the server and until a
  *  provider (e.g. Vercel Analytics) attaches `window.va`. Single call site so

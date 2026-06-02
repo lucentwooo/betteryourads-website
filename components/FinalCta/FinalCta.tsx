@@ -1,6 +1,5 @@
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { BookCallButton } from '@/components/ui/BookCallButton';
-import { WaitlistForm } from '@/components/ui/WaitlistForm';
 import { ManifestoLine } from '@/components/Manifesto/ManifestoLine';
 import styles from './FinalCta.module.css';
 
@@ -26,18 +25,9 @@ export function FinalCta() {
           <ManifestoLine />
         </div>
 
-        {/* 4 — Primary CTA + fallback */}
+        {/* 4 — Primary CTA */}
         <div className={styles.ctas}>
           <BookCallButton />
-          <span className={styles.or}>or</span>
-          <a href="#waitlist-final" className={styles.fallbackLink}>
-            join the waitlist
-          </a>
-        </div>
-
-        {/* Waitlist form (hidden until anchor navigates here) */}
-        <div id="waitlist-final" className={styles.waitlist}>
-          <WaitlistForm center />
         </div>
 
         {/* 5 — Micro line */}

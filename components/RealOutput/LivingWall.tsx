@@ -15,11 +15,10 @@ import styles from './LivingWall.module.css';
    the loop is gapless without JS measurement. Cream edge-fade mask
    melts the cards in/out at both ends.
 
-   Interaction: pointer-drag to scrub. While dragging, the auto-scroll
-   pauses and the row follows the pointer (additive offset); on release
-   the auto-scroll resumes from wherever the drag left it. Hover also
-   pauses (paused state), so the chosen model is drag-to-scrub WITH a
-   hover-pause baseline.
+   Interaction: pointer-drag to scrub. While actively dragging, the
+   auto-scroll pauses and the row follows the pointer (additive offset);
+   on release it resumes from wherever the drag left it. The marquee
+   NEVER pauses on hover — it's always moving.
 
    SSR + reduced-motion safety (Manifesto discipline): the first paint
    and the reduced-motion path render a static, horizontally-scrollable
@@ -92,7 +91,6 @@ function MarqueeRow({
   duration: number;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const [paused, setPaused] = useState(false);
 
   // Drag-to-scrub state. We keep an additive translateX (px) applied on top
   // of the CSS animation by pausing the animation and writing transform
@@ -134,7 +132,7 @@ function MarqueeRow({
     }
     // Resume the keyframe animation from a clean slate.
     el.style.transform = '';
-    el.style.animationPlayState = paused ? 'paused' : '';
+    el.style.animationPlayState = '';
     el.classList.remove(styles.dragging!);
   }
 
@@ -144,18 +142,11 @@ function MarqueeRow({
   ].join(' ');
 
   return (
-    <div
-      className={styles.row}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
+    <div className={styles.row}>
       <div
         ref={trackRef}
         className={trackClass}
-        style={{
-          animationDuration: `${duration}s`,
-          animationPlayState: paused ? 'paused' : 'running',
-        }}
+        style={{ animationDuration: `${duration}s` }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}

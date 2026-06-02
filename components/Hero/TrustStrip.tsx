@@ -3,9 +3,9 @@ import styles from './TrustStrip.module.css';
 /* =================================================================
    TrustStrip — one quiet, centred row of REAL signals.
 
-   Hairline top border, tertiary type. It's trust, not a billboard:
-   a live dot + who we're running for, then who backs us. No metrics
-   we can't stand behind.
+   Hairline top border, tertiary type. It's trust, not a billboard.
+   NOTE: the backing belongs to the PILOT STARTUPS, not to us — the
+   teams we run ads for are Startmate / Melbourne-accelerator backed.
    ================================================================= */
 
 export function TrustStrip() {
@@ -13,13 +13,13 @@ export function TrustStrip() {
     <div className={styles.strip}>
       <span className={styles.item}>
         <span className={styles.live} aria-hidden="true" />
-        Running ads right now for 2 funded B2B SaaS teams
+        Running ads right now for 2 funded B2B SaaS startups
       </span>
       <span className={styles.sep} aria-hidden="true">
         ·
       </span>
       <span className={styles.item}>
-        Startmate &amp; University of Melbourne–backed
+        Both backed by Startmate &amp; a Melbourne accelerator
       </span>
     </div>
   );

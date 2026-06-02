@@ -7,7 +7,6 @@ import { AnglePicker } from './AnglePicker';
 import { WORKED_EXAMPLE } from '@/lib/creatives';
 
 const NOTION = WORKED_EXAMPLE.ads;
-const NOTION_COUNT = NOTION.length;
 import styles from './HowItWorks.module.css';
 
 /* HowItWorks — the done-for-you pipeline as scroll-driven narrative.
@@ -15,8 +14,8 @@ import styles from './HowItWorks.module.css';
    A sticky left rail tracks five stages (learn → angles → BATCH → ship →
    optimize) while a column of stage panels scrolls past on the right. An
    IntersectionObserver lights up the active rail step and fills the progress
-   spine. The BATCH stage is the centrepiece: one brief becomes eight real ads
-   — the thing agencies and DIY tools structurally can't do.
+   spine. The BATCH stage is the centrepiece: one brief becomes an unlimited
+   batch of on-brand ads — the thing agencies and DIY tools structurally can't do.
 
    SSR-safe: the active step starts at 0 (deterministic, no useReducedMotion
    branch); the observer only refines it after mount. Reduced motion keeps the
@@ -53,8 +52,8 @@ const STAGES: Stage[] = [
     key: 'batch',
     rail: 'batch the creative',
     n: '03',
-    title: 'One brief becomes eight ads.',
-    desc: 'Every angle renders on-brand, in your palette and voice — a whole batch at once, not one ad at a time. This is the part agencies and DIY tools can’t do.',
+    title: 'One brief. Unlimited on-brand ads.',
+    desc: 'Every angle renders on-brand, in your palette and voice — a whole batch at once, not one ad at a time. We don’t cap it at a number: generate as many as the test needs. This is the part agencies and DIY tools can’t do.',
     visual: <VisualBatch />,
   },
   {
@@ -178,13 +177,13 @@ function VisualLearn() {
   );
 }
 
-/* ----- Stage 03 — the BATCH: one brief becomes eight real ads ----- */
+/* ----- Stage 03 — the BATCH: one brief becomes an unlimited batch ----- */
 function VisualBatch() {
   return (
     <div className={styles.batch}>
       <div className={styles.batchHead}>
         <span className={styles.batchDot} />
-        {NOTION_COUNT} on-brand variations · one batch
+        on-brand variations · one batch, no cap
       </div>
       <div className={styles.batchGrid}>
         {NOTION.map((ad) => (
