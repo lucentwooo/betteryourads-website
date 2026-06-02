@@ -3,6 +3,7 @@ import { useActionState, useEffect, useId } from 'react';
 import { useFormStatus } from 'react-dom';
 import { joinWaitlist, type WaitlistResult } from '@/lib/waitlist/action';
 import { fireConfetti } from '@/lib/confetti';
+import { track } from '@/lib/analytics';
 import styles from './WaitlistForm.module.css';
 
 const ERRORS: Record<string, string> = {
@@ -24,7 +25,12 @@ export function WaitlistForm({ id, center = false }: { id?: string; center?: boo
   const emailId = useId();
   const [state, formAction] = useActionState<WaitlistResult | null, FormData>(joinWaitlist, null);
 
-  useEffect(() => { if (state?.ok) fireConfetti(); }, [state]);
+  useEffect(() => {
+    if (state?.ok) {
+      fireConfetti();
+      track('waitlist_submit');
+    }
+  }, [state]);
 
   if (state?.ok) {
     return (

@@ -12,6 +12,7 @@ type MagneticButtonProps = ExtraProps & {
   primary?: boolean;
   sm?: boolean;
   className?: string;
+  onClick?: () => void;
 };
 
 export function MagneticButton({

@@ -2,6 +2,7 @@
 import { useEffect, type ReactNode } from 'react';
 import { getCalApi } from '@calcom/embed-react';
 import { MagneticButton } from './MagneticButton';
+import { track } from '@/lib/analytics';
 
 const CAL_LINK = process.env.NEXT_PUBLIC_CAL_LINK ?? 'lucent-wu/15min';
 
@@ -13,7 +14,14 @@ export function BookCallButton({ children = 'Book a pilot call →', sm = false 
     })();
   }, []);
   return (
-    <MagneticButton primary sm={sm} data-cal-namespace="15min" data-cal-link={CAL_LINK} data-cal-config='{"layout":"month_view"}'>
+    <MagneticButton
+      primary
+      sm={sm}
+      onClick={() => track('book_call_click')}
+      data-cal-namespace="15min"
+      data-cal-link={CAL_LINK}
+      data-cal-config='{"layout":"month_view"}'
+    >
       {children}
     </MagneticButton>
   );
