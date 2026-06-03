@@ -27,9 +27,11 @@ export function Hero() {
           </h1>
 
           <p className={`lead ${styles.subhead}`}>
-            More paying customers for your B2B SaaS, without touching your ad
-            account, hiring an agency, or opening Canva. We learn your product,
-            batch the creative, and surface the angle that tells you why they buy.
+            Paying customers for your B2B SaaS, fully done for you, and{' '}
+            <strong className={styles.subStrong}>
+              the winning angle that tells you why they buy
+            </strong>
+            .
           </p>
 
           <div className={styles.ctaRow}>

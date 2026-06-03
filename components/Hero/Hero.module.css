@@ -1,10 +1,10 @@
 .hero {
-  padding: var(--space-9) 0 var(--space-8);
+  padding: var(--space-8) 0 var(--space-8);
   position: relative;
   overflow: hidden;
 }
 
-/* The centred editorial column. */
+/* The centred editorial column. Tight, deliberate rhythm (not a uniform stack). */
 .col {
   max-width: 720px;
   margin: 0 auto;
@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: var(--space-5);
+  gap: var(--space-4);
 }
 
 .eyebrow {
@@ -49,20 +49,27 @@
 }
 
 .title {
-  font-size: clamp(44px, 6vw, var(--size-72));
+  font-size: clamp(46px, 6.2vw, var(--size-72));
   font-weight: 500;
   line-height: var(--lh-display);
   letter-spacing: var(--track-display);
-  margin: 0;
+  margin: var(--space-2) 0 0;
   text-wrap: balance;
 }
 
-/* Subhead — narrower than the column for a tidy measure. */
+/* Subhead — one tight measure, ~2 lines. Lifted a touch closer to the title. */
 .subhead {
-  max-width: 560px;
+  max-width: 600px;
+  margin-top: calc(-1 * var(--space-1));
+  font-size: 19px;
+  line-height: 1.5;
   color: var(--fg-2);
   text-align: center;
-  text-wrap: pretty;
+  text-wrap: balance;
+}
+.subStrong {
+  color: var(--fg);
+  font-weight: 600;
 }
 
 .ctaRow {
@@ -71,6 +78,7 @@
   justify-content: center;
   gap: var(--space-5);
   flex-wrap: wrap;
+  margin-top: var(--space-3);
 }
 
 .secondary {
@@ -94,7 +102,7 @@
 /* The signature visual, full content width, below the copy. */
 .visual {
   max-width: 1000px;
-  margin: var(--space-8) auto 0;
+  margin: var(--space-7) auto 0;
 }
 
 @media (max-width: 960px) {
