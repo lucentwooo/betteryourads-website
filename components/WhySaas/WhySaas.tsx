@@ -120,7 +120,7 @@ export function WhySaas() {
   const viewProps = animate
     ? ({
         initial: 'hidden' as const,
-        animate: (revealed ? 'shown' : 'hidden') as const,
+        animate: revealed ? ('shown' as const) : ('hidden' as const),
       })
     : {};
 
