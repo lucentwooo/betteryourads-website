@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion, type Variants } from 'motion/react';
 import { SectionHead } from '@/components/ui/SectionHead';
 import styles from './WhySaas.module.css';
@@ -23,7 +23,7 @@ import styles from './WhySaas.module.css';
    ================================================================= */
 
 const ROWS: { cap: string }[] = [
-  { cap: 'Optimized for paying customers, not vanity signups' },
+  { cap: 'Optimized for paying customers, not cheap signups' },
   { cap: 'Finds the winning angle that tells you what your market wants' },
   { cap: 'Unlimited on-brand ad variations per brief' },
   { cap: 'First ads live in hours, not weeks of onboarding' },
@@ -75,22 +75,52 @@ const usMarkVariants: Variants = {
 export function WhySaas() {
   const reduce = useReducedMotion();
   const [mounted, setMounted] = useState(false);
+  const [revealed, setRevealed] = useState(false);
+  const tableRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setMounted(true));
     return () => cancelAnimationFrame(id);
   }, []);
 
+  // Drive the resolve from an explicit IntersectionObserver instead of motion's
+  // whileInView. Crucially, a safety timeout also flips `revealed` to true so the
+  // matrix can NEVER be stranded mid-animation with cells stuck at opacity 0 —
+  // even if the observer never fires (Safari + smooth-scroll edge cases).
+  useEffect(() => {
+    if (!mounted || reduce) return;
+    const el = tableRef.current;
+    if (!el) return;
+
+    const reveal = () => setRevealed(true);
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            reveal();
+            io.disconnect();
+          }
+        }
+      },
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    const fallback = window.setTimeout(reveal, 1600); // never leave cells blank
+    return () => {
+      io.disconnect();
+      window.clearTimeout(fallback);
+    };
+  }, [mounted, reduce]);
+
   const animate = mounted && !reduce;
 
-  // When animating, drive every cell from a single parent whileInView so
-  // the whole matrix shares one trigger. When not animating, no motion
-  // props are attached and the markup renders at its final static state.
+  // When animating, drive every cell from a single parent that flips to "shown"
+  // once revealed. When not animating, no motion props are attached and the
+  // markup renders at its final static state (full marks, BYA column lit).
   const viewProps = animate
     ? ({
         initial: 'hidden' as const,
-        whileInView: 'shown' as const,
-        viewport: { once: true, amount: 0.4 },
+        animate: (revealed ? 'shown' : 'hidden') as const,
       })
     : {};
 
@@ -109,7 +139,7 @@ export function WhySaas() {
           sub="A low cost-per-signup looks great in a dashboard and can still do nothing for revenue. Most trials never even activate. For SaaS, success is paying customers at a CAC that pays back, and learning which message won them. Here’s where we’re built differently."
         />
 
-        <motion.div className={styles.table} {...viewProps}>
+        <motion.div ref={tableRef} className={styles.table} {...viewProps}>
           <div className={`${styles.row} ${styles.header}`}>
             <div className={styles.cap} />
             <div className={styles.col}>

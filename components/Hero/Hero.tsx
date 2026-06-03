@@ -27,11 +27,9 @@ export function Hero() {
           </h1>
 
           <p className={`lead ${styles.subhead}`}>
-            Paying customers for your B2B SaaS, fully done for you, and{' '}
-            <strong className={styles.subStrong}>
-              the winning angle that tells you why they buy
-            </strong>
-            .
+            <strong className={styles.subStrong}>More paying customers</strong>{' '}
+            for your B2B SaaS, fully done for you. We learn your product, create
+            the ads, and run them on Facebook and Instagram.
           </p>
 
           <div className={styles.ctaRow}>

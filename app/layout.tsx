@@ -13,7 +13,7 @@ const dmSans = DM_Sans({
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://betteryourads.com';
 const TITLE = 'betteryourads · meta ads, run for you';
 const DESCRIPTION =
-  'Done-for-you Meta ads for B2B SaaS that win paying customers, and surface the winning angle that tells you why they buy. We learn your product, batch the creative, and run it on Facebook and Instagram.';
+  'Done-for-you Meta ads that bring your B2B SaaS more paying customers. We learn your product, create the ads, and run them on Facebook and Instagram.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

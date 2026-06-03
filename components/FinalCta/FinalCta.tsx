@@ -36,7 +36,7 @@ export function FinalCta() {
           <span className={styles.sep}>·</span>
           <span>seats released in waves</span>
           <span className={styles.sep}>·</span>
-          <span>b2b saas only</span>
+          <span>saas only</span>
         </div>
 
       </div>

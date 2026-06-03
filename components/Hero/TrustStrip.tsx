@@ -19,7 +19,7 @@ export function TrustStrip() {
         ·
       </span>
       <span className={styles.item}>
-        Both backed by Startmate &amp; a Melbourne accelerator
+        Backed by Startmate and a Melbourne accelerator
       </span>
     </div>
   );

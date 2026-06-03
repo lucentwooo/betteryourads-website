@@ -29,7 +29,7 @@ export default function OpengraphImage() {
             Meta ads, <span style={{ color: '#1a3df0' }}>run for you</span>.
           </div>
           <div style={{ marginTop: 28, fontSize: 34, color: '#3a3a38', maxWidth: 920, lineHeight: 1.35 }}>
-            Done-for-you Meta advertising for B2B SaaS. Built for paying customers, not vanity signups.
+            Done-for-you Meta advertising that brings your B2B SaaS more paying customers.
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', fontSize: 26, color: '#7a7771' }}>
