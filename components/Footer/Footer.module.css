@@ -1,5 +1,5 @@
 .foot {
-  border-top: 1px solid var(--fg);
+  border-top: 1px solid var(--border);
   padding: 40px 0 64px;
   background: var(--bg);
 }

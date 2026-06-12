@@ -9,6 +9,7 @@ const PILOTS = [
     stage: 'pre-seed',
     model: 'Self-serve SaaS · trial → paid',
     channels: ['Facebook', 'Instagram'],
+    accent: 'var(--s1)',
   },
   {
     num: 'pilot 02',
@@ -16,6 +17,7 @@ const PILOTS = [
     stage: 'seed',
     model: 'Two-sided marketplace · SaaS',
     channels: ['Facebook', 'Instagram'],
+    accent: 'var(--s4)',
   },
 ] as const;
 
@@ -26,6 +28,7 @@ export function PilotProof() {
         <SectionHead
           eyebrow="currently in pilot"
           eyebrowAccent
+          eyebrowTag="var(--s4)"
           title={
             <>
               Two founders. Real ads.
@@ -37,7 +40,12 @@ export function PilotProof() {
         />
         <div className={styles.grid}>
           {PILOTS.map((p) => (
-            <SpotlightCard className={`${styles.card} ${styles.beam} reveal`} key={p.num}>
+            <SpotlightCard
+              className={`${styles.card} ${styles.beam} reveal`}
+              style={{ '--accent-c': p.accent } as React.CSSProperties}
+              key={p.num}
+            >
+              <span className={styles.topBar} aria-hidden="true" />
               <div className={styles.mark}>
                 <span className={styles.num}>{p.num}</span>
                 <span className={styles.status}>

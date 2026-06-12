@@ -6,7 +6,7 @@ import { SectionHead } from '@/components/ui/SectionHead';
 import { AnglePicker } from './AnglePicker';
 import { WORKED_EXAMPLE } from '@/lib/creatives';
 
-const NOTION = WORKED_EXAMPLE.ads;
+const CHIRP = WORKED_EXAMPLE.ads;
 import styles from './HowItWorks.module.css';
 
 /* HowItWorks — the done-for-you pipeline as scroll-driven narrative.
@@ -14,8 +14,10 @@ import styles from './HowItWorks.module.css';
    A sticky left rail tracks five stages (learn → angles → BATCH → ship →
    optimize) while a column of stage panels scrolls past on the right. An
    IntersectionObserver lights up the active rail step and fills the progress
-   spine. The BATCH stage is the centrepiece: one brief becomes an unlimited
-   batch of on-brand ads — the thing agencies and DIY tools structurally can't do.
+   spine. The BATCH stage is the centrepiece: one reference ad becomes an
+   unlimited batch of on-brand variations (deliberately look-alike, since
+   they're generated off the reference) — the thing agencies and DIY tools
+   structurally can't do.
 
    SSR-safe: the active step starts at 0 (deterministic, no useReducedMotion
    branch); the observer only refines it after mount. Reduced motion keeps the
@@ -29,7 +31,18 @@ interface Stage {
   title: string;
   desc: string;
   visual: ReactNode;
+  cta?: { label: string; href: string };
 }
+
+/* The awareness ladder — one accent per stage, cold → warm. Flows through
+   the rail dots, the spine fill, and the panel numerals as you scroll. */
+const STAGE_COLORS = [
+  'var(--s1)',
+  'var(--s2)',
+  'var(--s3)',
+  'var(--s4)',
+  'var(--s5)',
+] as const;
 
 const STAGES: Stage[] = [
   {
@@ -52,8 +65,8 @@ const STAGES: Stage[] = [
     key: 'batch',
     rail: 'batch the creative',
     n: '03',
-    title: 'One brief. Unlimited on-brand ads.',
-    desc: 'Every angle renders on-brand, in your palette and voice: a whole batch at once, not one ad at a time. We don’t cap it at a number; generate as many as the test needs. This is the part agencies and DIY tools can’t do.',
+    title: 'One reference. Unlimited on-brand variations.',
+    desc: 'We start from an ad that already works and batch variations of it: same system, same palette, a different hook in each. They look like siblings on purpose; that’s what on-brand means. We don’t cap the batch; generate as many as the test needs. This is the part agencies and DIY tools can’t do.',
     visual: <VisualBatch />,
   },
   {
@@ -71,12 +84,21 @@ const STAGES: Stage[] = [
     title: 'Your winning angle is customer research.',
     desc: 'Each week we show you which angle is winning and why: the hook, the message, the proof. That winner is your market telling you what it cares about most, so you can point your positioning, your site, and your roadmap at it, not just your ads. Then we generate fresh variations off it, so iterating is one click.',
     visual: <VisualOptimize />,
+    cta: { label: 'watch it compound in the loop ↓', href: '#loop' },
   },
 ];
 
 export function HowItWorks() {
   const [active, setActive] = useState(0);
+  const [mounted, setMounted] = useState(false);
   const panels = useRef<(HTMLElement | null)[]>([]);
+
+  // Dimming only applies once JS is live, so the SSR/no-JS page shows
+  // every panel at full strength.
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
 
   useEffect(() => {
     // Light up whichever panel is crossing the viewport's centre band.
@@ -101,6 +123,7 @@ export function HowItWorks() {
         <SectionHead
           eyebrow="how it works"
           eyebrowAccent
+          eyebrowTag="var(--s2)"
           title="Learns. Batches. Launches. Optimizes for revenue."
           sub="Five stages, about 90 seconds per ad, fully done for you. Tuned for what shows up in your Stripe dashboard, not your CTR column."
         />
@@ -112,6 +135,7 @@ export function HowItWorks() {
               <li
                 key={s.key}
                 className={`${styles.railItem} ${i <= active ? styles.railOn : ''}`}
+                style={{ '--accent-c': STAGE_COLORS[i] } as React.CSSProperties}
               >
                 <span className={styles.railDot} />
                 <span className={styles.railLabel}>{s.rail}</span>
@@ -128,12 +152,18 @@ export function HowItWorks() {
                 ref={(el) => {
                   panels.current[i] = el;
                 }}
-                className={`${styles.panel} reveal ${i === active ? styles.panelActive : ''}`}
+                className={`${styles.panel} ${mounted ? styles.dimmable : ''} ${i === active ? styles.panelActive : ''}`}
+                style={{ '--accent-c': STAGE_COLORS[i] } as React.CSSProperties}
               >
                 <div className={styles.panelText}>
-                  <span className={styles.panelN}>{`${s.n} //`}</span>
+                  <span className={styles.panelN}>{s.n}</span>
                   <h3 className={styles.panelTitle}>{s.title}</h3>
                   <p className={styles.panelDesc}>{s.desc}</p>
+                  {s.cta ? (
+                    <a className={styles.panelCta} href={s.cta.href}>
+                      {s.cta.label}
+                    </a>
+                  ) : null}
                 </div>
                 <div className={styles.visual}>{s.visual}</div>
               </article>
@@ -151,22 +181,22 @@ function VisualLearn() {
     <div className={styles.learn}>
       <div className={styles.learnRow}>
         <div className={styles.learnDot} />
-        <span className={styles.learnUrl}>https://notion.so</span>
+        <span className={styles.learnUrl}>https://trychirp.com</span>
         <span className={styles.learnTime}>analyzed in 12s</span>
       </div>
       <div className={styles.learnGrid}>
         <span className={styles.learnKey}>positioning</span>
-        <span>the all-in-one workspace</span>
+        <span>ask your pipeline anything</span>
         <span className={styles.learnKey}>category</span>
-        <span>knowledge &amp; docs</span>
+        <span>ai sales agent</span>
         <span className={styles.learnKey}>icp</span>
-        <span>ops &amp; founder-led teams</span>
+        <span>reps &amp; founder-led sales</span>
         <span className={styles.learnKey}>palette</span>
         <span className={styles.learnSwatches}>
-          <span className={styles.learnSwatch} style={{ background: '#191919' }} />
+          <span className={styles.learnSwatch} style={{ background: '#63c973' }} />
+          <span className={styles.learnSwatch} style={{ background: '#fec748' }} />
+          <span className={styles.learnSwatch} style={{ background: '#20442a' }} />
           <span className={styles.learnSwatch} style={{ background: '#ffffff' }} />
-          <span className={styles.learnSwatch} style={{ background: '#f7f6f3' }} />
-          <span className={styles.learnSwatch} style={{ background: '#9b9a97' }} />
         </span>
       </div>
       <div className={styles.learnFoot}>
@@ -177,22 +207,22 @@ function VisualLearn() {
   );
 }
 
-/* ----- Stage 03 — the BATCH: one brief becomes an unlimited batch ----- */
+/* ----- Stage 03 — the BATCH: one reference becomes look-alike variations ----- */
 function VisualBatch() {
   return (
     <div className={styles.batch}>
       <div className={styles.batchHead}>
         <span className={styles.batchDot} />
-        on-brand variations · one batch, no cap
+        on-brand variations · one reference, no cap
       </div>
       <div className={styles.batchGrid}>
-        {NOTION.map((ad) => (
+        {CHIRP.map((ad) => (
           <span className={styles.batchCell} key={ad.src}>
             <Image
               src={ad.src}
               alt={ad.alt}
               fill
-              sizes="84px"
+              sizes="200px"
               className={styles.batchImg}
             />
           </span>
@@ -204,13 +234,13 @@ function VisualBatch() {
 
 /* ----- Stage 04 — ship to Meta: a real placement ----- */
 function VisualShip() {
-  const ad = NOTION[0];
+  const ad = CHIRP[0];
   return (
     <div className={styles.ship}>
       <div className={styles.shipBar}>
         <span className={styles.shipAvatar} />
         <span className={styles.shipName}>
-          Notion
+          Chirp
           <span className={styles.shipMeta}>Sponsored · Meta</span>
         </span>
       </div>
@@ -239,7 +269,7 @@ function VisualShip() {
    won, and generate fresh variations off it so the founder iterates in a click.
    Fully autonomous optimisation is the roadmap. ----- */
 function VisualOptimize() {
-  const ad = NOTION[3];
+  const ad = CHIRP[2];
   return (
     <div className={styles.read}>
       <div className={styles.readHead}>
@@ -258,7 +288,7 @@ function VisualOptimize() {
         </span>
         <span className={styles.readWinText}>
           <span className={styles.readWinName}>
-            “standups are killing your velocity”
+            “i’ll never get that hour back”
           </span>
           <span className={styles.readWinSub}>your top performer · problem-aware</span>
         </span>
@@ -268,10 +298,10 @@ function VisualOptimize() {
           <Tick /> names the pain in one line
         </li>
         <li>
-          <Tick /> founder voice, not corporate
+          <Tick /> a rep’s voice, not corporate
         </li>
         <li>
-          <Tick /> proof point up front
+          <Tick /> flips the pain into proof
         </li>
       </ul>
       <div className={styles.readFoot}>→ briefed + 3 fresh variations generated</div>

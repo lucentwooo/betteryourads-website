@@ -11,6 +11,10 @@ const FAQS = [
     a: 'Your winning angle is customer research. When one message out-converts the rest, that’s your market telling you what it cares about most. You can point your positioning, your site, and your roadmap at it, not just your ads.',
   },
   {
+    q: 'What is the optimization loop?',
+    a: 'The next layer of the product. We pair each creative with its own performance data, work out why it won or lost (the hook, the image, the claim), and save that to your account’s memory so every new batch starts smarter. We’re building it with our pilot founders now; the waitlist gets it next.',
+  },
+  {
     q: 'What does it cost?',
     a: "One flat monthly price. No % of your ad spend, no per-asset fees. Your first month is free with 30 ads on us, and we'll walk through pricing on the pilot call.",
   },
@@ -32,7 +36,11 @@ export function Faq() {
   return (
     <section className="section" id="faq">
       <div className="wrap-narrow">
-        <SectionHead eyebrow="questions, mostly heard twice" title="Frequently asked." />
+        <SectionHead
+          eyebrow="questions, mostly heard twice"
+          eyebrowTag="var(--s1)"
+          title="Frequently asked."
+        />
         <div className={styles.list}>
           {FAQS.map((f, i) => (
             <details className={styles.item} name="faq" key={f.q} open={i === 0}>

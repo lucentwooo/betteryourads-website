@@ -5,7 +5,7 @@ export const alt = 'betteryourads · done-for-you Meta ads for B2B SaaS';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-// On-brand OG card: cream paper, ink type, one electric-blue accent.
+// On-brand OG card: off-white paper, ink type, one electric-blue accent.
 export default function OpengraphImage() {
   return new ImageResponse(
     (
@@ -16,7 +16,7 @@ export default function OpengraphImage() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          background: '#f4efe6',
+          background: '#faf8f3',
           padding: '72px 80px',
           fontFamily: 'sans-serif',
         }}

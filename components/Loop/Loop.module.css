@@ -1,0 +1,43 @@
+/* Loop — section shell + the waitlist plate below the scrub film. */
+
+.waitlist {
+  margin: 72px auto 0;
+  max-width: 640px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.wlTitle {
+  font-family: var(--font-sans);
+  font-size: clamp(26px, 3.2vw, 34px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.wlSub {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--fg-2);
+  margin: 0 0 8px;
+  max-width: 480px;
+  text-wrap: pretty;
+}
+
+.wlMicro {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--fg-3);
+  margin: 4px 0 0;
+}
+
+@media (max-width: 720px) {
+  .waitlist {
+    margin-top: 56px;
+  }
+}

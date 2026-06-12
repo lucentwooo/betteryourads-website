@@ -1,7 +1,9 @@
 /* =================================================================
    BetterYourAds — colors & type tokens
 
-   Cream paper. Ink. Electric blue. One signal color, used sparingly.
+   Off-white paper. Ink. Electric-blue signal, plus a disciplined pop
+   spectrum (the awareness ladder) used for section + stage accents.
+   Promoted from the landing-refresh design handoff (2026-06).
    ================================================================= */
 
 :root {
@@ -9,26 +11,41 @@
      Color — brand
      --------------------------------------------------------------- */
 
-  /* Surfaces */
-  --bya-cream:        #f4efe6;   /* paper. default background. */
-  --bya-cream-2:      #ece5d6;   /* raised card / hovered row / well */
-  --bya-cream-3:      #dcd4c1;   /* deep hover / pressed surface */
+  /* Surfaces — warm off-white paper, white raised cards */
+  --bya-paper:        #faf8f3;   /* paper. default background. */
+  --bya-surface:      #ffffff;   /* raised card / panel */
+  --bya-surface-2:    #f3f0e9;   /* well / hovered row / header band */
 
-  /* Ink */
-  --bya-ink:          #0a0a0a;   /* type, borders, rules */
-  --bya-ink-2:        #3a3a38;   /* secondary type */
-  --bya-ink-3:        #7a7771;   /* tertiary type / meta */
-  --bya-ink-4:        #b8b3a8;   /* placeholders / disabled type */
+  /* Ink — warm near-black with warm grays */
+  --bya-ink:          #0e0e0d;   /* type, rules */
+  --bya-ink-2:        #44423d;   /* secondary type */
+  --bya-ink-3:        #827e74;   /* tertiary type / meta */
+  --bya-ink-4:        #b6b1a5;   /* placeholders / disabled type */
 
-  /* Signal — electric blue. ONE per screen. */
+  /* Signal — electric blue. The brand arrow. */
   --bya-blue:         #1a3df0;
   --bya-blue-hover:   #1530c2;   /* press / hover on the CTA */
-  --bya-blue-soft:    #e3e5fb;   /* faint tint for selected rows / chart fills */
+  --bya-blue-soft:    #e6e8fc;   /* faint tint for selected rows / chart fills */
 
-  /* Semantic — muted to live on cream without alarm */
+  /* Pop spectrum — the "awareness ladder", cold → warm. Used for the
+     5 pipeline stages, section accent tags, and chart accents. Same
+     lightness family; hue is the only variable. */
+  --s1: #1a3df0;   /* blue   — unaware / the brand signal */
+  --s2: #0f8f93;   /* teal   — problem-aware */
+  --s3: #1f9e6f;   /* green  — solution-aware */
+  --s4: #e0982f;   /* amber  — product-aware (the warm pop) */
+  --s5: #e8623f;   /* coral  — most-aware */
+
+  /* warm secondary pop, surfaced as a named token for highlights */
+  --pop:        var(--s4);
+  --pop-soft:   #f7e8cf;
+  --coral:      var(--s5);
+  --coral-soft: #f8dcd2;
+
+  /* Semantic — muted to live on paper without alarm */
   --bya-rust:         #b8460e;   /* warning */
   --bya-rust-soft:    #f3d9c4;
-  --bya-forest:       #1f6b3a;   /* success */
+  --bya-forest:       #1f7a44;   /* success */
   --bya-forest-soft:  #c8e0d0;
   --bya-oxblood:      #a01818;   /* error */
   --bya-oxblood-soft: #f1c8c8;
@@ -36,15 +53,16 @@
   /* ---------------------------------------------------------------
      Semantic colors — refer to brand tokens above. Use these in UI.
      --------------------------------------------------------------- */
-  --bg:               var(--bya-cream);
-  --bg-raised:        var(--bya-cream-2);
-  --bg-deep:          var(--bya-cream-3);
+  --bg:               var(--bya-paper);
+  --bg-raised:        var(--bya-surface);
+  --bg-deep:          var(--bya-surface-2);
   --fg:               var(--bya-ink);
   --fg-2:             var(--bya-ink-2);
   --fg-3:             var(--bya-ink-3);
   --fg-muted:         var(--bya-ink-4);
-  --border:           var(--bya-ink);
-  --border-hairline:  rgba(10, 10, 10, 0.12);
+  --border:           rgba(14, 14, 13, 0.16);
+  --border-hairline:  rgba(14, 14, 13, 0.10);
+  --border-strong:    rgba(14, 14, 13, 0.84);
   --accent:           var(--bya-blue);
   --accent-hover:     var(--bya-blue-hover);
   --accent-soft:      var(--bya-blue-soft);
@@ -52,10 +70,12 @@
   /* ---------------------------------------------------------------
      Type — families & scale
 
-     Primary is DM Sans, loaded via next/font (--font-dm-sans).
+     Primary is DM Sans (next/font: --font-dm-sans); mono is
+     JetBrains Mono (next/font: --font-jetbrains) for numerals,
+     stage labels, and data chrome.
      --------------------------------------------------------------- */
   --font-sans:        var(--font-dm-sans), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-mono:        var(--font-sans);
+  --font-mono:        var(--font-jetbrains), ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
   /* Modular scale, ratio 1.25, base 16 */
   --size-12:          0.75rem;    /* 12 — eyebrows, meta */
@@ -92,18 +112,21 @@
   --space-10:  128px;
 
   /* ---------------------------------------------------------------
-     Radii — modest. nothing pill-shaped except the live dot.
+     Radii — soft. Buttons 11px, cards 12–18, panels 24.
      --------------------------------------------------------------- */
-  --radius-sm:        4px;
-  --radius-md:        8px;
-  --radius-lg:        12px;
-  --radius-full:      999px;   /* live dot only */
+  --radius-sm:        8px;
+  --radius-md:        12px;
+  --radius-lg:        18px;
+  --radius-xl:        24px;
+  --radius-btn:       11px;
+  --radius-full:      999px;   /* live dot + pills */
 
   /* ---------------------------------------------------------------
-     Shadows — two only. borders trump shadows.
+     Shadows — soft, elevated cards on warm paper.
      --------------------------------------------------------------- */
-  --shadow-sm:        0 1px 0 0 rgba(10, 10, 10, 0.08);
-  --shadow-lg:        0 24px 48px -16px rgba(10, 10, 10, 0.18);
+  --shadow-sm:        0 1px 2px rgba(14, 14, 13, 0.05), 0 4px 14px -8px rgba(14, 14, 13, 0.12);
+  --shadow-lg:        0 2px 6px rgba(14, 14, 13, 0.06), 0 18px 40px -18px rgba(14, 14, 13, 0.20);
+  --shadow-xl:        0 30px 70px -30px rgba(14, 14, 13, 0.30);
 
   /* ---------------------------------------------------------------
      Motion — one easing curve, three durations.

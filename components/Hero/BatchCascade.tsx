@@ -110,7 +110,9 @@ export function BatchCascade() {
   // The timed loop. Only runs while playing; cleaned up on unmount / dep change.
   useEffect(() => {
     if (!playing) return;
-    setBeat(0); // crossfade from the static batch into beat 0
+    // crossfade from the static batch into beat 0 (in a callback, not the
+    // sync effect body, per react-hooks/set-state-in-effect)
+    const start = requestAnimationFrame(() => setBeat(0));
     let timer: ReturnType<typeof setTimeout>;
     let current = 0;
     const schedule = () => {
@@ -121,7 +123,10 @@ export function BatchCascade() {
       }, DURATIONS[current]);
     };
     schedule();
-    return () => clearTimeout(timer);
+    return () => {
+      cancelAnimationFrame(start);
+      clearTimeout(timer);
+    };
   }, [playing]);
 
   return (

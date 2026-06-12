@@ -6,5 +6,5 @@
     color-mix(in srgb, var(--accent) 9%, transparent), transparent 60%);
 }
 .card:hover::before { opacity: 1; }
-.card:hover { border-color: var(--fg); }
+.card:hover { border-color: var(--border); }
 @media (prefers-reduced-motion: reduce) { .card::before { transition: none; } }

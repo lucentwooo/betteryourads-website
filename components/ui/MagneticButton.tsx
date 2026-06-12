@@ -11,18 +11,19 @@ type MagneticButtonProps = ExtraProps & {
   children: ReactNode;
   primary?: boolean;
   sm?: boolean;
+  lg?: boolean;
   className?: string;
   onClick?: () => void;
 };
 
 export function MagneticButton({
-  href, children, primary = false, sm = false, className, ...rest
+  href, children, primary = false, sm = false, lg = false, className, ...rest
 }: MagneticButtonProps) {
   const ref = useRef<HTMLAnchorElement>(null);
   const x = useMotionValue(0); const y = useMotionValue(0);
   const sx = useSpring(x, { stiffness: 220, damping: 18, mass: 0.4 });
   const sy = useSpring(y, { stiffness: 220, damping: 18, mass: 0.4 });
-  const classes = [styles.btn, primary ? styles.primary : '', sm ? styles.sm : '', className ?? '']
+  const classes = [styles.btn, primary ? styles.primary : '', sm ? styles.sm : '', lg ? styles.lg : '', className ?? '']
     .filter(Boolean).join(' ');
 
   function onMove(e: React.PointerEvent<HTMLAnchorElement>) {

@@ -119,9 +119,9 @@ export function WhySaas() {
   // markup renders at its final static state (full marks, BYA column lit).
   const viewProps = animate
     ? ({
-        initial: 'hidden' as const,
-        animate: (revealed ? 'shown' : 'hidden') as const,
-      })
+        initial: 'hidden',
+        animate: revealed ? 'shown' : 'hidden',
+      } as const)
     : {};
 
   return (
@@ -129,6 +129,7 @@ export function WhySaas() {
       <div className="wrap">
         <SectionHead
           eyebrow="what actually matters"
+          eyebrowTag="var(--s1)"
           title={
             <>
               Cheap signups are easy.

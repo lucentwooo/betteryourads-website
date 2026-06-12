@@ -8,9 +8,11 @@
 .table {
   position: relative;
   margin-top: 64px;
-  border: 1px solid var(--fg);
-  border-radius: 12px;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-lg);
   overflow: hidden;
+  background: var(--bg-raised);
+  box-shadow: var(--shadow-sm);
 }
 
 .row {
@@ -48,7 +50,7 @@
 
 /* Header */
 .header {
-  background: var(--bg-raised);
+  background: var(--bg-deep);
 }
 .header .col {
   flex-direction: column;
@@ -64,6 +66,15 @@
 .header .us {
   padding-top: 14px;
 }
+/* The BYA header cell goes solid electric blue with white type. */
+.header .col.us {
+  background: var(--accent);
+  color: #fff;
+}
+.header .col.us .colSub {
+  color: rgba(255, 255, 255, 0.78);
+  opacity: 1;
+}
 .colSub {
   font-family: var(--font-sans);
   font-size: 11px;
@@ -72,18 +83,15 @@
   letter-spacing: 0;
   color: var(--fg-3);
 }
-.header .us .colSub {
-  color: var(--accent);
-  opacity: 0.85;
-}
+
 .usBadge {
   font-family: var(--font-mono);
   font-size: 9px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #fff;
-  background: var(--accent);
+  color: var(--bya-ink);
+  background: var(--pop);
   border-radius: var(--radius-full);
   padding: 3px 9px;
 }
@@ -93,10 +101,7 @@
   background: var(--accent-soft);
   border-left: 1px solid var(--accent);
 }
-.header .us {
-  color: var(--accent);
-  background: var(--accent-soft);
-}
+
 /* Body .us cells carry a softer tint than the header. */
 .row:not(.header) .us {
   background: rgba(26, 61, 240, 0.06);
@@ -133,7 +138,12 @@
 }
 
 .check {
-  color: var(--accent);
+  width: 26px;
+  height: 26px;
+  padding: 5px;
+  color: #fff;
+  background: var(--accent);
+  border-radius: 50%;
 }
 .cross {
   color: var(--fg-3);

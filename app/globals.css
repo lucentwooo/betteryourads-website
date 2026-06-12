@@ -20,7 +20,6 @@ html.lenis, html.lenis body { height: auto; }
 .wrap-narrow { max-width: 980px; margin: 0 auto; padding: 0 32px; }
 
 .section { padding: 96px 0; position: relative; }
-.section + .section { border-top: 1px solid var(--fg); }
 
 .accent { color: var(--accent); font-weight: 700; font-style: normal; }
 

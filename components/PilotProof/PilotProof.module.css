@@ -8,18 +8,36 @@
   margin-top: 56px;
 }
 .card {
-  border: 1px solid var(--fg);
-  border-radius: 8px;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-lg);
   padding: 32px 32px 28px;
-  background: var(--bg);
+  background: var(--bg-raised);
   display: flex;
   flex-direction: column;
   gap: 18px;
   position: relative;
-  transition: background var(--dur-fast) var(--ease);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease);
 }
 .card:hover {
-  background: var(--bg-raised);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+/* The stage-colored top bar — full-bleed top, the brand's one color-bar accent.
+   A real element (not ::before) so it can't collide with SpotlightCard's
+   ::before spotlight on the same node. */
+.topBar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 4px;
+  background: var(--accent-c, var(--accent));
+}
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+  .card:hover { transform: none; }
 }
 .mark {
   display: flex;
@@ -32,7 +50,7 @@
   color: var(--fg-3);
 }
 .num {
-  color: var(--accent);
+  color: var(--accent-c, var(--accent));
 }
 .status {
   display: inline-flex;

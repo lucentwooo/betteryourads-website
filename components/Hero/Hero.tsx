@@ -33,11 +33,13 @@ export function Hero() {
           </p>
 
           <div className={styles.ctaRow}>
-            <BookCallButton />
+            <BookCallButton lg />
           </div>
 
           <p className={styles.micro}>
-            first month free · 30 ads on us · no card required
+            a 15-minute call ·{' '}
+            <b className={styles.microPop}>first month free, 30 ads on us</b> ·
+            no card required
           </p>
 
           <TrustStrip />

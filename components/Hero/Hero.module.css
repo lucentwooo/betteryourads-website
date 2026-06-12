@@ -15,15 +15,20 @@
   gap: var(--space-4);
 }
 
+/* Eyebrow — a quiet raised pill chip (design-file hero treatment). */
 .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  font-size: var(--size-12);
+  padding: 7px 14px;
+  border-radius: var(--radius-full);
+  background: var(--bg-raised);
+  border: 1px solid var(--border-hairline);
+  box-shadow: var(--shadow-sm);
+  font-size: 13px;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: var(--track-caps);
-  color: var(--fg-3);
+  letter-spacing: 0.01em;
+  color: var(--fg-2);
 }
 .eyebrow .dot {
   width: 6px;
@@ -81,22 +86,14 @@
   margin-top: var(--space-3);
 }
 
-.secondary {
-  font-size: var(--size-14);
-  color: var(--fg-3);
-  text-decoration: underline;
-  text-decoration-color: var(--border-hairline);
-  text-underline-offset: 3px;
-}
-.secondary:hover {
-  color: var(--fg);
-  text-decoration-color: var(--fg);
-}
-
 .micro {
-  font-size: var(--size-12);
+  font-size: 13px;
   color: var(--fg-3);
   margin: 0;
+}
+.microPop {
+  color: var(--pop);
+  font-weight: 600;
 }
 
 /* The signature visual, full content width, below the copy. */

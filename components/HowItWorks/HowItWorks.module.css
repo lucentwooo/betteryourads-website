@@ -63,16 +63,18 @@
   transition: color 0.3s var(--ease);
   margin-top: 1px;
 }
-/* completed + active steps light up; the spine fills to the active dot */
+/* completed + active steps light up in their own ladder color; the spine
+   fills segment by segment, cold -> warm. */
 .railOn .railDot {
-  border-color: var(--accent);
-  background: var(--accent);
+  border-color: var(--accent-c, var(--accent));
+  background: var(--accent-c, var(--accent));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-c, var(--accent)) 16%, transparent);
 }
 .railOn .railLabel {
   color: var(--fg);
 }
 .railOn:not(:last-child)::before {
-  background: var(--accent);
+  background: var(--accent-c, var(--accent));
 }
 
 /* ----- Scrolling stage panels ------------------------------------- */
@@ -87,13 +89,23 @@
   gap: 36px;
   align-items: center;
   border: 1px solid var(--border-hairline);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   background: var(--bg);
-  padding: 32px 36px;
-  transition: border-color 0.4s var(--ease);
+  padding: 34px 38px;
+  transition: border-color 0.4s var(--ease), opacity 0.45s var(--ease),
+    transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
+}
+/* Focus treatment: once JS is live, non-active panels recede so the
+   active stage owns the eye. SSR / no-JS shows everything full. */
+.dimmable:not(.panelActive) {
+  opacity: 0.55;
+  transform: scale(0.992);
 }
 .panelActive {
-  border-color: var(--fg);
+  opacity: 1;
+  border-color: color-mix(in srgb, var(--accent-c, var(--accent)) 55%, transparent);
+  background: var(--bg-raised);
+  box-shadow: var(--shadow-lg);
 }
 .panelText {
   display: flex;
@@ -102,9 +114,26 @@
 }
 .panelN {
   font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.1em;
-  color: var(--accent);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--accent-c, var(--accent));
+  font-feature-settings: 'tnum';
+}
+.panelCta {
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--accent-c, var(--accent));
+  text-decoration: none;
+  width: fit-content;
+}
+.panelCta:hover {
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-underline-offset: 3px;
 }
 .panelTitle {
   font-family: var(--font-sans);
@@ -125,10 +154,11 @@
   text-wrap: pretty;
 }
 .visual {
-  border: 1px solid var(--fg);
-  border-radius: 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
   background: var(--bg-raised);
-  height: 240px;
+  box-shadow: var(--shadow-sm);
+  height: 260px;
   overflow: hidden;
   position: relative;
 }
@@ -146,7 +176,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background: var(--bg);
 }
 .learnRow {
   display: flex;
@@ -192,7 +221,7 @@
 .learnSwatch {
   width: 22px;
   height: 16px;
-  border: 1px solid var(--fg);
+  border: 1px solid var(--border);
 }
 .learnSwatch + .learnSwatch {
   border-left: 0;
@@ -216,14 +245,13 @@
   color: var(--accent);
 }
 
-/* ----- Stage 03 visual: the BATCH (8 real creatives) ----- */
+/* ----- Stage 03 visual: the BATCH (look-alike variations, 3-up) ----- */
 .batch {
   height: 100%;
   padding: 14px 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background: var(--bg);
 }
 .batchHead {
   display: flex;
@@ -245,16 +273,19 @@
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 6px;
+  grid-template-columns: repeat(3, 1fr);
+  align-content: center;
+  gap: 8px;
 }
+/* Square cells: the ads are 1:1 and the resemblance between variations is
+   the message, so show each one whole instead of cropping. */
 .batchCell {
   position: relative;
-  border: 1px solid var(--fg);
+  aspect-ratio: 1;
+  border: 1px solid var(--border);
   border-radius: 4px;
   overflow: hidden;
-  background: var(--bg-raised);
+  background: var(--bg-deep);
 }
 .batchImg {
   object-fit: cover;
@@ -265,7 +296,6 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: var(--bg);
 }
 .shipBar {
   display: flex;
@@ -305,7 +335,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-raised);
+  background: var(--bg-deep);
 }
 /* The creative is square — show it whole, height-bound and centred, so it
    reads as a complete placement instead of a cropped strip. */
@@ -349,7 +379,6 @@
   display: flex;
   flex-direction: column;
   gap: 11px;
-  background: var(--bg);
 }
 .readHead {
   display: flex;
@@ -377,10 +406,10 @@
   width: 44px;
   height: 44px;
   flex-shrink: 0;
-  border: 1px solid var(--fg);
+  border: 1px solid var(--border);
   border-radius: 6px;
   overflow: hidden;
-  background: var(--bg-raised);
+  background: var(--bg-deep);
 }
 .readImg {
   object-fit: cover;
@@ -443,6 +472,9 @@
   .railLabel,
   .panel {
     transition: none;
+  }
+  .dimmable:not(.panelActive) {
+    transform: none;
   }
 }
 

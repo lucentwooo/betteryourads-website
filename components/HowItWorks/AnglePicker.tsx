@@ -6,9 +6,9 @@ import styles from './AnglePicker.module.css';
 // representative spread of the five; the founder tests them all and lets real
 // signups pick the winner.
 const ANGLES = [
-  { title: 'standups are killing your velocity.', tag: 'problem-aware' },
-  { title: 'the tracker built for shipping speed.', tag: 'solution-aware' },
-  { title: 'start free, ship faster this week.', tag: 'most-aware' },
+  { title: 'crm admin is eating your selling hours.', tag: 'problem-aware' },
+  { title: 'the ai agent that updates hubspot for you.', tag: 'solution-aware' },
+  { title: 'start free, skip the crm hour this week.', tag: 'most-aware' },
 ];
 
 export function AnglePicker() {

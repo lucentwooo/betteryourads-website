@@ -2,9 +2,9 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(244, 239, 230, 0.92);
-  border-bottom: 1px solid var(--fg);
-  transition: background var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
+  border-bottom: 1px solid transparent;
+  transition: background var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease),
+    backdrop-filter var(--dur-base) var(--ease);
 }
 .inner {
   display: flex;
@@ -18,11 +18,28 @@
 .mark { width: 26px; height: 26px; display: block; }
 .wordmark { font-family: var(--font-sans); font-size: 17px; font-weight: 700; letter-spacing: -0.03em; }
 .ads { color: var(--accent); }
+.links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+.links a {
+  font-size: var(--size-14);
+  font-weight: 500;
+  color: var(--fg-2);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--dur-fast) var(--ease);
+}
+.links a:hover { color: var(--fg); }
 .ctaGroup { display: flex; align-items: center; gap: 10px; }
 .scrolled {
   background: color-mix(in srgb, var(--bg) 82%, transparent);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border-hairline);
+  backdrop-filter: blur(14px) saturate(1.2);
+  border-bottom-color: var(--border-hairline);
+}
+@media (max-width: 820px) {
+  .links { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .nav { transition: none; }

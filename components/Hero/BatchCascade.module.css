@@ -25,6 +25,7 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--bg-raised);
+  box-shadow: var(--shadow-lg);
   overflow: hidden;
 }
 
@@ -63,7 +64,7 @@
   width: 18px;
   height: 4px;
   border-radius: var(--radius-full);
-  background: var(--bya-cream-3);
+  background: var(--bg-deep);
   transition: background var(--dur-base) var(--ease), width var(--dur-base) var(--ease);
 }
 .segDone {
