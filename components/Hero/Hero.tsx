@@ -19,7 +19,7 @@ export function Hero() {
         <div className={styles.col}>
           <div className={styles.eyebrow}>
             <span className={styles.dot} aria-hidden="true" />
-            <span>done-for-you meta ads · for b2b saas</span>
+            <span>done-for-you meta ads · for businesses that run them</span>
           </div>
 
           <h1 className={styles.title}>
@@ -28,7 +28,7 @@ export function Hero() {
 
           <p className={`lead ${styles.subhead}`}>
             <strong className={styles.subStrong}>More paying customers</strong>{' '}
-            for your B2B SaaS, fully done for you. We learn your product, create
+            for your business, fully done for you. We learn your product, create
             the ads, and run them on Facebook and Instagram.
           </p>
 

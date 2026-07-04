@@ -1,4 +1,4 @@
-# BetterYourAds Landing Page — Next.js Rebuild
+# Loopy Landing Page — Next.js Rebuild
 
 **Date:** 2026-05-27
 **Status:** Approved
@@ -6,7 +6,7 @@
 ## Summary
 
 Rebuild the existing static HTML landing page (`legacy/index.html` + CSS) for
-**BetterYourAds** ("Meta ads, built for B2B SaaS") as a scalable Next.js (App
+**Loopy** ("Meta ads, built for B2B SaaS") as a scalable Next.js (App
 Router) + TypeScript application. The visual design is already settled in
 `legacy/` and must be reproduced faithfully; this project is purely a
 stack/architecture migration, not a redesign.
@@ -65,7 +65,7 @@ public/
 samples/tailwind-shadcn/
   # Pricing section rebuilt with Tailwind + shadcn/ui, self-contained,
   # excluded from the page build, for format comparison only
-docs/superpowers/specs/2026-05-27-betteryourads-nextjs-rebuild-design.md
+docs/superpowers/specs/2026-05-27-loopy-nextjs-rebuild-design.md
 README.md             # rewritten
 .gitignore            # Next.js standard
 ```

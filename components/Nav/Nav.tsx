@@ -7,7 +7,7 @@ import buttonStyles from '@/components/ui/MagneticButton.module.css';
 import styles from './Nav.module.css';
 
 const LINKS = [
-  ['why saas', '#why'],
+  ['why loopy', '#why'],
   ['how it works', '#how'],
   ['the loop', '#loop'],
   ['faq', '#faq'],
@@ -36,11 +36,15 @@ export function Nav() {
   return (
     <nav className={`${styles.nav}${scrolled ? ` ${styles.scrolled}` : ''}`}>
       <div className={styles.inner}>
-        <a className={styles.brand} href="#">
-          <Image className={styles.mark} src="/logo-mark.png" alt="" width={26} height={26} />
-          <span className={styles.wordmark}>
-            betteryour<span className={styles.ads}>ads</span>
-          </span>
+        <a className={styles.brand} href="#" aria-label="Loopy — home">
+          <Image
+            className={styles.logo}
+            src="/loopy-logo.png"
+            alt="Loopy"
+            width={65}
+            height={26}
+            priority
+          />
         </a>
         <div className={styles.links}>
           {LINKS.map(([label, href]) => (

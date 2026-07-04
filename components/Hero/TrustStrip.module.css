@@ -27,8 +27,8 @@
   width: 7px;
   height: 7px;
   border-radius: var(--radius-full);
-  background: var(--bya-forest);
-  box-shadow: 0 0 0 3px var(--bya-forest-soft);
+  background: var(--loopy-forest);
+  box-shadow: 0 0 0 3px var(--loopy-forest-soft);
   flex: none;
 }
 

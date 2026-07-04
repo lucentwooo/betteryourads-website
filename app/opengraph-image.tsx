@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'betteryourads · done-for-you Meta ads for B2B SaaS';
+export const alt = 'loopy · done-for-you Meta ads for brands that sell online';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -21,15 +21,15 @@ export default function OpengraphImage() {
           fontFamily: 'sans-serif',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', fontSize: 30, fontWeight: 700, color: '#0a0a0a' }}>
-          betteryour<span style={{ color: '#1a3df0' }}>ads</span>
+        <div style={{ display: 'flex', alignItems: 'center', fontSize: 34, fontWeight: 700, color: '#1a3df0', letterSpacing: '-0.03em' }}>
+          loopy
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div style={{ fontSize: 88, fontWeight: 600, color: '#0a0a0a', letterSpacing: '-0.03em', lineHeight: 1.05 }}>
             Meta ads, <span style={{ color: '#1a3df0' }}>run for you</span>.
           </div>
           <div style={{ marginTop: 28, fontSize: 34, color: '#3a3a38', maxWidth: 920, lineHeight: 1.35 }}>
-            Done-for-you Meta advertising that brings your B2B SaaS more paying customers.
+            Done-for-you Meta advertising that brings your business more paying customers.
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', fontSize: 26, color: '#7a7771' }}>

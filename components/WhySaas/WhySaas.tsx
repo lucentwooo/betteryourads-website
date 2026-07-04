@@ -10,31 +10,31 @@ import styles from './WhySaas.module.css';
    signature "Resolve" motion.
 
    A 4-column capability matrix: capability · meta-ads agency ·
-   freelancer/DIY · betteryourads. The BYA column is the highlighted
+   freelancer/DIY · loopy. The Loopy column is the highlighted
    `.us` column (electric blue). On scroll-in, the competitor ✗ cells
-   sweep in top-to-bottom, then the BYA ✓ column fills and lights up
+   sweep in top-to-bottom, then the Loopy ✓ column fills and lights up
    electric-blue, landing LAST — the resolve.
 
    SSR-safe (Manifesto discipline): first paint and reduced-motion
    users see the FULL final state statically — every mark visible, the
-   BYA column already blue. Motion props are only attached after mount
+   Loopy column already blue. Motion props are only attached after mount
    and never under prefers-reduced-motion, so there is no animation
    branch in the server markup that could mismatch on hydration.
    ================================================================= */
 
 const ROWS: { cap: string }[] = [
-  { cap: 'Optimized for paying customers, not cheap signups' },
+  { cap: 'Optimized for paying customers, not cheap clicks' },
   { cap: 'Finds the winning angle that tells you what your market wants' },
   { cap: 'Unlimited on-brand ad variations per brief' },
   { cap: 'First ads live in hours, not weeks of onboarding' },
   { cap: 'One flat price, no % of ad spend or per-asset fees' },
 ];
 
-// Stagger ~75ms/row for the crosses; the BYA column lands a beat after
+// Stagger ~75ms/row for the crosses; the Loopy column lands a beat after
 // the last cross resolves.
 const ROW_STAGGER = 0.075;
 const CROSS_LEAD = 0.16; // delay before the first cross appears
-const US_BEAT = 0.18; // pause after last cross before the BYA column lights
+const US_BEAT = 0.18; // pause after last cross before the Loopy column lights
 
 const crossVariants: Variants = {
   hidden: { opacity: 0, y: -6 },
@@ -116,7 +116,7 @@ export function WhySaas() {
 
   // When animating, drive every cell from a single parent that flips to "shown"
   // once revealed. When not animating, no motion props are attached and the
-  // markup renders at its final static state (full marks, BYA column lit).
+  // markup renders at its final static state (full marks, Loopy column lit).
   const viewProps = animate
     ? ({
         initial: 'hidden',
@@ -132,12 +132,12 @@ export function WhySaas() {
           eyebrowTag="var(--s1)"
           title={
             <>
-              Cheap signups are easy.
+              Cheap clicks are easy.
               <br />
-              Ones that pay are the job.
+              Customers who pay are the job.
             </>
           }
-          sub="A low cost-per-signup looks great in a dashboard and can still do nothing for revenue. Most trials never even activate. For SaaS, success is paying customers at a CAC that pays back, and learning which message won them. Here’s where we’re built differently."
+          sub="A low cost-per-click looks great in a dashboard and can do nothing for revenue on its own. What counts is paying customers at a CAC that pays back, and knowing which message won them. Here’s where we’re built differently."
         />
 
         <motion.div ref={tableRef} className={styles.table} {...viewProps}>
@@ -153,12 +153,12 @@ export function WhySaas() {
             </div>
             <div className={`${styles.col} ${styles.us}`}>
               <span className={styles.usBadge}>does all five</span>
-              <span>betteryourads</span>
-              <span className={styles.colSub}>built for trial → paid</span>
+              <span>loopy</span>
+              <span className={styles.colSub}>built for paying customers</span>
             </div>
           </div>
 
-          {/* The BYA column highlight overlay — lights up electric-blue last. */}
+          {/* The Loopy column highlight overlay — lights up electric-blue last. */}
           <motion.div
             className={styles.usGlow}
             aria-hidden

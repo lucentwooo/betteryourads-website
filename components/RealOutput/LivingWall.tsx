@@ -54,7 +54,7 @@ export function LivingWall() {
   // Static, deterministic first paint + reduced-motion: a plain scroll strip.
   if (!animate) {
     return (
-      <div className={styles.wall} aria-label="Reference ads from top SaaS companies in the BetterYourAds library">
+      <div className={styles.wall} aria-label="Reference ads from top brands in the Loopy library">
         <StaticStrip ads={ROW_A} />
         <StaticStrip ads={ROW_B} />
       </div>
@@ -62,7 +62,7 @@ export function LivingWall() {
   }
 
   return (
-    <div className={styles.wall} aria-label="Reference ads from top SaaS companies in the BetterYourAds library">
+    <div className={styles.wall} aria-label="Reference ads from top brands in the Loopy library">
       <MarqueeRow ads={ROW_A} direction="left" duration={56} />
       <MarqueeRow ads={ROW_B} direction="right" duration={64} />
     </div>

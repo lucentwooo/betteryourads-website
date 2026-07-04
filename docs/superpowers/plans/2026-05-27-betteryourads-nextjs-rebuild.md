@@ -1,8 +1,8 @@
-# BetterYourAds Next.js Rebuild — Implementation Plan
+# Loopy Next.js Rebuild — Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Rebuild the static `legacy/index.html` BetterYourAds landing page as a scalable Next.js (App Router) + TypeScript app, faithful to the existing design, deployable as a static site on Vercel with no backend.
+**Goal:** Rebuild the static `legacy/index.html` Loopy landing page as a scalable Next.js (App Router) + TypeScript app, faithful to the existing design, deployable as a static site on Vercel with no backend.
 
 **Architecture:** Static-first App Router app at the repo root, alongside an untouched `legacy/`. Every section is a React Server Component except two isolated `"use client"` components: `LiveDemo` (animated ad-generator, driven by a pure `useReducer` phase machine) and `WaitlistForm` (client-only inline confirmation). The design system (`tokens.css`) is preserved verbatim as the single source of truth; each section's styles live in a co-located CSS Module. Only styles/assets the live page actually uses are ported.
 
@@ -253,7 +253,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'betteryourads — meta ads, built for b2b saas',
+  title: 'loopy — meta ads, built for b2b saas',
   description:
     'We learn your product, write the angles, ship the creative, and run the Meta ads. Built for SaaS funnels — not ecommerce.',
   icons: { icon: '/favicon.svg' },
@@ -1541,7 +1541,7 @@ export function Compare() {
             <div />
             <div>meta-ads agency</div>
             <div>ecom-trained ai tools</div>
-            <div className={styles.us}>betteryourads</div>
+            <div className={styles.us}>loopy</div>
           </div>
           {ROWS.map(([label, them1, them2, us]) => (
             <div className={styles.row} key={label}>
@@ -1818,7 +1818,7 @@ export function Footer() {
         ))}
       </div>
       <div className={styles.metaLine}>
-        <span>betteryourads · 2026 · sf</span>
+        <span>loopy · 2026 · sf</span>
         <span className={styles.metaStatus}>
           <span className={styles.metaDot} />
           private beta · waitlist open
@@ -2105,9 +2105,9 @@ git commit -m "docs: add Tailwind+shadcn Pricing format sample"
 
 - [ ] **Step 1: Rewrite `README.md`**
 ```markdown
-# BetterYourAds — Landing Page
+# Loopy — Landing Page
 
-Marketing site for **BetterYourAds**: Meta ads, built for B2B SaaS. We learn the
+Marketing site for **Loopy**: Meta ads, built for B2B SaaS. We learn the
 product, write the angles, ship the creative, and run the ads — tuned for trial
 signups, not add-to-carts.
 

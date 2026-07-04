@@ -1,5 +1,5 @@
 /* =================================================================
-   BetterYourAds — colors & type tokens
+   Loopy — colors & type tokens
 
    Off-white paper. Ink. Electric-blue signal, plus a disciplined pop
    spectrum (the awareness ladder) used for section + stage accents.
@@ -12,20 +12,20 @@
      --------------------------------------------------------------- */
 
   /* Surfaces — warm off-white paper, white raised cards */
-  --bya-paper:        #faf8f3;   /* paper. default background. */
-  --bya-surface:      #ffffff;   /* raised card / panel */
-  --bya-surface-2:    #f3f0e9;   /* well / hovered row / header band */
+  --loopy-paper:        #faf8f3;   /* paper. default background. */
+  --loopy-surface:      #ffffff;   /* raised card / panel */
+  --loopy-surface-2:    #f3f0e9;   /* well / hovered row / header band */
 
   /* Ink — warm near-black with warm grays */
-  --bya-ink:          #0e0e0d;   /* type, rules */
-  --bya-ink-2:        #44423d;   /* secondary type */
-  --bya-ink-3:        #827e74;   /* tertiary type / meta */
-  --bya-ink-4:        #b6b1a5;   /* placeholders / disabled type */
+  --loopy-ink:          #0e0e0d;   /* type, rules */
+  --loopy-ink-2:        #44423d;   /* secondary type */
+  --loopy-ink-3:        #827e74;   /* tertiary type / meta */
+  --loopy-ink-4:        #b6b1a5;   /* placeholders / disabled type */
 
   /* Signal — electric blue. The brand arrow. */
-  --bya-blue:         #1a3df0;
-  --bya-blue-hover:   #1530c2;   /* press / hover on the CTA */
-  --bya-blue-soft:    #e6e8fc;   /* faint tint for selected rows / chart fills */
+  --loopy-blue:         #1a3df0;
+  --loopy-blue-hover:   #1530c2;   /* press / hover on the CTA */
+  --loopy-blue-soft:    #e6e8fc;   /* faint tint for selected rows / chart fills */
 
   /* Pop spectrum — the "awareness ladder", cold → warm. Used for the
      5 pipeline stages, section accent tags, and chart accents. Same
@@ -43,39 +43,37 @@
   --coral-soft: #f8dcd2;
 
   /* Semantic — muted to live on paper without alarm */
-  --bya-rust:         #b8460e;   /* warning */
-  --bya-rust-soft:    #f3d9c4;
-  --bya-forest:       #1f7a44;   /* success */
-  --bya-forest-soft:  #c8e0d0;
-  --bya-oxblood:      #a01818;   /* error */
-  --bya-oxblood-soft: #f1c8c8;
+  --loopy-rust:         #b8460e;   /* warning */
+  --loopy-rust-soft:    #f3d9c4;
+  --loopy-forest:       #1f7a44;   /* success */
+  --loopy-forest-soft:  #c8e0d0;
+  --loopy-oxblood:      #a01818;   /* error */
+  --loopy-oxblood-soft: #f1c8c8;
 
   /* ---------------------------------------------------------------
      Semantic colors — refer to brand tokens above. Use these in UI.
      --------------------------------------------------------------- */
-  --bg:               var(--bya-paper);
-  --bg-raised:        var(--bya-surface);
-  --bg-deep:          var(--bya-surface-2);
-  --fg:               var(--bya-ink);
-  --fg-2:             var(--bya-ink-2);
-  --fg-3:             var(--bya-ink-3);
-  --fg-muted:         var(--bya-ink-4);
+  --bg:               var(--loopy-paper);
+  --bg-raised:        var(--loopy-surface);
+  --bg-deep:          var(--loopy-surface-2);
+  --fg:               var(--loopy-ink);
+  --fg-2:             var(--loopy-ink-2);
+  --fg-3:             var(--loopy-ink-3);
+  --fg-muted:         var(--loopy-ink-4);
   --border:           rgba(14, 14, 13, 0.16);
   --border-hairline:  rgba(14, 14, 13, 0.10);
   --border-strong:    rgba(14, 14, 13, 0.84);
-  --accent:           var(--bya-blue);
-  --accent-hover:     var(--bya-blue-hover);
-  --accent-soft:      var(--bya-blue-soft);
+  --accent:           var(--loopy-blue);
+  --accent-hover:     var(--loopy-blue-hover);
+  --accent-soft:      var(--loopy-blue-soft);
 
   /* ---------------------------------------------------------------
      Type — families & scale
 
-     Primary is DM Sans (next/font: --font-dm-sans); mono is
-     JetBrains Mono (next/font: --font-jetbrains) for numerals,
-     stage labels, and data chrome.
+     Single family: DM Sans (next/font: --font-dm-sans). No monospace
+     anywhere — labels, numerals, and eyebrows use tracked sans caps.
      --------------------------------------------------------------- */
   --font-sans:        var(--font-dm-sans), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-mono:        var(--font-jetbrains), ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
   /* Modular scale, ratio 1.25, base 16 */
   --size-12:          0.75rem;    /* 12 — eyebrows, meta */
@@ -246,7 +244,7 @@ p, .body {
 }
 
 .mono, code, kbd, samp {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.92em;
   font-weight: 400;
   color: var(--fg);

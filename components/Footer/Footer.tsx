@@ -2,7 +2,7 @@ import Image from 'next/image';
 import styles from './Footer.module.css';
 
 const COLUMNS = [
-  { h: 'product', links: [['how it works', '#how'], ['why saas', '#why'], ['the loop', '#loop']] },
+  { h: 'product', links: [['how it works', '#how'], ['why loopy', '#why'], ['the loop', '#loop']] },
   { h: 'company', links: [['about', '#'], ['contact', '#'], ['careers', '#']] },
   { h: 'resources', links: [['faq', '#faq'], ['privacy', '#'], ['terms', '#']] },
 ] as const;
@@ -12,14 +12,17 @@ export function Footer() {
     <footer className={styles.foot}>
       <div className={styles.inner}>
         <div>
-          <a className={styles.brandRow} href="#">
-            <Image src="/logo-mark.png" alt="" width={28} height={28} />
-            <span className={styles.brandWordmark}>
-              betteryour<span className={styles.brandAds}>ads</span>
-            </span>
+          <a className={styles.brandRow} href="#" aria-label="Loopy — home">
+            <Image
+              className={styles.brandLogo}
+              src="/loopy-logo.png"
+              alt="Loopy"
+              width={70}
+              height={28}
+            />
           </a>
           <p className={styles.brandBlurb}>
-            Meta ads for b2b saas. Built by founders who got tired of agency invoices.
+            Meta ads for businesses that run them. Built by founders who got tired of agency invoices.
           </p>
         </div>
         {COLUMNS.map((col) => (
@@ -36,7 +39,7 @@ export function Footer() {
         ))}
       </div>
       <div className={styles.metaLine}>
-        <span>betteryourads · 2026 · sf</span>
+        <span>loopy · 2026 · sf</span>
         <span className={styles.metaStatus}>
           <span className={styles.metaDot} />
           private beta · waitlist open

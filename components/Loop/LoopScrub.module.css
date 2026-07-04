@@ -49,12 +49,12 @@
   width: 7px;
   height: 7px;
   border-radius: var(--radius-full);
-  background: var(--bya-forest);
-  box-shadow: 0 0 0 3px var(--bya-forest-soft);
+  background: var(--loopy-forest);
+  box-shadow: 0 0 0 3px var(--loopy-forest-soft);
   flex: none;
 }
 .barLabel {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: var(--track-caps);
@@ -137,7 +137,7 @@
   inset: 0;
   display: grid;
   place-items: center;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 28px;
   font-weight: 600;
   color: var(--dial-c, var(--accent));
@@ -156,7 +156,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 12px;
   color: var(--fg-3);
   transition: color var(--dur-base) var(--ease);
@@ -254,7 +254,7 @@
 }
 
 .phaseN {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -301,7 +301,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -324,7 +324,7 @@
 }
 
 .hint {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 11px;
   color: var(--fg-3);
   margin: 0;
@@ -352,26 +352,26 @@
   gap: 8px;
 }
 .adName {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--fg-3);
 }
 .adVerdict {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 10px;
   border-radius: var(--radius-full);
   padding: 3px 9px;
   white-space: nowrap;
 }
 .adWin {
-  color: var(--bya-forest);
-  background: var(--bya-forest-soft);
+  color: var(--loopy-forest);
+  background: var(--loopy-forest-soft);
 }
 .adLoss {
-  color: var(--bya-rust);
-  background: var(--bya-rust-soft);
+  color: var(--loopy-rust);
+  background: var(--loopy-rust-soft);
 }
 .metric {
   display: grid;
@@ -380,7 +380,7 @@
   align-items: center;
 }
 .metricLabel {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 9px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -408,7 +408,7 @@
   background: var(--s5);
 }
 .metricVal {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 11px;
   color: var(--fg-2);
   text-align: right;
@@ -435,7 +435,7 @@
   font-size: 13.5px;
 }
 .rowTag {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 9px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -446,7 +446,7 @@
   flex: none;
 }
 .rowTagMem {
-  color: var(--bya-forest);
+  color: var(--loopy-forest);
 }
 .rowText {
   color: var(--fg-2);
@@ -454,13 +454,13 @@
 }
 .rowMeta {
   margin-left: auto;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 10px;
   color: var(--fg-3);
   flex: none;
 }
 .rowTick {
-  color: var(--bya-forest);
+  color: var(--loopy-forest);
   flex: none;
 }
 
@@ -530,7 +530,7 @@
   position: absolute;
   top: 22px;
   right: 6px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 9px;
   letter-spacing: 0.04em;
   color: var(--accent-c, var(--accent));
@@ -544,7 +544,7 @@
   position: absolute;
   right: 6px;
   bottom: 38px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 9px;
   color: var(--fg-muted);
   white-space: nowrap;
@@ -553,7 +553,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 10px;
   color: var(--fg-3);
   flex: none;

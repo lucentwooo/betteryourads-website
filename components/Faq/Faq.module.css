@@ -23,7 +23,7 @@
   display: none;
 }
 .q .toggle {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 18px;
   font-weight: 400;
   color: var(--accent);

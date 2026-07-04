@@ -1,9 +1,9 @@
-# BetterYourAds Landing — Scroll Cinematics & Smoothness Plan
+# Loopy Landing — Scroll Cinematics & Smoothness Plan
 
 > **For agentic workers (READ FIRST):** This plan is self-contained so it can be executed in a fresh session with no prior chat context. Execute with superpowers:subagent-driven-development (parallel waves where files are disjoint). Steps use `- [ ]` checkboxes.
 > **Also read:** the two project memories — `usp-batch-creation` and `landing-impressive-means-usp-not-decoration` (in the session memory dir) — they encode the founder's intent. And per the repo `AGENTS.md`, skim the relevant guide under `node_modules/next/dist/docs/01-app/` before writing component code (this Next version differs from training data).
 
-**Goal:** Make the existing scroll-driven pieces buttery-smooth and add a small, curated set of scroll-cinematic moments that *showcase how BetterYourAds delivers value* — without breaking the cream/ink/one-blue editorial brand.
+**Goal:** Make the existing scroll-driven pieces buttery-smooth and add a small, curated set of scroll-cinematic moments that *showcase how Loopy delivers value* — without breaking the cream/ink/one-blue editorial brand.
 
 **Architecture:** Next.js 16.2.6 App Router, React 19, TS, **CSS Modules over `styles/tokens.css`** (NO Tailwind, NO shadcn — deliberately removed). Sections are RSC; interactivity is isolated in small `"use client"` islands. Motion via the `motion` package (`motion/react`). Smoothness via **Lenis**. Static deploy on Vercel, no backend.
 
