@@ -12,7 +12,7 @@
   padding: 0 32px;
 }
 .foot h6 {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -40,7 +40,7 @@
   text-underline-offset: 2px;
 }
 .metaLine {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 11px;
   color: var(--fg-3);
   display: flex;
@@ -76,6 +76,11 @@
 }
 .brandAds {
   color: var(--accent);
+}
+.brandLogo {
+  display: block;
+  height: 28px;
+  width: auto;
 }
 .brandBlurb {
   font-size: 14px;

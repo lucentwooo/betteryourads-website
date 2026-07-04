@@ -28,10 +28,10 @@ export function RealOutput() {
           eyebrowTag="var(--s3)"
           title={
             <>
-              Trained on ads from the best in SaaS.
+              Trained on the ads already winning.
             </>
           }
-          sub="These are real ads from the world's top software companies: the reference library our model trains on, and you get access to. Every concept we generate is grounded in patterns the best are already running."
+          sub="These are real ads from the world's top brands: the reference library our model trains on, and you get access to. Every concept we generate is grounded in patterns the best are already running."
         />
       </div>
 

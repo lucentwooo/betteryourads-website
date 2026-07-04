@@ -10,7 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Single-page marketing site for **BetterYourAds** (done-for-you Meta ads for B2B SaaS).
+Single-page marketing site for **Loopy** (done-for-you Meta ads for B2B SaaS, tryloopy.io).
 No backend, no database — a static-deployed App Router site whose only "interactivity"
 is a Cal.com booking embed, scroll animations, and fire-and-forget analytics.
 
@@ -40,7 +40,7 @@ BookCallButton, etc.). To change the page flow, edit `page.tsx`; to change a sec
 edit its folder.
 
 **Styling is CSS Modules over a single token layer.** `styles/tokens.css` is the source
-of truth for color, type scale, spacing, and motion — a two-tier system: `--bya-*` brand
+of truth for color, type scale, spacing, and motion — a two-tier system: `--loopy-*` brand
 primitives feed semantic aliases (`--bg`, `--fg`, `--accent`, …). Use the semantic
 tokens in component CSS, not raw hex. The palette is deliberately constrained: cream
 paper, ink, and **one** electric-blue signal color used sparingly.

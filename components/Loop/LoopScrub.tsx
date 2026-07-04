@@ -310,7 +310,7 @@ const ADS = [
     win: false,
     bars: [
       { label: 'ctr', val: '3.1%', w: 86, tone: 'neutral' as const },
-      { label: 'trial → paid', val: '0.4%', w: 9, tone: 'bad' as const },
+      { label: 'clicks → paid', val: '0.4%', w: 9, tone: 'bad' as const },
     ],
   },
   {
@@ -319,7 +319,7 @@ const ADS = [
     win: true,
     bars: [
       { label: 'ctr', val: '1.4%', w: 40, tone: 'neutral' as const },
-      { label: 'trial → paid', val: '2.8%', w: 72, tone: 'good' as const },
+      { label: 'clicks → paid', val: '2.8%', w: 72, tone: 'good' as const },
     ],
   },
 ];
@@ -468,7 +468,7 @@ function VisualCompound() {
 
       <div className={styles.chartMeta}>
         <span>batch 01 → 06</span>
-        <span className={styles.chartKey}>trial → paid, per batch</span>
+        <span className={styles.chartKey}>clicks → paid, per batch</span>
       </div>
     </div>
   );

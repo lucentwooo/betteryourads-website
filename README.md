@@ -1,6 +1,6 @@
-# BetterYourAds — Landing Page
+# Loopy — Landing Page
 
-Marketing site for **BetterYourAds**: Meta ads, built for B2B SaaS. We learn the
+Marketing site for **Loopy** (tryloopy.io): Meta ads, built for B2B SaaS. We learn the
 product, write the angles, ship the creative, and run the ads — tuned for trial
 signups, not add-to-carts.
 

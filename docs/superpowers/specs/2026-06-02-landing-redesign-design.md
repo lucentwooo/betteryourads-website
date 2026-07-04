@@ -1,4 +1,4 @@
-# BetterYourAds — Landing Page Redesign (Design Spec)
+# Loopy — Landing Page Redesign (Design Spec)
 
 **Date:** 2026-06-02
 **Branch:** `experiment/crazy-shit`
@@ -8,7 +8,7 @@
 
 Rebuild the landing page to do two things better than anything else:
 
-1. **Communicate clearly** what BetterYourAds is and how it helps.
+1. **Communicate clearly** what Loopy is and how it helps.
 2. **Convert** — funnel every visitor to one action.
 
 Secondary: feel award-winning (premium, fun to scroll) **without** letting cool

@@ -36,7 +36,7 @@ export function PilotProof() {
               Shipping daily.
             </>
           }
-          sub="We're running ads right now for two funded startups: one self-serve SaaS, one marketplace SaaS. Anonymous until the data is. Specific because we owe you specifics."
+          sub="We're running ads right now for two funded startups, real ads shipping daily. Anonymous until the numbers are, specific because we owe you specifics."
         />
         <div className={styles.grid}>
           {PILOTS.map((p) => (

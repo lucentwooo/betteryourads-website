@@ -58,7 +58,7 @@ const STAGES: Stage[] = [
     rail: 'generate the angles',
     n: '02',
     title: 'We generate angles to test.',
-    desc: 'One angle for each of the five stages of awareness, unaware to most aware. You don’t guess which message lands. You test the whole spread and let real buyers pick the winner, which tells you what your market actually cares about.',
+    desc: 'One angle for each of the five stages of awareness. You don’t guess which message lands, real buyers pick the winner, and that shows you what your market actually cares about.',
     visual: <AnglePicker />,
   },
   {
@@ -66,7 +66,7 @@ const STAGES: Stage[] = [
     rail: 'batch the creative',
     n: '03',
     title: 'One reference. Unlimited on-brand variations.',
-    desc: 'We start from an ad that already works and batch variations of it: same system, same palette, a different hook in each. They look like siblings on purpose; that’s what on-brand means. We don’t cap the batch; generate as many as the test needs. This is the part agencies and DIY tools can’t do.',
+    desc: 'Same system, same palette, a different hook in each, all batched from one ad that already works. No cap. This is the part agencies and DIY tools can’t do.',
     visual: <VisualBatch />,
   },
   {
@@ -82,7 +82,7 @@ const STAGES: Stage[] = [
     rail: 'analyze & iterate',
     n: '05',
     title: 'Your winning angle is customer research.',
-    desc: 'Each week we show you which angle is winning and why: the hook, the message, the proof. That winner is your market telling you what it cares about most, so you can point your positioning, your site, and your roadmap at it, not just your ads. Then we generate fresh variations off it, so iterating is one click.',
+    desc: 'Each week we show you which angle is winning and why: the hook, the message, the proof. That winner is your market telling you what it cares about, so you can point your positioning and roadmap at it, not just your ads. Then we batch fresh variations off it in one click.',
     visual: <VisualOptimize />,
     cta: { label: 'watch it compound in the loop ↓', href: '#loop' },
   },
@@ -125,7 +125,7 @@ export function HowItWorks() {
           eyebrowAccent
           eyebrowTag="var(--s2)"
           title="Learns. Batches. Launches. Optimizes for revenue."
-          sub="Five stages, about 90 seconds per ad, fully done for you. Tuned for what shows up in your Stripe dashboard, not your CTR column."
+          sub="Five stages, about 90 seconds per ad, fully done for you. Tuned for what shows up in revenue, not your CTR column."
         />
 
         <div className={styles.grid}>

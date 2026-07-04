@@ -1,11 +1,11 @@
-# BetterYourAds Landing Page — Elevation Pass
+# Loopy Landing Page — Elevation Pass
 
 **Date:** 2026-06-01
 **Status:** Draft — awaiting review
 
 ## Summary
 
-Elevate the existing BetterYourAds landing page so it reads as **craft-grade to
+Elevate the existing Loopy landing page so it reads as **craft-grade to
 senior web developers**, feels **interactive**, and **converts harder** — without
 drifting off-brand. The visual system stays exactly as defined in
 `styles/tokens.css`: cream paper, ink, **one** electric blue used sparingly,
@@ -145,7 +145,7 @@ line dims/strikes to reinforce "none of these work." Subtle; copy stays the star
 - Step 02's angle radios become **clickable** (select an angle; the selection state
   updates). Small interaction reward; no data persistence.
 
-**Compare** — rows stagger in; the "betteryourads" column cells get a one-pass blue
+**Compare** — rows stagger in; the "loopy" column cells get a one-pass blue
 underline draw and a row-hover highlight, sharpening them-vs-us at a glance.
 
 **Pricing** — the featured "scale" card gets the **border-beam** + spotlight to pull

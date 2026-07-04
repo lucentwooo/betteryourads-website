@@ -1,7 +1,7 @@
 /* =================================================================
    WhySaas — Problem + Compare merged. A 4-column capability matrix
-   with the BYA column emphasised in electric blue. The "Resolve"
-   motion (crosses sweep in, BYA column lights up last) is driven from
+   with the Loopy column emphasised in electric blue. The "Resolve"
+   motion (crosses sweep in, Loopy column lights up last) is driven from
    the component; this file holds the static final look (what SSR and
    reduced-motion users see) plus the column emphasis.
    ================================================================= */
@@ -55,7 +55,7 @@
 .header .col {
   flex-direction: column;
   gap: 5px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 500;
   text-transform: uppercase;
@@ -66,7 +66,7 @@
 .header .us {
   padding-top: 14px;
 }
-/* The BYA header cell goes solid electric blue with white type. */
+/* The Loopy header cell goes solid electric blue with white type. */
 .header .col.us {
   background: var(--accent);
   color: #fff;
@@ -85,18 +85,18 @@
 }
 
 .usBadge {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 9px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--bya-ink);
+  color: var(--loopy-ink);
   background: var(--pop);
   border-radius: var(--radius-full);
   padding: 3px 9px;
 }
 
-/* The winning column — BetterYourAds — lifted in accent down the table. */
+/* The winning column — Loopy — lifted in accent down the table. */
 .us {
   background: var(--accent-soft);
   border-left: 1px solid var(--accent);
@@ -107,7 +107,7 @@
   background: rgba(26, 61, 240, 0.06);
 }
 
-/* The animated column glow — an electric-blue wash over the BYA column
+/* The animated column glow — an electric-blue wash over the Loopy column
    that fades in LAST during the Resolve. It spans the full table height
    in the last column. Statically (SSR / reduced-motion) it sits at full
    opacity, contributing to the column's lit-up final state. */
