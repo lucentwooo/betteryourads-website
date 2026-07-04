@@ -10,7 +10,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Single-page marketing site for **Loopy** (done-for-you Meta ads for B2B SaaS, tryloopy.io).
+Single-page marketing site for **Loopy** (self-serve Meta ads software for any
+business that runs Meta ads, tryloopy.io). The wedge is beating creative fatigue:
+Loopy batches fresh on-brand ad creative on demand. Users create ads, connect
+their Meta account, and see insights themselves; a founder call is the current
+early-access on-ramp.
 No backend, no database — a static-deployed App Router site whose only "interactivity"
 is a Cal.com booking embed, scroll animations, and fire-and-forget analytics.
 

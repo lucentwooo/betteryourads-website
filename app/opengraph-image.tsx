@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'loopy · done-for-you Meta ads for brands that sell online';
+export const alt = 'loopy · never run out of Meta ad creative';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -25,11 +25,11 @@ export default function OpengraphImage() {
           loopy
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div style={{ fontSize: 88, fontWeight: 600, color: '#0a0a0a', letterSpacing: '-0.03em', lineHeight: 1.05 }}>
-            Meta ads, <span style={{ color: '#1a3df0' }}>run for you</span>.
+          <div style={{ fontSize: 84, fontWeight: 600, color: '#0a0a0a', letterSpacing: '-0.03em', lineHeight: 1.05 }}>
+            Never run out of <span style={{ color: '#1a3df0' }}>Meta ad creative</span>.
           </div>
           <div style={{ marginTop: 28, fontSize: 34, color: '#3a3a38', maxWidth: 920, lineHeight: 1.35 }}>
-            Done-for-you Meta advertising that brings your business more paying customers.
+            Creative fatigue kills Meta ads. Loopy batches fresh on-brand creative whenever you need it.
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', fontSize: 26, color: '#7a7771' }}>

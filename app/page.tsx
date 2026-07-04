@@ -18,7 +18,7 @@ export default function Home() {
       <Loop />        {/* 04 — the self-optimization loop + waitlist */}
       <RealOutput />  {/* 05 — living wall + pilots */}
       <Faq />         {/* 06 — objections */}
-      <FinalCta />    {/* 07 — book a pilot call + sign-off */}
+      <FinalCta />    {/* 07 — get early access + sign-off */}
       <Footer />
     </>
   );

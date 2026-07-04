@@ -55,7 +55,7 @@ export function Nav() {
         </div>
         <div className={styles.ctaGroup}>
           <BookCallButton sm>
-            book a call <span className={buttonStyles.arrow}>↗</span>
+            get early access <span className={buttonStyles.arrow}>↗</span>
           </BookCallButton>
         </div>
       </div>

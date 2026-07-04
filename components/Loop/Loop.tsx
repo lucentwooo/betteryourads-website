@@ -47,7 +47,7 @@ export function Loop() {
           <p className={styles.wlMicro}>
             or{' '}
             <a className="signal" href="#book">
-              book a pilot call
+              get early access
             </a>{' '}
             and skip the line
           </p>

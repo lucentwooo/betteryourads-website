@@ -5,7 +5,7 @@ import { BookCallButton } from './BookCallButton';
 describe('BookCallButton', () => {
   it('renders with the cal link wired', () => {
     render(<BookCallButton />);
-    const el = screen.getByText(/book a pilot call/i).closest('[data-cal-link]');
-    expect(el).toHaveAttribute('data-cal-link', 'lucent-wu/15min');
+    const el = screen.getByText(/get early access/i).closest('[data-cal-link]');
+    expect(el).toHaveAttribute('data-cal-link', 'loopy/20min');
   });
 });
