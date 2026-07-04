@@ -5,11 +5,11 @@ import { MagneticButton } from './MagneticButton';
 import { track } from '@/lib/analytics';
 import styles from './MagneticButton.module.css';
 
-const CAL_LINK = process.env.NEXT_PUBLIC_CAL_LINK ?? 'lucent-wu/15min';
+const CAL_LINK = process.env.NEXT_PUBLIC_CAL_LINK ?? 'loopy/20min';
 
 const DEFAULT_LABEL = (
   <>
-    book a pilot call <span className={styles.arrow}>↗</span>
+    get early access <span className={styles.arrow}>↗</span>
   </>
 );
 
@@ -24,7 +24,7 @@ export function BookCallButton({
 }) {
   useEffect(() => {
     (async () => {
-      const cal = await getCalApi({ namespace: '15min' });
+      const cal = await getCalApi({ namespace: '20min' });
       cal('ui', { hideEventTypeDetails: false, layout: 'month_view' });
     })();
   }, []);
@@ -34,7 +34,7 @@ export function BookCallButton({
       sm={sm}
       lg={lg}
       onClick={() => track('book_call_click')}
-      data-cal-namespace="15min"
+      data-cal-namespace="20min"
       data-cal-link={CAL_LINK}
       data-cal-config='{"layout":"month_view"}'
     >

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { track } from '@/lib/analytics';
 import styles from './StickyCta.module.css';
 
-const CAL_LINK = process.env.NEXT_PUBLIC_CAL_LINK ?? 'lucent-wu/15min';
+const CAL_LINK = process.env.NEXT_PUBLIC_CAL_LINK ?? 'loopy/20min';
 
 export function StickyCta() {
   const [show, setShow] = useState(false);
@@ -18,12 +18,12 @@ export function StickyCta() {
   if (dismissed) return null;
   return (
     <div className={`${styles.bar} ${show ? styles.show : ''}`} aria-hidden={!show} inert={!show || undefined}>
-      <span className={styles.copy}>Meta ads, run for you. <strong>First month free</strong>.</span>
+      <span className={styles.copy}>Never run out of Meta ad creative. <strong>First month free</strong>.</span>
       <a
         className={styles.cta}
         role="button"
         tabIndex={0}
-        data-cal-namespace="15min"
+        data-cal-namespace="20min"
         data-cal-link={CAL_LINK}
         data-cal-config='{"layout":"month_view"}'
         onClick={() => track('book_call_click')}
@@ -34,7 +34,7 @@ export function StickyCta() {
           }
         }}
       >
-        book a pilot call →
+        get early access →
       </a>
       <button className={styles.close} onClick={() => setDismissed(true)} aria-label="dismiss">×</button>
     </div>

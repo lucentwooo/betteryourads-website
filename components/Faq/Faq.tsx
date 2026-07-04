@@ -3,8 +3,8 @@ import styles from './Faq.module.css';
 
 const FAQS = [
   {
-    q: 'Is it really done for me?',
-    a: 'Completely. Right now, for our early clients, we run it like your own personal Meta ads agency: fully done-for-you, end to end, covering angles, creative, launch, and weekly iteration. We’re doing this hands-on because we want the data, which means you get far more attention than a normal customer would. Our software does the heavy lifting; you stay a founder.',
+    q: 'Do I run the ads, or do you?',
+    a: 'You run it. Loopy does the heavy lifting: it learns your brand, batches the ads, launches them, and shows you what’s working. You keep control of your account and your data. And while we’re in early access you also get us on a call whenever you want a hand, so you’re never stuck.',
   },
   {
     q: 'What do I actually learn from this?',
@@ -16,7 +16,7 @@ const FAQS = [
   },
   {
     q: 'What does it cost?',
-    a: "One flat monthly price. No % of your ad spend, no per-asset fees. Your first month is free with 30 ads on us, and we'll walk through pricing on the pilot call.",
+    a: "One flat monthly price. No % of your ad spend, no per-asset fees. Your first month is free with 30 ads on us, and we'll walk through pricing when you get access.",
   },
   {
     q: 'Who do you work with?',
@@ -28,7 +28,7 @@ const FAQS = [
   },
   {
     q: 'When can I start?',
-    a: "We're running two pilots now and opening seats in waves. Book a call and we'll tell you the next opening.",
+    a: "We're in early access and opening seats in waves. Grab a call and we'll get you set up and tell you the next opening.",
   },
   {
     q: 'How are you different from an agency or a freelancer?',

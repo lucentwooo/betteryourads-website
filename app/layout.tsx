@@ -11,9 +11,9 @@ const dmSans = DM_Sans({
 });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://tryloopy.io';
-const TITLE = 'loopy · meta ads, run for you';
+const TITLE = 'loopy · never run out of meta ad creative';
 const DESCRIPTION =
-  'Done-for-you Meta ads that bring your business more paying customers. We learn your product, create the ads, and run them on Facebook and Instagram.';
+  'Creative fatigue kills Meta ads. Loopy learns your brand and batches fresh on-brand ads whenever you need them, launches them on Facebook and Instagram, and shows you what’s winning. More paying customers, no agency. You run it, you own the account.';
 
 // Entity-identity structured data. Per current evidence JSON-LD does not lift
 // AI citations, but Organization + WebSite help engines identify Loopy as a
@@ -44,7 +44,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: TITLE,
   description: DESCRIPTION,
-  icons: { icon: '/favicon.svg' },
+  // Favicon comes from the app/icon.png file convention (the real Loopy
+  // logomark). Next auto-injects the <link rel="icon"> tag, so no manual
+  // icons config is needed here.
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',

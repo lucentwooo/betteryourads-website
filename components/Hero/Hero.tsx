@@ -19,17 +19,22 @@ export function Hero() {
         <div className={styles.col}>
           <div className={styles.eyebrow}>
             <span className={styles.dot} aria-hidden="true" />
-            <span>done-for-you meta ads · for businesses that run them</span>
+            <span>fresh meta ad creative, automated · for businesses that run them</span>
           </div>
 
           <h1 className={styles.title}>
-            Meta ads, <span className="accent sheen">run for you</span>.
+            Never run out of{' '}
+            <span className="accent sheen">Meta ad creative</span>.
           </h1>
 
           <p className={`lead ${styles.subhead}`}>
-            <strong className={styles.subStrong}>More paying customers</strong>{' '}
-            for your business, fully done for you. We learn your product, create
-            the ads, and run them on Facebook and Instagram.
+            <strong className={styles.subStrong}>
+              Creative fatigue kills Meta ads.
+            </strong>{' '}
+            Loopy learns your brand and batches a fresh set of on-brand ads
+            whenever you need them, launches them on Facebook and Instagram, and
+            shows you what’s winning. More paying customers, no agency. You run
+            it, you own the account.
           </p>
 
           <div className={styles.ctaRow}>
@@ -37,7 +42,7 @@ export function Hero() {
           </div>
 
           <p className={styles.micro}>
-            a 15-minute call ·{' '}
+            20 minutes with the founders ·{' '}
             <b className={styles.microPop}>first month free, 30 ads on us</b> ·
             no card required
           </p>

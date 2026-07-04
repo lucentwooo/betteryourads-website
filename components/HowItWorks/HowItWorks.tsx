@@ -9,7 +9,7 @@ import { WORKED_EXAMPLE } from '@/lib/creatives';
 const CHIRP = WORKED_EXAMPLE.ads;
 import styles from './HowItWorks.module.css';
 
-/* HowItWorks — the done-for-you pipeline as scroll-driven narrative.
+/* HowItWorks — the self-serve creative pipeline as scroll-driven narrative.
 
    A sticky left rail tracks five stages (learn → angles → BATCH → ship →
    optimize) while a column of stage panels scrolls past on the right. An
@@ -49,15 +49,15 @@ const STAGES: Stage[] = [
     key: 'learn',
     rail: 'learn the brand',
     n: '01',
-    title: 'We read your site.',
-    desc: 'Drop your URL. We extract positioning, category, ICP, and palette in about twelve seconds. No briefing call, no questionnaire.',
+    title: 'Loopy reads your site.',
+    desc: 'Drop your URL. Loopy extracts positioning, category, ICP, and palette in about twelve seconds. No briefing call, no questionnaire.',
     visual: <VisualLearn />,
   },
   {
     key: 'angles',
     rail: 'generate the angles',
     n: '02',
-    title: 'We generate angles to test.',
+    title: 'Angles, generated for you to test.',
     desc: 'One angle for each of the five stages of awareness. You don’t guess which message lands, real buyers pick the winner, and that shows you what your market actually cares about.',
     visual: <AnglePicker />,
   },
@@ -73,7 +73,7 @@ const STAGES: Stage[] = [
     key: 'ship',
     rail: 'ship to Meta',
     n: '04',
-    title: 'We launch on Facebook & Instagram.',
+    title: 'Go live on Facebook & Instagram in a click.',
     desc: 'One click and the batch goes live as real Meta placements. No ad-account wrangling, no creative handoff.',
     visual: <VisualShip />,
   },
@@ -125,7 +125,7 @@ export function HowItWorks() {
           eyebrowAccent
           eyebrowTag="var(--s2)"
           title="Learns. Batches. Launches. Optimizes for revenue."
-          sub="Five stages, about 90 seconds per ad, fully done for you. Tuned for what shows up in revenue, not your CTR column."
+          sub="Five stages, about 90 seconds per ad. You drive, the software does the hard part. Tuned for what shows up in revenue, not your CTR column."
         />
 
         <div className={styles.grid}>

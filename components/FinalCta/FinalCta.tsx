@@ -10,7 +10,7 @@ export function FinalCta() {
         <div className={`${styles.panel} reveal`}>
           {/* 1 — Eyebrow */}
           <Eyebrow accent tag="var(--s4)" className={styles.kicker}>
-            book a pilot call
+            get early access
           </Eyebrow>
 
           {/* 2 — H2 */}
@@ -34,9 +34,9 @@ export function FinalCta() {
           <div className={styles.micro}>
             <span>no card required</span>
             <span className={styles.sep}>·</span>
-            <span>seats released in waves</span>
+            <span>early access, seats in waves</span>
             <span className={styles.sep}>·</span>
-            <span>for meta advertisers</span>
+            <span>for anyone running meta ads</span>
           </div>
         </div>
       </div>
