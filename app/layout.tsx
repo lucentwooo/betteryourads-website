@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { DM_Sans } from 'next/font/google';
 import './globals.css';
 import { StickyCta } from '@/components/StickyCta/StickyCta';
@@ -76,6 +77,7 @@ export default function RootLayout({
         {children}
         <StickyCta />
       </body>
+      <GoogleAnalytics gaId="G-KWJK7YVM44" />
     </html>
   );
 }
