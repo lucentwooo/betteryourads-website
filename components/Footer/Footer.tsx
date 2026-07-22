@@ -1,49 +1,36 @@
 import Image from 'next/image';
+import Link from 'next/link';
+import { CAL_URL } from '@/lib/site';
 import styles from './Footer.module.css';
 
-const COLUMNS = [
-  { h: 'product', links: [['how it works', '#how'], ['why loopy', '#why'], ['the loop', '#loop']] },
-  { h: 'company', links: [['about', '#'], ['contact', '#'], ['careers', '#']] },
-  { h: 'resources', links: [['faq', '#faq'], ['privacy', '#'], ['terms', '#']] },
-] as const;
+/* No privacy/terms links — intentionally removed (design decision). */
+export function Footer({ page = 'landing' }: { page?: 'landing' | 'pricing' }) {
+  const prefix = page === 'landing' ? '' : '/';
 
-export function Footer() {
   return (
-    <footer className={styles.foot}>
-      <div className={styles.inner}>
-        <div>
-          <a className={styles.brandRow} href="#" aria-label="Loopy — home">
-            <Image
-              className={styles.brandLogo}
-              src="/loopy-logo.png"
-              alt="Loopy"
-              width={70}
-              height={28}
-            />
-          </a>
-          <p className={styles.brandBlurb}>
-            Meta ads for businesses that run them. Built by founders who got tired of agency invoices.
+    <footer className={styles.footer}>
+      <div className={styles.grid}>
+        <div className={styles.about}>
+          <Image src="/loopy-logo.png" alt="Loopy" width={60} height={24} className={styles.logo} />
+          <p className={styles.blurb}>
+            Loopy makes and improves Meta ads. Paste a website URL and a real browser measures the site&apos;s actual
+            colors, fonts and logo, then turns proven ad layouts into finished, on-brand static ads - with product
+            screenshots placed exactly, never invented.
           </p>
+          <p className={styles.fineprint}>© 2026 Loopy · tryloopy.io</p>
         </div>
-        {COLUMNS.map((col) => (
-          <div key={col.h}>
-            <h6>{col.h}</h6>
-            <ul>
-              {col.links.map(([label, href]) => (
-                <li key={label}>
-                  <a href={href}>{label}</a>
-                </li>
-              ))}
-            </ul>
+        <div className={styles.links}>
+          <div className={styles.col}>
+            <span className={styles.colHead}>product</span>
+            <a href={`${prefix}#how`}>how it works</a>
+            <Link href="/pricing">pricing</Link>
+            <a href="#faq">faq</a>
           </div>
-        ))}
-      </div>
-      <div className={styles.metaLine}>
-        <span>loopy · 2026 · sf</span>
-        <span className={styles.metaStatus}>
-          <span className={styles.metaDot} />
-          private beta · waitlist open
-        </span>
+          <div className={styles.col}>
+            <span className={styles.colHead}>company</span>
+            <a href={CAL_URL}>talk to the founders</a>
+          </div>
+        </div>
       </div>
     </footer>
   );

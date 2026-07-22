@@ -1,0 +1,236 @@
+.hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 32px 0;
+  text-align: center;
+}
+.h1 {
+  margin: 0;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: var(--track-display);
+  text-wrap: balance;
+}
+.sub {
+  margin: 20px auto 0;
+  max-width: 520px;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--fg-2);
+  text-wrap: pretty;
+}
+
+/* --- billing toggle --- */
+.toggle {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 32px;
+  background: var(--bg-inset);
+  border-radius: var(--radius-full);
+  padding: 4px;
+}
+.segment {
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--fg-3);
+  box-shadow: none;
+  transition: all var(--dur-fast) var(--ease);
+}
+.segmentActive {
+  background: #ffffff;
+  color: var(--fg);
+  box-shadow: 0 1px 2px rgba(14, 17, 22, 0.08);
+}
+.discount {
+  color: var(--accent);
+}
+
+/* --- plans --- */
+.plans {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 32px 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+  width: 100%;
+}
+.plan {
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  box-shadow: var(--shadow-card);
+}
+.planPro {
+  position: relative;
+  border-top: 4px solid var(--accent);
+  box-shadow: var(--shadow-featured);
+}
+.proHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mostPopular {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.planName {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+.planTag {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: var(--fg-3);
+}
+.price {
+  margin: 24px 0 0;
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: var(--track-display);
+  line-height: 1;
+}
+.price + .planTag {
+  margin-top: 8px;
+}
+.priceUnit {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--fg-3);
+  letter-spacing: 0;
+}
+
+/* --- plan CTAs --- */
+.btnGhost,
+.btnInk,
+.btnBlue {
+  text-decoration: none;
+  text-align: center;
+  margin-top: 24px;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px 20px;
+  border-radius: var(--radius-btn);
+}
+.btnGhost {
+  border: 1px solid var(--border);
+  color: var(--fg);
+  transition: border-color var(--dur-fast) var(--ease);
+}
+.btnGhost:hover {
+  border-color: var(--fg);
+}
+.btnInk {
+  background: var(--bg-ink);
+  color: #fff;
+  transition: background var(--dur-fast) var(--ease);
+}
+.btnInk:hover {
+  background: #000;
+}
+.btnBlue {
+  background: var(--accent);
+  color: #fff;
+  transition: background var(--dur-fast) var(--ease);
+}
+.btnBlue:hover {
+  background: var(--accent-hover);
+}
+.btnPro {
+  margin-top: 20px;
+}
+
+/* --- Pro slider --- */
+.slider {
+  margin-top: 20px;
+}
+.slider input {
+  width: 100%;
+  accent-color: var(--accent);
+}
+.ticks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+}
+
+/* --- feature lists --- */
+.features {
+  border-top: 1px solid var(--border-hairline);
+  margin-top: 28px;
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--fg-2);
+}
+.check {
+  color: var(--loopy-success);
+}
+
+.fineprint {
+  text-align: center;
+  font-size: 14px;
+  color: var(--fg-3);
+  margin: 0;
+  padding: 0 32px;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    padding: 56px 24px 0;
+  }
+  .h1 {
+    font-size: 34px;
+  }
+  .segment {
+    min-height: 44px;
+    padding: 8px 12px;
+  }
+  .plans {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 40px 24px 24px;
+  }
+  .plan {
+    padding: 28px 22px;
+  }
+  .btnGhost,
+  .btnInk,
+  .btnBlue {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ticks {
+    font-size: 14px;
+  }
+  .mostPopular {
+    font-size: 14px;
+  }
+  .fineprint {
+    font-size: 14px;
+  }
+}

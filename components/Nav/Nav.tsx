@@ -1,63 +1,29 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { BookCallButton } from '@/components/ui/BookCallButton';
-import buttonStyles from '@/components/ui/MagneticButton.module.css';
+import Link from 'next/link';
+import { CAL_URL } from '@/lib/site';
 import styles from './Nav.module.css';
 
-const LINKS = [
-  ['why loopy', '#why'],
-  ['how it works', '#how'],
-  ['the loop', '#loop'],
-  ['faq', '#faq'],
-] as const;
-
-export function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 40);
-    }
-
-    // Initial value without synchronous setState in effect body
-    const raf = requestAnimationFrame(() => {
-      setScrolled(window.scrollY > 40);
-    });
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener('scroll', onScroll);
-    };
-  }, []);
+export function Nav({ page = 'landing' }: { page?: 'landing' | 'pricing' }) {
+  const onLanding = page === 'landing';
+  const prefix = onLanding ? '' : '/';
 
   return (
-    <nav className={`${styles.nav}${scrolled ? ` ${styles.scrolled}` : ''}`}>
+    <nav className={styles.nav}>
       <div className={styles.inner}>
-        <a className={styles.brand} href="#" aria-label="Loopy — home">
-          <Image
-            className={styles.logo}
-            src="/loopy-logo.png"
-            alt="Loopy"
-            width={65}
-            height={26}
-            priority
-          />
-        </a>
+        <Link href={onLanding ? '#top' : '/'} aria-label="Loopy home" className={styles.brand}>
+          <Image src="/loopy-logo.png" alt="Loopy" width={65} height={26} priority className={styles.logo} />
+        </Link>
         <div className={styles.links}>
-          {LINKS.map(([label, href]) => (
-            <a key={href} href={href}>
-              {label}
-            </a>
-          ))}
+          <a href={`${prefix}#how`}>how it works</a>
+          <a href={`${prefix}#batch`}>the output</a>
+          <Link href="/pricing" className={onLanding ? undefined : styles.active}>
+            pricing
+          </Link>
+          <a href="#faq">faq</a>
         </div>
-        <div className={styles.ctaGroup}>
-          <BookCallButton sm>
-            get early access <span className={buttonStyles.arrow}>↗</span>
-          </BookCallButton>
-        </div>
+        <a className={styles.cta} href={CAL_URL}>
+          book intro call <span aria-hidden="true">↗</span>
+        </a>
       </div>
     </nav>
   );

@@ -1,44 +1,35 @@
-import { Eyebrow } from '@/components/ui/Eyebrow';
-import { BookCallButton } from '@/components/ui/BookCallButton';
-import { ManifestoLine } from '@/components/Manifesto/ManifestoLine';
+import Image from 'next/image';
+import { CTA_MARQUEE } from '@/lib/creatives';
+import { CAL_URL } from '@/lib/site';
 import styles from './FinalCta.module.css';
 
 export function FinalCta() {
   return (
-    <section className={`section ${styles.finalCta}`} id="book">
-      <div className="wrap-narrow">
-        <div className={`${styles.panel} reveal`}>
-          {/* 1 — Eyebrow */}
-          <Eyebrow accent tag="var(--s4)" className={styles.kicker}>
-            get early access
-          </Eyebrow>
-
-          {/* 2 — H2 */}
-          <h2 className={styles.headline}>
-            Stop guessing.
-            <br />
-            Start <span className="accent sheen">shipping</span>.
-          </h2>
-
-          {/* 3 — Manifesto word-reveal sign-off */}
-          <div className={styles.manifesto}>
-            <ManifestoLine />
-          </div>
-
-          {/* 4 — Primary CTA */}
-          <div className={styles.ctas}>
-            <BookCallButton />
-          </div>
-
-          {/* 5 — Micro line */}
-          <div className={styles.micro}>
-            <span>no card required</span>
-            <span className={styles.sep}>·</span>
-            <span>early access, seats in waves</span>
-            <span className={styles.sep}>·</span>
-            <span>for anyone running meta ads</span>
-          </div>
-        </div>
+    <section className={styles.cta}>
+      {/* Decorative background marquee — the set is rendered twice so the
+          -50% translate loops seamlessly. */}
+      <div className={styles.marquee} aria-hidden="true">
+        {[0, 1].map((pass) =>
+          CTA_MARQUEE.map((ad) => (
+            <Image
+              key={`${pass}-${ad.src}`}
+              src={ad.src}
+              alt=""
+              width={ad.width}
+              height={ad.height}
+              loading="lazy"
+              className={styles.marqueeAd}
+            />
+          )),
+        )}
+      </div>
+      <div className={styles.content}>
+        <h2 className={styles.h2}>See your first ads made live.</h2>
+        <p className={styles.sub}>Paste your URL on the call, watch the batch render, keep the ads.</p>
+        <a href={CAL_URL} className={styles.button}>
+          book 20 minutes with the founders <span aria-hidden="true">↗</span>
+        </a>
+        <p className={styles.fineprint}>first 5 ads free on your real brand · no card</p>
       </div>
     </section>
   );

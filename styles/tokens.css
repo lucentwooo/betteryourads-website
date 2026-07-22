@@ -1,9 +1,9 @@
 /* =================================================================
    Loopy — colors & type tokens
 
-   Off-white paper. Ink. Electric-blue signal, plus a disciplined pop
-   spectrum (the awareness ladder) used for section + stage accents.
-   Promoted from the landing-refresh design handoff (2026-06).
+   White paper. Ink. Electric-blue signal plus small coral / mint /
+   violet accents. Promoted from the landing + pricing design handoff
+   (2026-07, design_handoff_loopy_landing).
    ================================================================= */
 
 :root {
@@ -11,88 +11,67 @@
      Color — brand
      --------------------------------------------------------------- */
 
-  /* Surfaces — warm off-white paper, white raised cards */
-  --loopy-paper:        #faf8f3;   /* paper. default background. */
-  --loopy-surface:      #ffffff;   /* raised card / panel */
-  --loopy-surface-2:    #f3f0e9;   /* well / hovered row / header band */
+  /* Surfaces */
+  --loopy-white:        #ffffff;   /* default background */
+  --loopy-raised:       #f8f9fb;   /* raised band / card well */
+  --loopy-inset:        #f1f3f7;   /* inset control track (billing toggle) */
 
-  /* Ink — warm near-black with warm grays */
-  --loopy-ink:          #0e0e0d;   /* type, rules */
-  --loopy-ink-2:        #44423d;   /* secondary type */
-  --loopy-ink-3:        #827e74;   /* tertiary type / meta */
-  --loopy-ink-4:        #b6b1a5;   /* placeholders / disabled type */
+  /* Ink */
+  --loopy-ink:          #0e1116;   /* type, dark sections */
+  --loopy-ink-2:        #3c414c;   /* secondary type */
+  --loopy-ink-3:        #6b7280;   /* tertiary type / body on cards */
+  --loopy-ink-4:        #9aa0ac;   /* muted / fineprint */
 
   /* Signal — electric blue. The brand arrow. */
-  --loopy-blue:         #1a3df0;
-  --loopy-blue-hover:   #1530c2;   /* press / hover on the CTA */
-  --loopy-blue-soft:    #e6e8fc;   /* faint tint for selected rows / chart fills */
+  --loopy-blue:         #1c42e6;
+  --loopy-blue-hover:   #1734b8;
+  --loopy-blue-soft:    #eaeeff;   /* tint chips / step circles */
+  --loopy-blue-border:  #cfd9ff;   /* border on blue tint chips */
 
-  /* Pop spectrum — the "awareness ladder", cold → warm. Used for the
-     5 pipeline stages, section accent tags, and chart accents. Same
-     lightness family; hue is the only variable. */
-  --s1: #1a3df0;   /* blue   — unaware / the brand signal */
-  --s2: #0f8f93;   /* teal   — problem-aware */
-  --s3: #1f9e6f;   /* green  — solution-aware */
-  --s4: #e0982f;   /* amber  — product-aware (the warm pop) */
-  --s5: #e8623f;   /* coral  — most-aware */
+  /* Accent pops — used sparingly, one per mechanism card */
+  --loopy-coral:        #ff6a4d;
+  --loopy-coral-soft:   #ffece6;
+  --loopy-coral-border: #ffd4c7;
+  --loopy-mint:         #14be93;
+  --loopy-violet:       #7b61ff;
+  --loopy-success:      #12a06e;   /* pricing check marks */
+  --loopy-periwinkle:   #9db4ff;   /* blue accents on the dark mechanism card */
+  --loopy-parchment:    #f7f3e7;   /* salesgraph.com page background (browser mock) */
 
-  /* warm secondary pop, surfaced as a named token for highlights */
-  --pop:        var(--s4);
-  --pop-soft:   #f7e8cf;
-  --coral:      var(--s5);
-  --coral-soft: #f8dcd2;
-
-  /* Semantic — muted to live on paper without alarm */
-  --loopy-rust:         #b8460e;   /* warning */
-  --loopy-rust-soft:    #f3d9c4;
-  --loopy-forest:       #1f7a44;   /* success */
-  --loopy-forest-soft:  #c8e0d0;
-  --loopy-oxblood:      #a01818;   /* error */
-  --loopy-oxblood-soft: #f1c8c8;
+  /* Borders */
+  --loopy-border:       #e4e7ee;   /* pills / chips / secondary buttons */
+  --loopy-hairline:     #edeff3;   /* section rules, nav border */
+  --loopy-card-border:  #e7e9f0;   /* cards + ad images */
 
   /* ---------------------------------------------------------------
      Semantic colors — refer to brand tokens above. Use these in UI.
      --------------------------------------------------------------- */
-  --bg:               var(--loopy-paper);
-  --bg-raised:        var(--loopy-surface);
-  --bg-deep:          var(--loopy-surface-2);
+  --bg:               var(--loopy-white);
+  --bg-raised:        var(--loopy-raised);
+  --bg-inset:         var(--loopy-inset);
+  --bg-ink:           var(--loopy-ink);
   --fg:               var(--loopy-ink);
   --fg-2:             var(--loopy-ink-2);
   --fg-3:             var(--loopy-ink-3);
   --fg-muted:         var(--loopy-ink-4);
-  --border:           rgba(14, 14, 13, 0.16);
-  --border-hairline:  rgba(14, 14, 13, 0.10);
-  --border-strong:    rgba(14, 14, 13, 0.84);
+  --border:           var(--loopy-border);
+  --border-hairline:  var(--loopy-hairline);
+  --border-card:      var(--loopy-card-border);
   --accent:           var(--loopy-blue);
   --accent-hover:     var(--loopy-blue-hover);
   --accent-soft:      var(--loopy-blue-soft);
+  --accent-border:    var(--loopy-blue-border);
 
   /* ---------------------------------------------------------------
      Type — families & scale
 
-     Single family: DM Sans (next/font: --font-dm-sans). No monospace
-     anywhere — labels, numerals, and eyebrows use tracked sans caps.
+     DM Sans for everything; JetBrains Mono only for chips / tiny
+     technical labels (both via next/font variables).
      --------------------------------------------------------------- */
   --font-sans:        var(--font-dm-sans), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:        var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Modular scale, ratio 1.25, base 16 */
-  --size-12:          0.75rem;    /* 12 — eyebrows, meta */
-  --size-14:          0.875rem;   /* 14 — secondary UI */
-  --size-16:          1rem;       /* 16 — body */
-  --size-20:          1.25rem;    /* 20 — lead, h5 */
-  --size-24:          1.5rem;     /* 24 — h4 */
-  --size-32:          2rem;       /* 32 — h3 */
-  --size-40:          2.5rem;     /* 40 — h2 */
-  --size-56:          3.5rem;     /* 56 — h1 */
-  --size-72:          4.5rem;     /* 72 — display */
-
-  --lh-display:       1.05;
-  --lh-tight:         1.2;
-  --lh-snug:          1.3;
-  --lh-body:          1.5;
-
-  --track-display:    -0.02em;
-  --track-body:       0;
+  --track-display:    -0.03em;
   --track-caps:       0.08em;
 
   /* ---------------------------------------------------------------
@@ -107,44 +86,32 @@
   --space-7:   48px;
   --space-8:   64px;
   --space-9:   96px;
-  --space-10:  128px;
+  --space-10:  112px;
 
   /* ---------------------------------------------------------------
-     Radii — soft. Buttons 11px, cards 12–18, panels 24.
+     Radii — 8 chips, 10 buttons, 12 ad images, 14 cards,
+     18 large cards, 999 pills.
      --------------------------------------------------------------- */
-  --radius-sm:        8px;
-  --radius-md:        12px;
+  --radius-chip:      8px;
+  --radius-btn:       10px;
+  --radius-ad:        12px;
+  --radius-card:      14px;
   --radius-lg:        18px;
-  --radius-xl:        24px;
-  --radius-btn:       11px;
-  --radius-full:      999px;   /* live dot + pills */
+  --radius-full:      999px;
 
   /* ---------------------------------------------------------------
-     Shadows — soft, elevated cards on warm paper.
+     Shadows
      --------------------------------------------------------------- */
-  --shadow-sm:        0 1px 2px rgba(14, 14, 13, 0.05), 0 4px 14px -8px rgba(14, 14, 13, 0.12);
-  --shadow-lg:        0 2px 6px rgba(14, 14, 13, 0.06), 0 18px 40px -18px rgba(14, 14, 13, 0.20);
-  --shadow-xl:        0 30px 70px -30px rgba(14, 14, 13, 0.30);
+  --shadow-card:      0 1px 2px rgba(14, 17, 22, 0.05), 0 4px 14px -8px rgba(14, 17, 22, 0.10);
+  --shadow-featured:  0 2px 6px rgba(14, 17, 22, 0.06), 0 18px 40px -18px rgba(14, 17, 22, 0.18);
+  --shadow-dark:      0 30px 70px -30px rgba(14, 17, 22, 0.32);
 
   /* ---------------------------------------------------------------
-     Motion — one easing curve, three durations.
+     Motion — one easing curve: 120ms hovers, 200ms state changes.
      --------------------------------------------------------------- */
   --ease:             cubic-bezier(0.2, 0, 0, 1);
   --dur-fast:         120ms;
   --dur-base:         200ms;
-  --dur-slow:         320ms;
-
-  /* Motion — scroll-driven reveal + beam (additions) */
-  --reveal-dur:  640ms;
-  --reveal-rise: 16px;
-  --reveal-blur: 6px;
-  --beam-dur:    1100ms;
-}
-
-@property --beam-angle {
-  syntax: '<angle>';
-  inherits: false;
-  initial-value: 0deg;
 }
 
 /* =================================================================
@@ -152,120 +119,34 @@
    ================================================================= */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: var(--size-16);
-  line-height: var(--lh-body);
+  font-size: 16px;
+  line-height: 1.5;
   color: var(--fg);
   background: var(--bg);
-  font-feature-settings: 'ss01', 'ss02', 'cv11';
 }
 
-/* =================================================================
-   Semantic type — use these as class hooks or as the default tags.
-   ================================================================= */
+p { margin: 0; }
+h1, h2, h3 { margin: 0; }
 
-.display, .display-1 {
-  font-family: var(--font-sans);
-  font-size: var(--size-72);
-  font-weight: 500;
-  line-height: var(--lh-display);
-  letter-spacing: var(--track-display);
-  color: var(--fg);
-}
+/* Links — plain nav/footer links are styled per component; `signal`
+   is the inline blue text link. */
+a.signal { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+a.signal:hover { color: var(--accent-hover); }
 
-h1, .h1 {
-  font-family: var(--font-sans);
-  font-size: var(--size-56);
-  font-weight: 500;
-  line-height: var(--lh-display);
-  letter-spacing: var(--track-display);
-  color: var(--fg);
-  margin: 0;
-}
+::selection { background: var(--accent); color: #ffffff; }
 
-h2, .h2 {
-  font-family: var(--font-sans);
-  font-size: var(--size-40);
-  font-weight: 500;
-  line-height: var(--lh-tight);
-  letter-spacing: var(--track-display);
-  color: var(--fg);
-  margin: 0;
-}
-
-h3, .h3 {
-  font-family: var(--font-sans);
-  font-size: var(--size-32);
-  font-weight: 500;
-  line-height: var(--lh-tight);
-  letter-spacing: -0.01em;
-  color: var(--fg);
-  margin: 0;
-}
-
-h4, .h4 {
-  font-family: var(--font-sans);
-  font-size: var(--size-24);
-  font-weight: 500;
-  line-height: var(--lh-snug);
-  color: var(--fg);
-  margin: 0;
-}
-
-h5, .h5 {
-  font-family: var(--font-sans);
-  font-size: var(--size-20);
-  font-weight: 600;
-  line-height: var(--lh-snug);
-  color: var(--fg);
-  margin: 0;
-}
-
-p, .body {
-  font-family: var(--font-sans);
-  font-size: var(--size-16);
-  font-weight: 400;
-  line-height: var(--lh-body);
-  color: var(--fg);
-  margin: 0;
-}
-
-.eyebrow {
-  font-family: var(--font-sans);
-  font-size: var(--size-12);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: var(--track-caps);
-  color: var(--fg-2);
-}
-
-.mono, code, kbd, samp {
-  font-family: var(--font-sans);
-  font-size: 0.92em;
-  font-weight: 400;
-  color: var(--fg);
-}
-
-/* Links — underline appears on hover; color stays */
-a {
-  color: var(--fg);
-  text-decoration: underline;
-  text-decoration-color: var(--border-hairline);
-  text-underline-offset: 2px;
-  transition: text-decoration-color var(--dur-fast) var(--ease);
-}
-a:hover { text-decoration-color: var(--fg); }
-a.signal { color: var(--accent); text-decoration-color: var(--accent); }
-a.signal:hover { color: var(--accent-hover); text-decoration-color: var(--accent-hover); }
-
-::selection { background: var(--accent); color: var(--bg); }
-
-/* Focus — always 2px electric blue */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+
+summary::-webkit-details-marker { display: none; }

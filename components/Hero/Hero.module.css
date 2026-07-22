@@ -1,112 +1,169 @@
 .hero {
-  padding: var(--space-8) 0 var(--space-8);
   position: relative;
   overflow: hidden;
 }
-
-/* The centred editorial column. Tight, deliberate rhythm (not a uniform stack). */
-.col {
-  max-width: 720px;
+.grid {
+  max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
   align-items: center;
-  text-align: center;
-  gap: var(--space-4);
+  min-height: 660px;
 }
-
-/* Eyebrow — a quiet raised pill chip (design-file hero treatment). */
-.eyebrow {
+.copy {
+  position: relative;
+  padding: 64px 0;
+}
+.pill {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  padding: 7px 14px;
+  gap: 8px;
+  border: 1px solid var(--border);
   border-radius: var(--radius-full);
-  background: var(--bg-raised);
-  border: 1px solid var(--border-hairline);
-  box-shadow: var(--shadow-sm);
+  padding: 6px 14px;
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.01em;
   color: var(--fg-2);
+  background: var(--bg-raised);
 }
-.eyebrow .dot {
-  width: 6px;
-  height: 6px;
-  border-radius: var(--radius-full);
-  background: var(--accent);
-  flex: none;
-  animation: tick 1s var(--ease) infinite;
-}
-@keyframes tick {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.35;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .eyebrow .dot {
-    animation: none;
-  }
-}
-
-.title {
-  font-size: clamp(46px, 6.2vw, var(--size-72));
-  font-weight: 500;
-  line-height: var(--lh-display);
+.h1 {
+  margin: 24px 0 0;
+  font-size: clamp(42px, 4.8vw, 68px);
+  font-weight: 700;
+  line-height: 1.04;
   letter-spacing: var(--track-display);
-  margin: var(--space-2) 0 0;
   text-wrap: balance;
 }
-
-/* Subhead — one tight measure, ~2 lines. Lifted a touch closer to the title. */
-.subhead {
-  max-width: 600px;
-  margin-top: calc(-1 * var(--space-1));
-  font-size: 19px;
+.h1Accent {
+  color: var(--accent);
+}
+.sub {
+  margin: 24px 0 0;
+  max-width: 520px;
+  font-size: 20px;
   line-height: 1.5;
   color: var(--fg-2);
-  text-align: center;
-  text-wrap: balance;
+  text-wrap: pretty;
 }
-.subStrong {
+.ctaRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+.cta {
+  text-decoration: none;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 17px;
+  padding: 15px 26px;
+  border-radius: var(--radius-btn);
+  transition: background var(--dur-fast) var(--ease);
+}
+.cta:hover {
+  background: var(--accent-hover);
+}
+.fineprint {
+  margin: 14px 0 0;
+  font-size: 14px;
+  color: var(--fg-3);
+}
+.fineprint b {
   color: var(--fg);
   font-weight: 600;
 }
 
-.ctaRow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-5);
-  flex-wrap: wrap;
-  margin-top: var(--space-3);
+/* --- the ad wall --- */
+.adWall {
+  position: relative;
+  height: 660px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
 }
-
-.micro {
-  font-size: 13px;
-  color: var(--fg-3);
-  margin: 0;
+.wallGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  height: 100%;
 }
-.microPop {
-  color: var(--pop);
-  font-weight: 600;
-}
-
-/* The signature visual, full content width, below the copy. */
-.visual {
-  max-width: 1000px;
-  margin: var(--space-7) auto 0;
-}
-
-@media (max-width: 960px) {
-  .hero {
-    padding: var(--space-8) 0 var(--space-7);
+@keyframes driftUp {
+  from {
+    transform: translateY(0);
   }
-  .visual {
-    margin-top: var(--space-7);
+  to {
+    transform: translateY(-50%);
+  }
+}
+.colUp,
+.colDown {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.colUp {
+  animation: driftUp 58s linear infinite;
+}
+.colDown {
+  animation: driftUp 74s linear infinite reverse;
+}
+.colUp:hover,
+.colDown:hover {
+  animation-play-state: paused;
+}
+.wallAd {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-ad);
+  border: 1px solid var(--border-card);
+  display: block;
+}
+.demoLabel {
+  position: absolute;
+  left: 12px;
+  bottom: 18px;
+  background: var(--bg-ink);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .colUp,
+  .colDown {
+    animation-play-state: paused;
+  }
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    min-height: 0;
+    padding: 0 24px;
+  }
+  .copy {
+    padding: 44px 0 36px;
+  }
+  .pill {
+    font-size: 14px;
+  }
+  .h1 {
+    font-size: 36px;
+  }
+  .sub {
+    font-size: 17px;
+  }
+  .adWall {
+    height: 420px;
+  }
+  .demoLabel {
+    font-size: 14px;
   }
 }

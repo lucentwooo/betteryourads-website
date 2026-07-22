@@ -1,11 +1,10 @@
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'edge';
-export const alt = 'loopy · never run out of Meta ad creative';
+export const alt = 'Loopy · AI Meta ad generator from your URL';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-// On-brand OG card: off-white paper, ink type, one electric-blue accent.
+// On-brand OG card: white paper, ink type, one electric-blue accent.
 export default function OpengraphImage() {
   return new ImageResponse(
     (
@@ -16,24 +15,35 @@ export default function OpengraphImage() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          background: '#faf8f3',
+          background: '#ffffff',
           padding: '72px 80px',
           fontFamily: 'sans-serif',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', fontSize: 34, fontWeight: 700, color: '#1a3df0', letterSpacing: '-0.03em' }}>
+        <div style={{ display: 'flex', alignItems: 'center', fontSize: 34, fontWeight: 700, color: '#1c42e6', letterSpacing: '-0.03em' }}>
           loopy
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div style={{ fontSize: 84, fontWeight: 600, color: '#0a0a0a', letterSpacing: '-0.03em', lineHeight: 1.05 }}>
-            Never run out of <span style={{ color: '#1a3df0' }}>Meta ad creative</span>.
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              fontSize: 80,
+              fontWeight: 600,
+              color: '#0e1116',
+              letterSpacing: '-0.03em',
+              lineHeight: 1.05,
+            }}
+          >
+            <div>Paste your URL. Get Meta ads</div>
+            <div style={{ color: '#1c42e6' }}>that actually look like your brand.</div>
           </div>
-          <div style={{ marginTop: 28, fontSize: 34, color: '#3a3a38', maxWidth: 920, lineHeight: 1.35 }}>
-            Creative fatigue kills Meta ads. Loopy batches fresh on-brand creative whenever you need it.
+          <div style={{ marginTop: 28, fontSize: 32, color: '#3c414c', maxWidth: 960, lineHeight: 1.35 }}>
+            Your colors, your fonts, your real product. No designer, no prompting.
           </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', fontSize: 26, color: '#7a7771' }}>
-          first month free · 30 ads on us · no card required
+        <div style={{ display: 'flex', alignItems: 'center', fontSize: 26, color: '#6b7280' }}>
+          first 5 ads free on your real brand · no card
         </div>
       </div>
     ),

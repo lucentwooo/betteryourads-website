@@ -1,112 +1,83 @@
-.foot {
-  border-top: 1px solid var(--border);
-  padding: 40px 0 64px;
+.footer {
+  border-top: 1px solid var(--border-hairline);
   background: var(--bg);
+  margin-top: auto;
 }
-.inner {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  gap: 40px;
-  max-width: 1240px;
+.grid {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 48px 32px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: start;
 }
-.foot h6 {
-  font-family: var(--font-sans);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--fg-3);
-  margin: 0 0 14px;
-  font-weight: 500;
-}
-.foot ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.about {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-}
-.foot a {
-  font-family: var(--font-sans);
-  font-size: 14px;
-  color: var(--fg-2);
-  text-decoration: none;
-}
-.foot a:hover {
-  color: var(--fg);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-.metaLine {
-  font-family: var(--font-sans);
-  font-size: 11px;
-  color: var(--fg-3);
-  display: flex;
   gap: 16px;
-  align-items: center;
-  margin-top: 40px;
-  border-top: 1px solid var(--border-hairline);
-  padding: 24px 32px 0;
-  max-width: 1240px;
-  margin-left: auto;
-  margin-right: auto;
 }
-
-/* Footer brand block (was inline-styled in legacy index.html:477-483).
-   Prefixed with .foot so it overrides the broad .foot a link rules. */
-.foot .brandRow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  color: var(--fg);
-  margin-bottom: 16px;
-}
-.foot .brandRow:hover {
-  color: var(--fg);
-  text-decoration: none;
-}
-.brandWordmark {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--fg);
-}
-.brandAds {
-  color: var(--accent);
-}
-.brandLogo {
-  display: block;
-  height: 28px;
+.logo {
+  height: 24px;
   width: auto;
+  align-self: flex-start;
 }
-.brandBlurb {
-  font-size: 14px;
-  color: var(--fg-2);
+.blurb {
   margin: 0;
-  max-width: 320px;
-  line-height: 1.5;
+  max-width: 520px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--fg-3);
+}
+.fineprint {
+  margin: 0;
+  font-size: 13px;
+  color: var(--fg-muted);
+}
+.links {
+  display: flex;
+  gap: 48px;
+  justify-content: flex-end;
+  font-size: 14px;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.col a {
+  text-decoration: none;
+  color: var(--fg-2);
+  transition: color var(--dur-fast) var(--ease);
+}
+.col a:hover {
+  color: var(--fg);
+}
+.colHead {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--track-caps);
+  color: var(--fg-muted);
 }
 
-/* "private beta" status in the meta line (legacy index.html:512-514). */
-.metaStatus {
-  margin-left: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.metaDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: var(--accent);
-  display: inline-block;
-}
-
-@media (max-width: 960px) {
-  .inner {
-    grid-template-columns: 1fr 1fr;
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 40px 24px;
+  }
+  .links {
+    justify-content: flex-start;
+    gap: 40px;
+  }
+  .col a {
+    padding: 4px 0;
+  }
+  .colHead {
+    font-size: 14px;
+  }
+  .fineprint {
+    font-size: 14px;
   }
 }

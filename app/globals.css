@@ -1,86 +1,21 @@
 @import "../styles/tokens.css";
 
-html, body { margin: 0; background: var(--bg); }
-body { overflow-x: hidden; }
-
-/* Lenis (smooth scroll) — recommended resets. These only take effect once
-   Lenis adds its `.lenis` classes to <html>, so they no-op under
-   reduced-motion (where the SmoothScroll island never initialises Lenis). */
-html.lenis, html.lenis body { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-.lenis.lenis-stopped { overflow: hidden; }
-.lenis.lenis-smooth iframe { pointer-events: none; }
-
 /* =================================================================
-   Global layout + marketing type classes (cross-section)
-   Values from legacy/styles/landing.css.
+   Global layout — the one shared container plus the shared eyebrow.
+   Everything else is component-scoped in CSS Modules.
    ================================================================= */
-.wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
-.wrap-narrow { max-width: 980px; margin: 0 auto; padding: 0 32px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
 
-.section { padding: 96px 0; position: relative; }
-
-.accent { color: var(--accent); font-weight: 700; font-style: normal; }
-
-.lead {
-  font-family: var(--font-sans);
-  font-size: 18px;
-  line-height: 1.5;
-  color: var(--fg-2);
-  max-width: 480px;
+/* Shared eyebrow — 13px caps; color set per use (defaults to blue) */
+.eyebrow {
   margin: 0;
-  text-wrap: pretty;
-}
-.sub {
-  font-family: var(--font-sans);
-  font-size: 17px;
-  line-height: 1.5;
-  color: var(--fg-2);
-  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--track-caps);
+  color: var(--accent);
 }
 
-@media (max-width: 960px) {
-  .section { padding: 64px 0; }
-}
-
-/* =================================================================
-   Motion layer — scroll-driven reveals, scroll progress, accent sheen
-   All progressively enhanced: no support / reduced-motion => final state.
-   ================================================================= */
-.reveal {
-  animation: reveal-in var(--reveal-dur) var(--ease) both;
-  animation-timeline: view();
-  animation-range: entry 0% cover 30%;
-}
-@keyframes reveal-in {
-  from { opacity: 0; transform: translateY(var(--reveal-rise)); filter: blur(var(--reveal-blur)); }
-  to   { opacity: 1; transform: none; filter: none; }
-}
-.scrollProgress {
-  position: fixed; inset: 0 0 auto 0; height: 2px; z-index: 100;
-  background: var(--accent); transform-origin: 0 50%; transform: scaleX(0);
-  animation: progress-grow linear both;
-  animation-timeline: scroll(root);
-}
-@keyframes progress-grow { to { transform: scaleX(1); } }
-.sheen {
-  background: linear-gradient(100deg,
-    var(--accent) 0%, var(--accent) 38%,
-    color-mix(in srgb, var(--accent) 45%, white) 50%,
-    var(--accent) 62%, var(--accent) 100%);
-  background-size: 220% 100%;
-  background-clip: text; -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: sheen-sweep 1100ms var(--ease) 240ms 1 both;
-}
-@keyframes sheen-sweep { from { background-position: 120% 0; } to { background-position: -40% 0; } }
-@supports not (animation-timeline: view()) {
-  .reveal { opacity: 1; transform: none; filter: none; animation: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .reveal, .scrollProgress, .sheen { animation: none !important; }
-  .reveal { opacity: 1; transform: none; filter: none; }
-  .scrollProgress { transform: scaleX(0); }
-  .sheen { -webkit-text-fill-color: var(--accent); background: none; }
+@media (max-width: 760px) {
+  .eyebrow { font-size: 14px; }
 }

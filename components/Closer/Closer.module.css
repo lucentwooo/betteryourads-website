@@ -1,0 +1,68 @@
+.closer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 96px 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.eyebrowViolet {
+  color: var(--loopy-violet);
+}
+.eyebrowMuted {
+  color: var(--fg-3);
+}
+.h2 {
+  margin: 16px 0 0;
+  font-size: clamp(26px, 2.6vw, 35px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.body {
+  margin: 16px 0 0;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--fg-3);
+  text-wrap: pretty;
+}
+.note {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+}
+.noteBody {
+  margin: 16px 0 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--fg);
+  text-wrap: pretty;
+}
+.signoff {
+  margin: 20px 0 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--fg-2);
+}
+.noteLink {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+@media (max-width: 760px) {
+  .closer {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 64px 24px;
+  }
+  .note {
+    padding: 28px 22px;
+  }
+  .noteLink {
+    padding: 10px 0;
+  }
+}
