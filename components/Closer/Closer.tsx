@@ -5,7 +5,7 @@ export function Closer() {
   return (
     <section className={styles.closer}>
       <div>
-        <p className={`eyebrow ${styles.eyebrowViolet}`}>beta · the loop</p>
+        <p className={`eyebrow ${styles.eyebrowViolet}`}>beta - the loop</p>
         <h2 className={styles.h2}>And it learns from your results.</h2>
         <p className={styles.body}>
           Connect your Meta and Google Analytics accounts, read-only, and Loopy studies what actually ran well for you.

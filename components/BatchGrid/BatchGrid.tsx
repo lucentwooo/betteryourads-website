@@ -12,35 +12,35 @@ const BATCH: BatchAd[] = [
   {
     src: '/salesgraph/ad-3.png',
     alt: 'Salesgraph ad made with Loopy, problem-aware angle: Missed deals from manual tracking?',
-    caption: 'problem-aware · the cost of it',
+    caption: 'problem-aware - the cost of it',
     width: 1254,
     height: 1254,
   },
   {
     src: '/salesgraph/ad-6.png',
     alt: 'Salesgraph ad made with Loopy, solution-aware angle: Scale your sales workflow effortlessly.',
-    caption: 'solution-aware · the outcome',
+    caption: 'solution-aware - the outcome',
     width: 1254,
     height: 1254,
   },
   {
     src: '/salesgraph/ad-5.png',
     alt: 'Salesgraph ad made with Loopy, product-aware angle: Revenue agents with real human oversight.',
-    caption: 'product-aware · the differentiator',
+    caption: 'product-aware - the differentiator',
     width: 1254,
     height: 1254,
   },
   {
     src: '/salesgraph/ad-4.png',
     alt: 'Salesgraph ad made with Loopy, most-aware angle: Scale revenue with agents.',
-    caption: 'most-aware · the proof',
+    caption: 'most-aware - the proof',
     width: 1254,
     height: 1254,
   },
   {
     src: '/salesgraph/ad-2.png',
     alt: 'Salesgraph ad made with Loopy, unaware angle: Miss critical discovery questions?',
-    caption: 'unaware · name the pain',
+    caption: 'unaware - name the pain',
     width: 941,
     height: 1672,
     offset: true,
@@ -48,7 +48,7 @@ const BATCH: BatchAd[] = [
   {
     src: '/salesgraph/ad-1.png',
     alt: 'Salesgraph ad made with Loopy, remix angle: 3X missed discovery gaps happen.',
-    caption: 'remix · same pain, story format',
+    caption: 'remix - same pain, story format',
     width: 941,
     height: 1672,
   },
@@ -75,7 +75,7 @@ export function BatchGrid() {
           </figure>
         ))}
       </div>
-      <p className={styles.fineprint}>made with Loopy for salesgraph.com · every ad above is a real, unretouched render</p>
+      <p className={styles.fineprint}>made with Loopy for salesgraph.com - every ad above is a real, unretouched render</p>
     </section>
   );
 }

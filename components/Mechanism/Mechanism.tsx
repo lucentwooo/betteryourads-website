@@ -16,7 +16,7 @@ export function Mechanism() {
       {/* 01 — measured, not guessed */}
       <div className={`${styles.card} ${styles.card1}`}>
         <div>
-          <span className={`${styles.badge} ${styles.badgeBlue}`}>01 · measured, not guessed</span>
+          <span className={`${styles.badge} ${styles.badgeBlue}`}>01 - measured, not guessed</span>
           <h3 className={styles.h3}>It copies your exact colors, fonts and logo from your website.</h3>
           <p className={styles.body}>
             Loopy opens your website the way a person would and writes down exactly what it sees: the colors you use
@@ -34,8 +34,10 @@ export function Mechanism() {
               <Image
                 src="/salesgraph/site-full.jpg"
                 alt="The full salesgraph.com page as Loopy scrolls and reads it"
-                width={720}
-                height={3400}
+                width={1440}
+                height={6800}
+                quality={85}
+                sizes="(max-width: 760px) 100vw, 520px"
                 className={styles.siteScroll}
               />
             </div>
@@ -47,7 +49,7 @@ export function Mechanism() {
                 {s.hex}
               </span>
             ))}
-            <span className={styles.chip}>font · Source Serif</span>
+            <span className={styles.chip}>font - Source Serif</span>
             <span className={styles.chip}>logo ✓</span>
           </div>
         </div>
@@ -56,7 +58,7 @@ export function Mechanism() {
       {/* 02 — software-safe */}
       <div className={`${styles.card} ${styles.card2}`}>
         <div>
-          <span className={`${styles.badge} ${styles.badgePeriwinkle}`}>02 · software-safe</span>
+          <span className={`${styles.badge} ${styles.badgePeriwinkle}`}>02 - software-safe</span>
           <h3 className={styles.h3}>Your screenshots placed exactly. Never invented UI.</h3>
           <p className={`${styles.body} ${styles.bodyOnDark}`}>
             Where other tools hallucinate a fake dashboard for your product, Loopy places your real screenshot
@@ -97,7 +99,7 @@ export function Mechanism() {
       {/* 03 — proven structure */}
       <div className={`${styles.card} ${styles.card3}`}>
         <div>
-          <span className={`${styles.badge} ${styles.badgeCoral}`}>03 · proven structure</span>
+          <span className={`${styles.badge} ${styles.badgeCoral}`}>03 - proven structure</span>
           <h3 className={styles.h3}>Layouts borrowed from ads Meta kept running.</h3>
           <p className={styles.body}>
             You start from a library of real competitor ads ranked by how long Meta kept them live - a survival signal,
@@ -129,7 +131,7 @@ export function Mechanism() {
               height={1254}
               className={styles.refAd}
             />
-            <figcaption className={styles.monoCaption}>same structure · your brand</figcaption>
+            <figcaption className={styles.monoCaption}>same structure - your brand</figcaption>
           </figure>
         </div>
       </div>

@@ -82,7 +82,7 @@ export function Pricing() {
             ${earlyPrice}
             <span className={styles.priceUnit}>/month</span>
           </p>
-          <p className={styles.planTag}>50 ads a month · unlimited brands</p>
+          <p className={styles.planTag}>50 ads a month - unlimited brands</p>
           <a href={CAL_URL} className={styles.btnInk}>
             get started on a call <span aria-hidden="true">↗</span>
           </a>
@@ -108,7 +108,7 @@ export function Pricing() {
             ${proPrice}
             <span className={styles.priceUnit}>/month</span>
           </p>
-          <p className={styles.planTag}>{PRO_ADS[proTier]} ads a month · unlimited brands · one shared pool</p>
+          <p className={styles.planTag}>{PRO_ADS[proTier]} ads a month - unlimited brands - one shared pool</p>
           <div className={styles.slider}>
             <input
               type="range"

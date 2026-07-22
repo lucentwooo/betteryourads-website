@@ -29,7 +29,7 @@ export function FinalCta() {
         <a href={CAL_URL} className={styles.button}>
           book 20 minutes with the founders <span aria-hidden="true">↗</span>
         </a>
-        <p className={styles.fineprint}>first 5 ads free on your real brand · no card</p>
+        <p className={styles.fineprint}>first 5 ads free on your real brand - no card</p>
       </div>
     </section>
   );

@@ -17,7 +17,7 @@ export function Footer({ page = 'landing' }: { page?: 'landing' | 'pricing' }) {
             colors, fonts and logo, then turns proven ad layouts into finished, on-brand static ads - with product
             screenshots placed exactly, never invented.
           </p>
-          <p className={styles.fineprint}>© 2026 Loopy · tryloopy.io</p>
+          <p className={styles.fineprint}>© 2026 Loopy - tryloopy.io</p>
         </div>
         <div className={styles.links}>
           <div className={styles.col}>

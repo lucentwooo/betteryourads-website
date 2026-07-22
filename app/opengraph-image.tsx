@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const alt = 'Loopy · AI Meta ad generator from your URL';
+export const alt = 'Loopy - AI Meta ad generator from your URL';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -43,7 +43,7 @@ export default function OpengraphImage() {
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', fontSize: 26, color: '#6b7280' }}>
-          first 5 ads free on your real brand · no card
+          first 5 ads free on your real brand - no card
         </div>
       </div>
     ),
