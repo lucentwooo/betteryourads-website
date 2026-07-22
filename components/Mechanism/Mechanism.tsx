@@ -36,8 +36,8 @@ export function Mechanism() {
                 alt="The full salesgraph.com page as Loopy scrolls and reads it"
                 width={1440}
                 height={6800}
-                quality={85}
-                sizes="(max-width: 760px) 100vw, 520px"
+                quality={90}
+                sizes="(max-width: 760px) 100vw, 720px"
                 className={styles.siteScroll}
               />
             </div>
