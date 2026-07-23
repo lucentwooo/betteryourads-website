@@ -65,11 +65,10 @@
   /* ---------------------------------------------------------------
      Type — families & scale
 
-     DM Sans for everything; JetBrains Mono only for chips / tiny
-     technical labels (both via next/font variables).
+     DM Sans for everything (via next/font variable). No mono faces
+     anywhere on the site.
      --------------------------------------------------------------- */
   --font-sans:        var(--font-dm-sans), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-mono:        var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --track-display:    -0.03em;
   --track-caps:       0.08em;

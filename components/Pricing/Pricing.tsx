@@ -35,8 +35,8 @@ export function Pricing() {
       <header className={styles.hero}>
         <h1 className={styles.h1}>Founding rates, locked in for as long as you stay.</h1>
         <p className={styles.sub}>
-          Every plan starts the same way: 20 minutes with the founders, your first 5 ads free, no card. We set you up
-          on the call.
+          Every plan starts the same way: 20 minutes with the founders, a few quick market research questions, and
+          your first 10 ads free, no card. We set you up on the call.
         </p>
         <div role="group" aria-label="Billing period" className={styles.toggle}>
           {PERIODS.map((p) => (
@@ -59,14 +59,14 @@ export function Pricing() {
           <h2 className={styles.planName}>Free</h2>
           <p className={styles.planTag}>see it work on your real brand</p>
           <p className={styles.price}>
-            5 ads<span className={styles.priceUnit}> free</span>
+            10 ads<span className={styles.priceUnit}> free</span>
           </p>
           <p className={styles.planTag}>no card required</p>
           <a href={CAL_URL} className={styles.btnGhost}>
             try it on a call <span aria-hidden="true">↗</span>
           </a>
           <div className={styles.features}>
-            <Check>5 ads on your real brand</Check>
+            <Check>10 ads on your real brand</Check>
             <Check>2 UGC video ads to try</Check>
             <Check>the full measure → analyze → render pipeline</Check>
             <Check>unlimited brands</Check>

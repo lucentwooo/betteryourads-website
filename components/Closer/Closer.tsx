@@ -14,11 +14,12 @@ export function Closer() {
         </p>
       </div>
       <div className={styles.note}>
-        <p className={`eyebrow ${styles.eyebrowMuted}`}>why we built this</p>
+        <p className={`eyebrow ${styles.eyebrowMuted}`}>what we kept hearing</p>
         <p className={styles.noteBody}>
-          We ran Meta ads for our own software, and every AI tool gave us the same thing: our logo on someone
-          else&apos;s design, with a dashboard our product doesn&apos;t have. So we built the one that copies the real
-          site and never invents pixels. You&apos;ll talk to us, not a funnel.
+          We&apos;ve talked to hundreds of founders and agencies, and they all say the same thing: AI-generated ads
+          just aren&apos;t there yet. Off-brand colors, made-up product shots, that same template look everyone can
+          spot. That&apos;s the problem we fixed - Loopy copies your real site and never invents pixels. You&apos;ll
+          talk to us, not a funnel.
         </p>
         <p className={styles.signoff}>the Loopy founders</p>
         <a className={`signal ${styles.noteLink}`} href={CAL_URL}>

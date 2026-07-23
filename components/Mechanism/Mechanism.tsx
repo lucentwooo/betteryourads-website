@@ -49,7 +49,7 @@ export function Mechanism() {
                 {s.hex}
               </span>
             ))}
-            <span className={styles.chip}>font - Source Serif</span>
+            <span className={styles.chip}>Source Serif</span>
             <span className={styles.chip}>logo ✓</span>
           </div>
         </div>
@@ -116,7 +116,7 @@ export function Mechanism() {
               height={1920}
               className={styles.refAd}
             />
-            <figcaption className={styles.monoCaption}>
+            <figcaption className={styles.caption}>
               <span className={styles.refMark}>▲</span>the reference
             </figcaption>
           </figure>
@@ -131,7 +131,7 @@ export function Mechanism() {
               height={1254}
               className={styles.refAd}
             />
-            <figcaption className={styles.monoCaption}>same structure - your brand</figcaption>
+            <figcaption className={styles.caption}>same structure - your brand</figcaption>
           </figure>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { Nav } from '@/components/Nav/Nav';
 import { Hero } from '@/components/Hero/Hero';
 import { Mechanism } from '@/components/Mechanism/Mechanism';
 import { BatchGrid } from '@/components/BatchGrid/BatchGrid';
+import { WhoFor } from '@/components/WhoFor/WhoFor';
 import { Ribbon } from '@/components/Ribbon/Ribbon';
 import { Closer } from '@/components/Closer/Closer';
 import { Faq, type FaqItem } from '@/components/Faq/Faq';
@@ -20,7 +21,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: 'What actually happens on the call?',
-    a: 'Twenty minutes with the founders. We paste your URL, you watch your first batch get made, and you keep 5 ads free - no card. If it’s not for you, you leave with the ads.',
+    a: 'Twenty minutes with the founders. We paste your URL, you watch your first batch get made, and we ask you a few basic market research questions - what you run, what creative costs you today. Answering those is what earns your 10 free ads, no card. If it’s not for you, you leave with the ads.',
   },
   {
     q: 'What formats do I get?',
@@ -30,7 +31,7 @@ const FAQS: FaqItem[] = [
     q: 'What does it cost?',
     a: (
       <>
-        Your first 5 ads are free on your real brand, no card. Founding rates start at $149 per month and stay locked
+        Your first 10 ads are free on your real brand, no card. Founding rates start at $149 per month and stay locked
         for as long as you stay -{' '}
         <Link href="/pricing" className="signal">
           full pricing here
@@ -48,6 +49,7 @@ export default function Home() {
       <Hero />
       <Mechanism />
       <BatchGrid />
+      <WhoFor />
       <Ribbon />
       <Closer />
       <Faq title="Fair questions." items={FAQS} />

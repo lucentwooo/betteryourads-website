@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { GoogleAnalytics } from '@next/third-parties/google';
-import { DM_Sans, JetBrains_Mono } from 'next/font/google';
+import { DM_Sans } from 'next/font/google';
 import './globals.css';
 import { SITE_URL } from '@/lib/site';
 
@@ -11,16 +11,9 @@ const dmSans = DM_Sans({
   display: 'swap',
 });
 
-const jetBrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '600'],
-  variable: '--font-jetbrains-mono',
-  display: 'swap',
-});
-
 const TITLE = 'AI Meta ad generator from your URL — Loopy';
 const DESCRIPTION =
-  'Paste your URL. Loopy reads your live site (real colors, fonts, logo) and turns proven ad layouts into finished, on-brand Meta ads in minutes. First 5 ads free.';
+  'Paste your URL. Loopy reads your live site (real colors, fonts, logo) and turns proven ad layouts into finished, on-brand Meta ads in minutes. First 10 ads free.';
 
 // Entity-identity structured data: Organization + WebSite identify Loopy as a
 // distinct entity; SoftwareApplication carries the plan offers.
@@ -84,7 +77,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${jetBrainsMono.variable}`}>
+    <html lang="en" className={dmSans.variable}>
       <body>
         <script
           type="application/ld+json"

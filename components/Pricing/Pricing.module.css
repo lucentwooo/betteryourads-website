@@ -171,7 +171,6 @@
   justify-content: space-between;
   font-size: 12px;
   color: var(--fg-muted);
-  font-family: var(--font-mono);
 }
 
 /* --- feature lists --- */

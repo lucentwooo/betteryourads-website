@@ -49,8 +49,8 @@ its `page.tsx`; to change a section, edit its folder.
 of truth: `--loopy-*` brand primitives feed semantic aliases (`--bg`, `--fg`,
 `--accent`, …). Use semantic tokens in component CSS, not raw hex. Palette: white
 paper, ink `#0e1116`, **one** electric-blue signal `#1c42e6`, plus tiny coral/mint/
-violet accents (one per mechanism card). DM Sans everywhere; JetBrains Mono only for
-chips/tiny technical labels.
+violet accents (one per mechanism card). DM Sans everywhere - no mono faces anywhere
+on the site (JetBrains Mono was removed 2026-07).
 
 **Ad imagery is data-driven where it repeats.** `lib/creatives.ts` holds the hero ad
 wall columns (`HERO_WALL_A/B`, brand `ad-01`s) and the final-CTA marquee

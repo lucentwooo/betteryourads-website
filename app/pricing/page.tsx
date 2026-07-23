@@ -22,7 +22,7 @@ const FAQS: FaqItem[] = [
   },
   {
     q: 'Why do I have to book a call?',
-    a: 'We’re onboarding founding customers by hand while the product is early - it keeps quality high and gets you set up in one sitting. You’ll watch your first batch render on the call and keep 5 ads free.',
+    a: 'We’re onboarding founding customers by hand while the product is early - it keeps quality high and gets you set up in one sitting. You’ll watch your first batch render, answer a few basic market research questions, and keep 10 ads free.',
   },
   {
     q: 'Can I cancel anytime?',
