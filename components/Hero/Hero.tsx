@@ -33,7 +33,7 @@ export function Hero() {
         <div className={styles.copy}>
           <div className={styles.pill}>for brands and agencies running Meta ads</div>
           <h1 className={styles.h1}>
-            Paste your URL. Get Meta ads that <span className={styles.h1Accent}>actually look like your brand</span>.
+            Paste your URL. Get Meta ads that <span className={styles.h1Accent}>actually look like your brand.</span>
           </h1>
           <p className={styles.sub}>
             Loopy reads your website and turns proven ad layouts into finished Meta ads that match it: your colors,
