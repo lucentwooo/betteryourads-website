@@ -16,7 +16,7 @@ export function Nav({ page = 'landing' }: { page?: 'landing' | 'pricing' | 'cont
         <div className={styles.links}>
           <a href={`${prefix}#how`}>how it works</a>
           <a href={`${prefix}#batch`}>the output</a>
-          <Link href="/pricing" className={onLanding ? undefined : styles.active}>
+          <Link href="/pricing" className={page === 'pricing' ? styles.active : undefined}>
             pricing
           </Link>
           <a href="#faq">faq</a>
