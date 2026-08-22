@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { CAL_URL } from '@/lib/site';
 import styles from './Nav.module.css';
 
-export function Nav({ page = 'landing' }: { page?: 'landing' | 'pricing' }) {
+export function Nav({ page = 'landing' }: { page?: 'landing' | 'pricing' | 'content' }) {
   const onLanding = page === 'landing';
   const prefix = onLanding ? '' : '/';
 
@@ -16,7 +16,7 @@ export function Nav({ page = 'landing' }: { page?: 'landing' | 'pricing' }) {
         <div className={styles.links}>
           <a href={`${prefix}#how`}>how it works</a>
           <a href={`${prefix}#batch`}>the output</a>
-          <Link href="/pricing" className={onLanding ? undefined : styles.active}>
+          <Link href="/pricing" className={page === 'pricing' ? styles.active : undefined}>
             pricing
           </Link>
           <a href="#faq">faq</a>

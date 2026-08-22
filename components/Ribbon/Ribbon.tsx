@@ -4,18 +4,18 @@ import styles from './Ribbon.module.css';
 const STEPS = [
   {
     n: '1',
-    h: 'Paste your URL',
-    p: 'Loopy reads your live site and builds your brand profile in about two minutes.',
+    h: 'Drop in the client’s site',
+    p: 'Add their website plus anything they gave you - a deck, call notes, an old brief. Loopy builds the brand profile in about two minutes.',
   },
   {
     n: '2',
-    h: 'Pick a proven layout',
-    p: 'Choose from the ranked library or upload a reference. Exact to the layout, or loose to the vibe.',
+    h: 'Tick the concepts worth running',
+    p: 'Ranked ad concepts by angle and awareness stage. Pick your winners and Loopy cuts a client-ready brief you can export.',
   },
   {
     n: '3',
-    h: 'Download and run',
-    p: 'Finished statics in feed and story sizes, saved to your library. Promote a winner to remix it.',
+    h: 'Hand it off or render it',
+    p: 'Send the brief to your design team - or let Loopy render finished statics in feed and story sizes. Promote a winner to remix it.',
   },
 ];
 

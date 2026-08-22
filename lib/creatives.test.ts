@@ -30,3 +30,9 @@ describe('creatives catalogue', () => {
     }
   });
 });
+
+describe('brief template download', () => {
+  it('ships the static Markdown file linked from TemplateTabs', () => {
+    expect(existsSync(join(process.cwd(), 'public', 'ad-creative-brief-template.md'))).toBe(true);
+  });
+});

@@ -1,0 +1,48 @@
+.band {
+  border-top: 1px solid var(--border-hairline);
+  border-bottom: 1px solid var(--border-hairline);
+  padding: 52px 0;
+}
+
+.kicker {
+  margin: 12px 0 40px;
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: var(--track-display);
+  color: var(--fg);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: var(--track-display);
+  color: var(--fg);
+}
+
+.label {
+  font-size: 14px;
+  color: var(--fg-3);
+}
+
+@media (max-width: 760px) {
+  .stats {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .kicker {
+    font-size: 18px;
+  }
+}

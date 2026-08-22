@@ -60,15 +60,15 @@
   margin: 0 auto;
   padding: 48px 32px 32px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
   align-items: stretch;
   width: 100%;
 }
 .plan {
   border: 1px solid var(--border-card);
   border-radius: var(--radius-lg);
-  padding: 36px;
+  padding: 32px 26px;
   display: flex;
   flex-direction: column;
   background: var(--bg);
@@ -102,8 +102,8 @@
   color: var(--fg-3);
 }
 .price {
-  margin: 24px 0 0;
-  font-size: 44px;
+  margin: 20px 0 0;
+  font-size: 38px;
   font-weight: 700;
   letter-spacing: var(--track-display);
   line-height: 1;
@@ -194,6 +194,12 @@
   color: var(--fg-3);
   margin: 0;
   padding: 0 32px;
+}
+
+@media (max-width: 1080px) {
+  .plans {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (max-width: 760px) {

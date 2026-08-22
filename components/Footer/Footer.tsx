@@ -4,7 +4,7 @@ import { CAL_URL } from '@/lib/site';
 import styles from './Footer.module.css';
 
 /* No privacy/terms links — intentionally removed (design decision). */
-export function Footer({ page = 'landing' }: { page?: 'landing' | 'pricing' }) {
+export function Footer({ page = 'landing' }: { page?: 'landing' | 'pricing' | 'content' }) {
   const prefix = page === 'landing' ? '' : '/';
 
   return (
@@ -13,9 +13,9 @@ export function Footer({ page = 'landing' }: { page?: 'landing' | 'pricing' }) {
         <div className={styles.about}>
           <Image src="/loopy-logo.png" alt="Loopy" width={60} height={24} className={styles.logo} />
           <p className={styles.blurb}>
-            Loopy makes and improves Meta ads. Paste a website URL and a real browser measures the site&apos;s actual
-            colors, fonts and logo, then turns proven ad layouts into finished, on-brand static ads - with product
-            screenshots placed exactly, never invented.
+            Loopy automates the research and brief work behind an agency&rsquo;s Meta ads. Drop in a client&rsquo;s
+            website and a real browser measures their actual brand, customer and competitor research becomes ranked ad
+            concepts, and the ones you pick cut into a client-ready creative brief - with on-brand renders attached.
           </p>
           <p className={styles.fineprint}>© 2026 Loopy - tryloopy.io</p>
         </div>
@@ -24,6 +24,7 @@ export function Footer({ page = 'landing' }: { page?: 'landing' | 'pricing' }) {
             <span className={styles.colHead}>product</span>
             <a href={`${prefix}#how`}>how it works</a>
             <Link href="/pricing">pricing</Link>
+            <Link href="/ad-creative-brief-template">ad brief template</Link>
             <a href="#faq">faq</a>
           </div>
           <div className={styles.col}>
