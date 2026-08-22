@@ -5,35 +5,39 @@ export function WhoFor() {
   return (
     <section className={styles.section}>
       <p className="eyebrow">who it&rsquo;s for</p>
-      <h2 className={styles.h2}>Two kinds of people book the call.</h2>
-      <p className={styles.lede}>Meta wants new creative and there are no new creatives.</p>
+      <h2 className={styles.h2}>The work before the creative work.</h2>
+      <p className={styles.lede}>Every client, every round: days of homework before anyone designs anything.</p>
 
       <div className={styles.split}>
         <div className={styles.half}>
-          <span className={`${styles.badge} ${styles.badgeBlue}`}>you run a brand</span>
-          <h3 className={styles.h3}>Your winning ad fatigued. No designer to call.</h3>
+          <span className={`${styles.badge} ${styles.badgeBlue}`}>the research</span>
+          <h3 className={styles.h3}>Per-client research is quietly eating your week.</h3>
           <p className={styles.body}>
-            Results dip every few weeks while you rebuild creatives by hand, late, in a tool that fights you.
+            Read the site. Dig through reviews and community threads. Pull competitor ads from the archive. Work out
+            what to say. Hours per client, repeated forever - the least leveraged work in the building.
           </p>
           <p className={styles.payoff}>
-            Paste your URL and making creatives runs on a system - fresh on-brand statics, automatically.
+            Drop in the client&rsquo;s URL and Loopy does the reading - ranked ad concepts by angle and awareness
+            stage, in minutes.
           </p>
           <a className={`signal ${styles.link}`} href={CAL_URL}>
-            see it on your brand ↗
+            see it on a client&rsquo;s brand ↗
           </a>
         </div>
         <div className={styles.rule} aria-hidden="true" />
         <div className={styles.half}>
-          <span className={`${styles.badge} ${styles.badgeCoral}`}>you run an agency</span>
-          <h3 className={styles.h3}>Every new ad waits on a brief nobody has written.</h3>
+          <span className={`${styles.badge} ${styles.badgeCoral}`}>the brief</span>
+          <h3 className={styles.h3}>Design waits on a brief nobody has time to write.</h3>
           <p className={styles.body}>
-            Design can&rsquo;t start until someone chases brand assets, references and specs - and that someone is you.
+            Nothing starts until someone chases assets, references and specs, then turns it all into something a
+            designer or a client can actually run with.
           </p>
           <p className={styles.payoff}>
-            Paste the client&rsquo;s URL and get an instant, ready-to-send brief your design team can run with.
+            Tick the concepts worth running and export a client-ready brief your team can start from immediately -
+            renders included if you want them.
           </p>
           <a className={`signal ${styles.link}`} href={CAL_URL}>
-            see it on a client&rsquo;s brand ↗
+            get a brief you can send ↗
           </a>
         </div>
       </div>

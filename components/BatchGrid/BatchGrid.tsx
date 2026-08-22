@@ -59,12 +59,12 @@ export function BatchGrid() {
     <section id="batch" className={styles.section}>
       <div className={styles.head}>
         <div>
-          <p className="eyebrow">not one lucky render</p>
-          <h2 className={styles.h2}>One brand. One batch. Six different arguments.</h2>
+          <p className="eyebrow">inside a loopy brief</p>
+          <h2 className={styles.h2}>One brand. One brief. Six different arguments.</h2>
         </div>
         <p className={styles.headNote}>
-          Loopy proposes distinct concepts by customer awareness stage - so when Meta burns out one ad, the next one
-          makes a different case, not the same case in a new color.
+          Every brief organizes distinct concepts by customer awareness stage - so when Meta burns out one ad, the
+          next one makes a different case, not the same case in a new color.
         </p>
       </div>
       <div className={styles.grid}>
@@ -75,7 +75,7 @@ export function BatchGrid() {
           </figure>
         ))}
       </div>
-      <p className={styles.fineprint}>made with Loopy for salesgraph.com - every ad above is a real, unretouched render</p>
+      <p className={styles.fineprint}>from one Loopy brief for salesgraph.com - shown as rendered, nothing retouched</p>
     </section>
   );
 }

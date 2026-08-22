@@ -3,6 +3,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import { DM_Sans } from 'next/font/google';
 import './globals.css';
 import { SITE_URL } from '@/lib/site';
+import { FREE_PLAN, PAID_PLANS } from '@/lib/billing-catalog';
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -11,9 +12,9 @@ const dmSans = DM_Sans({
   display: 'swap',
 });
 
-const TITLE = 'AI Meta ad generator from your URL — Loopy';
+const TITLE = 'Meta ad research, briefs & creative, automated for agencies - Loopy';
 const DESCRIPTION =
-  'Paste your URL. Loopy reads your live site (real colors, fonts, logo) and turns proven ad layouts into finished, on-brand Meta ads in minutes. First 10 ads free.';
+  "Drop in a client's website. Loopy reads the real brand, researches customers and competitors, and turns it into ranked ad concepts and a client-ready creative brief in minutes - then renders the on-brand creative too. First client brief free.";
 
 // Entity-identity structured data: Organization + WebSite identify Loopy as a
 // distinct entity; SoftwareApplication carries the plan offers.
@@ -41,11 +42,20 @@ const jsonLd = {
       operatingSystem: 'Web',
       url: SITE_URL,
       description:
-        "Loopy turns a website URL into finished, on-brand static Meta ads: a real browser measures the site's actual colors, fonts and logo, then reskins proven ad layouts with them.",
+        "Loopy automates the research and brief work behind an agency's Meta ads: drop in a client's website, and it reads the real brand, researches customers and competitors, then turns it into ranked ad concepts and a client-ready creative brief - with on-brand renders attached.",
       offers: [
-        { '@type': 'Offer', name: 'Free', price: '0', priceCurrency: 'USD' },
-        { '@type': 'Offer', name: 'Early Access', price: '149', priceCurrency: 'USD' },
-        { '@type': 'Offer', name: 'Pro', price: '249', priceCurrency: 'USD' },
+        {
+          '@type': 'Offer',
+          name: FREE_PLAN.name,
+          price: '0',
+          priceCurrency: 'USD',
+        },
+        ...PAID_PLANS.map((plan) => ({
+          '@type': 'Offer',
+          name: plan.name,
+          price: String(plan.monthlyPrice),
+          priceCurrency: 'USD',
+        })),
       ],
     },
   ],

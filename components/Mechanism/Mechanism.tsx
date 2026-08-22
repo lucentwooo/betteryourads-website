@@ -10,17 +10,18 @@ const SWATCHES = [
 export function Mechanism() {
   return (
     <section id="how" className={styles.section}>
-      <p className="eyebrow">why it won&apos;t look like AI slop</p>
-      <h2 className={styles.h2}>Three reasons the output looks like you made it.</h2>
+      <p className="eyebrow">no black box</p>
+      <h2 className={styles.h2}>Grounded in your client&rsquo;s reality. Not guesses.</h2>
 
       {/* 01 — measured, not guessed */}
       <div className={`${styles.card} ${styles.card1}`}>
         <div>
           <span className={`${styles.badge} ${styles.badgeBlue}`}>01 - measured, not guessed</span>
-          <h3 className={styles.h3}>It copies your exact colors, fonts and logo from your website.</h3>
+          <h3 className={styles.h3}>It reads your client&rsquo;s actual brand from their live site.</h3>
           <p className={styles.body}>
-            Loopy opens your website the way a person would and writes down exactly what it sees: the colors you use
-            most, your fonts, your logo. Nothing is guessed. That&apos;s why the ads look like you, not like AI.
+            Loopy opens the client&rsquo;s website the way a person would and writes down exactly what it sees: the
+            colors they use most, their fonts, their logo. Nothing is guessed. Every concept and brief starts from who
+            they actually are.
           </p>
         </div>
         <div className={styles.visual1}>
@@ -58,12 +59,12 @@ export function Mechanism() {
       {/* 02 — software-safe */}
       <div className={`${styles.card} ${styles.card2}`}>
         <div>
-          <span className={`${styles.badge} ${styles.badgePeriwinkle}`}>02 - software-safe</span>
-          <h3 className={styles.h3}>Your screenshots placed exactly. Never invented UI.</h3>
+          <span className={`${styles.badge} ${styles.badgePeriwinkle}`}>02 - nothing invented</span>
+          <h3 className={styles.h3}>Nothing invented. Anywhere.</h3>
           <p className={`${styles.body} ${styles.bodyOnDark}`}>
-            Where other tools hallucinate a fake dashboard for your product, Loopy places your real screenshot
-            pixel-for-pixel. If it shows your product, it is your product. This is where AI ad tools usually fail for
-            software - it&apos;s the reason we exist.
+            Research comes only from what&rsquo;s real: the client&rsquo;s live site and the materials you upload.
+            Their product images are placed pixel-for-pixel, never redrawn or hallucinated. Nothing in the brief - or
+            the creative - is made up.
           </p>
         </div>
         <div className={styles.visual2}>
@@ -99,12 +100,12 @@ export function Mechanism() {
       {/* 03 — proven structure */}
       <div className={`${styles.card} ${styles.card3}`}>
         <div>
-          <span className={`${styles.badge} ${styles.badgeCoral}`}>03 - proven structure</span>
-          <h3 className={styles.h3}>Layouts borrowed from ads Meta kept running.</h3>
+          <span className={`${styles.badge} ${styles.badgeCoral}`}>03 - competitor intel</span>
+          <h3 className={styles.h3}>Concepts built on ads Meta kept running.</h3>
           <p className={styles.body}>
-            You start from a library of real competitor ads ranked by how long Meta kept them live - a survival signal,
-            not a guess. Loopy keeps the structure that earned that run and swaps in your brand. When the two disagree,
-            your brand wins.
+            Loopy maintains a library of real competitor ads ranked by how long Meta kept each one live - a survival
+            signal, not a guess. Concepts borrow the structure that earned the run, so every angle in your brief stands
+            on something that already worked.
           </p>
         </div>
         <div className={styles.pair3}>

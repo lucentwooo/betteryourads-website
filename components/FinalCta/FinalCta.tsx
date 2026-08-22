@@ -24,15 +24,15 @@ export function FinalCta() {
         )}
       </div>
       <div className={styles.content}>
-        <h2 className={styles.h2}>See your first ads made live.</h2>
+        <h2 className={styles.h2}>Watch a client&rsquo;s brief build itself.</h2>
         <p className={styles.sub}>
-          Paste your URL, watch the batch render, and answer a few quick market questions - that earns your 10 free
-          ads.
+          Drop in one of your client&rsquo;s websites, watch the research and concepts land, and tell us where your
+          week actually goes - that earns your first client brief, free.
         </p>
         <a href={CAL_URL} className={styles.button}>
           book 20 minutes with the founders <span aria-hidden="true">↗</span>
         </a>
-        <p className={styles.fineprint}>first 10 ads free on your real brand - no card</p>
+        <p className={styles.fineprint}>first client brief free on a real client - no card</p>
       </div>
     </section>
   );

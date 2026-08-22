@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const alt = 'Loopy - AI Meta ad generator from your URL';
+export const alt = 'Loopy - Meta ad research and briefs, automated for agencies';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -35,15 +35,15 @@ export default function OpengraphImage() {
               lineHeight: 1.05,
             }}
           >
-            <div>Paste your URL. Get Meta ads</div>
-            <div style={{ color: '#1c42e6' }}>that actually look like your brand.</div>
+            <div>Paste a client&rsquo;s URL. Get the research</div>
+            <div style={{ color: '#1c42e6' }}>and brief that used to eat your week.</div>
           </div>
           <div style={{ marginTop: 28, fontSize: 32, color: '#3c414c', maxWidth: 960, lineHeight: 1.35 }}>
-            Your colors, your fonts, your real product. No designer, no prompting.
+            Ranked ad concepts and a client-ready creative brief in minutes - renders included.
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', fontSize: 26, color: '#6b7280' }}>
-          first 10 ads free on your real brand - no card
+          first client brief free on a real client - no card
         </div>
       </div>
     ),

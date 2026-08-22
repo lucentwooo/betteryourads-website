@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { CAL_URL } from '@/lib/site';
 import styles from './Nav.module.css';
 
-export function Nav({ page = 'landing' }: { page?: 'landing' | 'pricing' }) {
+export function Nav({ page = 'landing' }: { page?: 'landing' | 'pricing' | 'content' }) {
   const onLanding = page === 'landing';
   const prefix = onLanding ? '' : '/';
 

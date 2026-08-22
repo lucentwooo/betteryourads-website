@@ -2,13 +2,16 @@
 
 import { useState } from 'react';
 import { CAL_URL } from '@/lib/site';
+import {
+  FREE_PLAN,
+  PAID_PLANS,
+  STUDIO_PLAN,
+  priceFor,
+  type BillingPeriod,
+} from '@/lib/billing-catalog';
 import styles from './Pricing.module.css';
 
-type Period = 'monthly' | 'quarterly' | 'annual';
-
-const DISCOUNT: Record<Period, number> = { monthly: 1, quarterly: 0.925, annual: 0.85 };
-const PRO_BASE = [249, 429, 749] as const;
-const PRO_ADS = [100, 200, 400] as const;
+type Period = BillingPeriod;
 
 const PERIODS: { key: Period; label: string; discount?: string }[] = [
   { key: 'monthly', label: 'monthly' },
@@ -24,19 +27,14 @@ const Check = ({ children }: { children: React.ReactNode }) => (
 
 export function Pricing() {
   const [period, setPeriod] = useState<Period>('monthly');
-  const [proTier, setProTier] = useState(0);
-
-  const disc = DISCOUNT[period];
-  const earlyPrice = Math.round(149 * disc);
-  const proPrice = Math.round(PRO_BASE[proTier] * disc);
 
   return (
     <>
       <header className={styles.hero}>
-        <h1 className={styles.h1}>Founding rates, locked in for as long as you stay.</h1>
+        <h1 className={styles.h1}>One free brief. Then rates that scale with your roster.</h1>
         <p className={styles.sub}>
-          Every plan starts the same way: 20 minutes with the founders, a few quick market research questions, and
-          your first 10 ads free, no card. We set you up on the call.
+          Every plan starts the same way: 20 minutes with the founders, a real client&rsquo;s URL, and your first
+          client brief free, no card. We set you up on the call.
         </p>
         <div role="group" aria-label="Billing period" className={styles.toggle}>
           {PERIODS.map((p) => (
@@ -54,94 +52,82 @@ export function Pricing() {
       </header>
 
       <section className={styles.plans}>
-        {/* Free */}
         <div className={styles.plan}>
-          <h2 className={styles.planName}>Free</h2>
-          <p className={styles.planTag}>see it work on your real brand</p>
+          <h2 className={styles.planName}>{FREE_PLAN.name}</h2>
+          <p className={styles.planTag}>see it work on a real client</p>
           <p className={styles.price}>
-            10 ads<span className={styles.priceUnit}> free</span>
+            $0<span className={styles.priceUnit}> free</span>
           </p>
-          <p className={styles.planTag}>no card required</p>
           <a href={CAL_URL} className={styles.btnGhost}>
             try it on a call <span aria-hidden="true">↗</span>
           </a>
           <div className={styles.features}>
-            <Check>10 ads on your real brand</Check>
-            <Check>2 UGC video ads to try</Check>
-            <Check>the full measure → analyze → render pipeline</Check>
-            <Check>unlimited brands</Check>
+            <Check>1 client brand</Check>
+            <Check>1 full research run</Check>
+            <Check>10 rendered ads - lifetime, never expire</Check>
+            <Check>ranked concepts + exportable client-ready brief</Check>
+            <Check>competitor-ad ingestion</Check>
             <Check>no card required</Check>
           </div>
         </div>
 
-        {/* Early Access */}
-        <div className={styles.plan}>
-          <h2 className={styles.planName}>Early Access</h2>
-          <p className={styles.planTag}>for your first accounts</p>
-          <p className={styles.price}>
-            ${earlyPrice}
-            <span className={styles.priceUnit}>/month</span>
-          </p>
-          <p className={styles.planTag}>50 ads a month - unlimited brands</p>
-          <a href={CAL_URL} className={styles.btnInk}>
-            get started on a call <span aria-hidden="true">↗</span>
-          </a>
-          <div className={styles.features}>
-            <Check>50 ads every month</Check>
-            <Check>10 UGC video ads every month</Check>
-            <Check>unlimited brands, one shared pool</Check>
-            <Check>competitor-ad ingestion</Check>
-            <Check>performance loop: import metrics, get lessons</Check>
-            <Check>founding rate, locked in for as long as you stay</Check>
-          </div>
-        </div>
-
-        {/* Pro */}
-        <div className={`${styles.plan} ${styles.planPro}`}>
-          <div className={styles.proHead}>
-            <h2 className={styles.planName}>Pro</h2>
-            {/* plain text label — no pill/badge background, by explicit decision */}
-            <span className={styles.mostPopular}>most popular</span>
-          </div>
-          <p className={styles.planTag}>scale across every client</p>
-          <p className={styles.price}>
-            ${proPrice}
-            <span className={styles.priceUnit}>/month</span>
-          </p>
-          <p className={styles.planTag}>{PRO_ADS[proTier]} ads a month - unlimited brands - one shared pool</p>
-          <div className={styles.slider}>
-            <input
-              type="range"
-              min={0}
-              max={2}
-              step={1}
-              value={proTier}
-              onChange={(e) => setProTier(Number(e.target.value))}
-              aria-label="Ads per month"
-            />
-            <div className={styles.ticks}>
-              <span>100</span>
-              <span>200</span>
-              <span>400</span>
+        {PAID_PLANS.map((plan) => {
+          const isAgency = plan.id === 'agency';
+          const shown = priceFor(plan, period);
+          return (
+            <div key={plan.id} className={`${styles.plan} ${isAgency ? styles.planPro : ''}`}>
+              {isAgency && (
+                <div className={styles.proHead}>
+                  <h2 className={styles.planName}>{plan.name}</h2>
+                  {/* plain text label — no pill/badge background, by explicit decision */}
+                  <span className={styles.mostPopular}>most popular</span>
+                </div>
+              )}
+              {!isAgency && <h2 className={styles.planName}>{plan.name}</h2>}
+              <p className={styles.planTag}>{isAgency ? 'scale across every client' : 'for your first clients'}</p>
+              <p className={styles.price}>
+                ${shown}
+                <span className={styles.priceUnit}>/month</span>
+              </p>
+              <p className={styles.planTag}>
+                {plan.brands} brands · {plan.rendersPerMonth.toLocaleString()} renders/mo
+              </p>
+              <a href={CAL_URL} className={`${isAgency ? `${styles.btnBlue} ${styles.btnPro}` : styles.btnInk}`}>
+                get started on a call <span aria-hidden="true">↗</span>
+              </a>
+              <div className={styles.features}>
+                <Check>{plan.brands} client brands</Check>
+                <Check>{plan.rendersPerMonth.toLocaleString()} rendered ads every month</Check>
+                <Check>extra brand +${plan.extraBrandMonthly}/mo</Check>
+                <Check>performance loop: import metrics, get lessons</Check>
+                {isAgency && <Check>everything in Starter</Check>}
+              </div>
             </div>
-          </div>
-          <a href={CAL_URL} className={`${styles.btnBlue} ${styles.btnPro}`}>
-            go Pro on a call <span aria-hidden="true">↗</span>
+          );
+        })}
+
+        <div className={styles.plan}>
+          <h2 className={styles.planName}>{STUDIO_PLAN.name}</h2>
+          <p className={styles.planTag}>big rosters, one pipeline</p>
+          <p className={styles.price}>
+            Custom<span className={styles.priceUnit}> quote</span>
+          </p>
+          <a href={CAL_URL} className={styles.btnGhost}>
+            talk to us <span aria-hidden="true">↗</span>
           </a>
           <div className={styles.features}>
-            <Check>everything in Early Access</Check>
-            <Check>up to 400 ads every month</Check>
-            <Check>one shared pool across every client</Check>
+            <Check>{STUDIO_PLAN.minBrands}+ client brands</Check>
+            <Check>{STUDIO_PLAN.rendersPerMonth.toLocaleString()} renders/mo</Check>
+            <Check>everything in Agency</Check>
             <Check>design partner: request features, shape the roadmap</Check>
             <Check>priority support</Check>
-            <Check>founding rate, locked in for as long as you stay</Check>
           </div>
         </div>
       </section>
 
       <p className={styles.fineprint}>
-        Founding prices stay locked in for as long as you stay. Every button above books the same 20-minute call; we
-        set your account up there.
+        Quarterly billing takes 7.5% off, annual takes 15%. Every button above books the same 20-minute call; we set
+        your account up there.
       </p>
     </>
   );

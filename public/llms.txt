@@ -1,0 +1,19 @@
+# Loopy
+
+> Loopy automates the research and brief work behind an agency's Meta ads. Drop in a client's website and a real browser measures their actual brand; customer and competitor research becomes ranked ad concepts; the ones you pick cut into a client-ready creative brief - with on-brand rendered statics attached. First client brief free.
+
+## Pages
+
+- [/](https://tryloopy.io/): Product overview - how Loopy reads a client's brand, researches customers and competitors, and produces ranked ad concepts plus a client-ready creative brief.
+- [/pricing](https://tryloopy.io/pricing): Plans - Free (1 brief on a real client), Starter $249/mo (3 brands, 300 renders/mo), Agency $499/mo (10 brands, 1000 renders/mo), Studio custom (25+ brands). Quarterly billing −7.5%, annual −15%.
+- [/ad-creative-brief-template](https://tryloopy.io/ad-creative-brief-template): Free one-page ad creative brief template for agencies running Meta ads - the 8 fields every brief needs, a copy-paste template, and a filled-in example.
+
+## Facts
+
+- Loopy is built for marketing and creative agencies running Meta (Facebook/Instagram) ads for clients.
+- Differentiator: research-first. Angles come from real customer and competitor research ranked by how long Meta kept each ad running - not from templates or prompt boxes.
+- Brand facts are measured from the client's live site (actual hex colors, fonts, logo), so output is on-brand by construction.
+
+## Contact
+
+- Book a 20-minute founder call: https://cal.com/loopy/20min
