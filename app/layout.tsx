@@ -27,6 +27,9 @@ const jsonLd = {
       name: 'Loopy',
       url: SITE_URL,
       logo: `${SITE_URL}/loopy-logo.png`,
+      // Entity corroboration for search + AI answer engines. Add G2/Capterra/X
+      // profiles here as they exist.
+      sameAs: ['https://www.linkedin.com/company/tryloopy'],
     },
     {
       '@type': 'WebSite',
