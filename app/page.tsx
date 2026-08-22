@@ -10,6 +10,7 @@ import { Closer } from '@/components/Closer/Closer';
 import { Faq, type FaqItem } from '@/components/Faq/Faq';
 import { FinalCta } from '@/components/FinalCta/FinalCta';
 import { Footer } from '@/components/Footer/Footer';
+import { PAID_PLANS } from '@/lib/billing-catalog';
 
 const FAQS: FaqItem[] = [
   {
@@ -26,7 +27,16 @@ const FAQS: FaqItem[] = [
   },
   {
     q: 'What formats do I get?',
-    a: 'A client-ready creative brief you can export - concepts organized by awareness stage with full ad copy and references - plus finished static ads in feed and story sizes, auto-saved to your library.',
+    a: (
+      <>
+        A client-ready creative brief you can export - concepts organized by awareness stage with full ad copy and
+        references (it follows{' '}
+        <Link href="/ad-creative-brief-template" className="signal">
+          this brief template
+        </Link>
+        ) - plus finished static ads in feed and story sizes, auto-saved to your library.
+      </>
+    ),
   },
   {
     q: 'Can we shape the roadmap?',
@@ -36,8 +46,8 @@ const FAQS: FaqItem[] = [
     q: 'What does it cost?',
     a: (
       <>
-        Your first client brief is free on a real client, no card. After that, plans start at $249 per month - quarterly
-        billing takes 7.5% off and annual takes 15% -{' '}
+        Your first client brief is free on a real client, no card. After that, plans start at ${PAID_PLANS[0].monthlyPrice}{' '}
+        per month - quarterly billing takes 7.5% off and annual takes 15% -{' '}
         <Link href="/pricing" className="signal">
           full pricing here
         </Link>

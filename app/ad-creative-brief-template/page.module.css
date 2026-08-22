@@ -588,7 +588,7 @@
   opacity: 0.85;
   font-variant-numeric: tabular-nums;
 }
-.failList h4 {
+.failList h3 {
   margin: 0;
   font-size: 17px;
   font-weight: 700;
@@ -639,6 +639,14 @@
   font-size: 16.5px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.66);
+}
+.ctaBand p a {
+  color: var(--loopy-periwinkle);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.ctaBand p a:hover {
+  color: #fff;
 }
 .ctaBtn {
   position: relative;
@@ -724,5 +732,24 @@
   .identicalBand {
     padding-left: 16px;
     padding-right: 16px;
+  }
+  /* nothing below 14px on mobile (site-wide rule) */
+  .heroEyebrow,
+  .heroMeta,
+  .railLabel,
+  .railLink,
+  .railLink b,
+  .specNum,
+  .chromeTitle,
+  .copyBtn,
+  .tab,
+  .templateField,
+  .statusPill,
+  .sw,
+  .keepChip,
+  .swapChip,
+  .vPill,
+  .identicalBand > span:last-child {
+    font-size: 14px;
   }
 }

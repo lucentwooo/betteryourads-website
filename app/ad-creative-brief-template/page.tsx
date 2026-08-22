@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Nav } from '@/components/Nav/Nav';
 import { Faq, type FaqItem } from '@/components/Faq/Faq';
 import { Footer } from '@/components/Footer/Footer';
+import Link from 'next/link';
 import { CAL_URL } from '@/lib/site';
 import { TemplateTabs } from './TemplateTabs';
 import styles from './page.module.css';
@@ -45,7 +46,7 @@ const HEADER_FIELDS: { name: string; why: string }[] = [
   },
   {
     name: 'Measured brand facts',
-    why: 'Fonts by role (“Playfair Display headers · Inter body”) and colours by job - text, accent, background, CTA - each with its exact hex. Also link the logo file, product shots and customer-image sources here.',
+    why: 'Fonts by role (“Playfair Display headers, Inter body”) and colours by job - text, accent, background, CTA - each with its exact hex. Also link the logo file, product shots and customer-image sources here.',
   },
   {
     name: 'Dimensions and deliverables',
@@ -149,7 +150,7 @@ export default function BriefTemplatePage() {
       <main>
         <header className={styles.hero}>
           <div className={`wrap ${styles.heroInner}`}>
-            <p className={`${styles.heroEyebrow} ${styles.reveal}`}>Free resource · steal this</p>
+            <p className={`${styles.heroEyebrow} ${styles.reveal}`}>Free resource - steal this</p>
             <h1 className={`${styles.h1} ${styles.reveal}`} style={{ animationDelay: '80ms' }}>
               The ad creative brief template agencies actually use<span className={styles.dot}>.</span>
             </h1>
@@ -181,7 +182,7 @@ export default function BriefTemplatePage() {
                 <span className={`${styles.artBadge} ${styles.artBadgeCoral}`}>concept</span>
                 <u />
                 <u />
-                <strong>V1 · V2 · V3</strong>
+                <strong>V1 - V2 - V3</strong>
               </div>
             </div>
           </div>
@@ -261,7 +262,7 @@ export default function BriefTemplatePage() {
                     <i />
                     <i />
                   </span>
-                  <span className={styles.chromeTitle}>Hearthside Coffee Co. | 3 statics · concept 1 of 3</span>
+                  <span className={styles.chromeTitle}>Hearthside Coffee Co. - 3 statics - concept 1 of 3</span>
                   <span className={styles.statusPill}>brief ready</span>
                 </div>
 
@@ -269,7 +270,7 @@ export default function BriefTemplatePage() {
                   <div>
                     <span className={styles.templateField}>About + proof (verbatim)</span>
                     <p>
-                      Small-batch DTC roaster. “12,000 five-star reviews” · “roasted-to-order” - quoted exactly, never
+                      Small-batch DTC roaster. “12,000 five-star reviews” and “roasted-to-order” - quoted exactly, never
                       paraphrased onto ads.
                     </p>
                   </div>
@@ -284,11 +285,11 @@ export default function BriefTemplatePage() {
 
                 <div className={styles.templateRow}>
                   <span className={styles.templateField}>Objective / metric</span>
-                  <span>Sales · cost per subscription start &lt; $38</span>
+                  <span>Sales - cost per subscription start &lt; $38</span>
                 </div>
                 <div className={styles.templateRow}>
-                  <span className={styles.templateField}>Audience · stage</span>
-                  <span>Home brewers who quit $6 café habits but miss the ritual · solution-aware</span>
+                  <span className={styles.templateField}>Audience - stage</span>
+                  <span>Home brewers who quit $6 café habits but miss the ritual - solution-aware</span>
                 </div>
                 <div className={styles.wideRow}>
                   <span className={styles.templateField}>Visual notes</span>
@@ -317,7 +318,7 @@ export default function BriefTemplatePage() {
                 <div className={styles.identicalBand}>
                   <span className={styles.templateField}>Identical across variations</span>
                   <span>
-                    Sign-off: “First bag $1 - cancel anytime” · Support: subscription terms footer on every render
+                    Sign-off: “First bag $1 - cancel anytime”. Support: subscription terms footer on every render
                   </span>
                 </div>
               </div>
@@ -329,28 +330,28 @@ export default function BriefTemplatePage() {
                 <li>
                   <b>01</b>
                   <div>
-                    <h4>The 30-question intake form</h4>
+                    <h3>The 30-question intake form</h3>
                     <p>Clients abandon them or answer in essays. Ten sharp fields beat thirty vague ones.</p>
                   </div>
                 </li>
                 <li>
                   <b>02</b>
                   <div>
-                    <h4>No success metric</h4>
+                    <h3>No success metric</h3>
                     <p>Without one number, feedback becomes taste. With one, feedback becomes “this won’t move cost-per-purchase.”</p>
                   </div>
                 </li>
                 <li>
                   <b>03</b>
                   <div>
-                    <h4>Angles nobody researched</h4>
+                    <h3>Angles nobody researched</h3>
                     <p>Brainstormed angles recycle what the client already says about themselves. The best angles come from customer reviews, competitor ads and support tickets.</p>
                   </div>
                 </li>
                 <li>
                   <b>04</b>
                   <div>
-                    <h4>Visual notes that aren’t instructions</h4>
+                    <h3>Visual notes that aren’t instructions</h3>
                     <p>“Make it pop” starts a revision loop. “KEEP the layout, SWAP the photo, background #FDF9F3” ends it.</p>
                   </div>
                 </li>
@@ -361,7 +362,7 @@ export default function BriefTemplatePage() {
               <h2>Want the brief written for you?</h2>
               <p>
                 Your first client brief is free on a real client - research, ranked concepts and renders included, no
-                card.
+                card. <Link href="/">How Loopy builds it</Link> and <Link href="/pricing">what it costs after</Link>.
               </p>
               <a href={CAL_URL} className={styles.ctaBtn}>
                 book intro call <span aria-hidden="true">↗</span>

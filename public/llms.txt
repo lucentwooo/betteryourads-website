@@ -6,7 +6,7 @@
 
 - [/](https://tryloopy.io/): Product overview - how Loopy reads a client's brand, researches customers and competitors, and produces ranked ad concepts plus a client-ready creative brief.
 - [/pricing](https://tryloopy.io/pricing): Plans - Free (1 brief on a real client), Starter $249/mo (3 brands, 300 renders/mo), Agency $499/mo (10 brands, 1000 renders/mo), Studio custom (25+ brands). Quarterly billing −7.5%, annual −15%.
-- [/ad-creative-brief-template](https://tryloopy.io/ad-creative-brief-template): Free one-page ad creative brief template for agencies running Meta ads - the 8 fields every brief needs, a copy-paste template, and a filled-in example.
+- [/ad-creative-brief-template](https://tryloopy.io/ad-creative-brief-template): Free one-page ad creative brief template for agencies running Meta ads - the 10 fields every brief needs, a copy-paste template, and a filled-in example.
 
 ## Facts
 

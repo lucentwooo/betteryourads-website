@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { Nav } from '@/components/Nav/Nav';
 import { Pricing } from '@/components/Pricing/Pricing';
 import { Faq, type FaqItem } from '@/components/Faq/Faq';
@@ -18,11 +17,7 @@ const FAQS: FaqItem[] = [
     a: (
       <>
         Yes - quarterly billing takes 7.5% off every paid plan and annual billing takes 15% off. The toggle at the top
-        of{' '}
-        <Link href="/pricing" className="signal">
-          the pricing table
-        </Link>{' '}
-        shows the exact monthly-equivalent price for each.
+        of the pricing table shows the exact monthly-equivalent price for each.
       </>
     ),
   },

@@ -62,9 +62,9 @@ export function Pricing() {
             try it on a call <span aria-hidden="true">↗</span>
           </a>
           <div className={styles.features}>
-            <Check>1 client brand</Check>
-            <Check>1 full research run</Check>
-            <Check>10 rendered ads - lifetime, never expire</Check>
+            <Check>{FREE_PLAN.brands} client brand</Check>
+            <Check>{FREE_PLAN.researchRuns} full research run</Check>
+            <Check>{FREE_PLAN.lifetimeRenders} rendered ads - lifetime, never expire</Check>
             <Check>ranked concepts + exportable client-ready brief</Check>
             <Check>competitor-ad ingestion</Check>
             <Check>no card required</Check>
@@ -90,7 +90,7 @@ export function Pricing() {
                 <span className={styles.priceUnit}>/month</span>
               </p>
               <p className={styles.planTag}>
-                {plan.brands} brands · {plan.rendersPerMonth.toLocaleString()} renders/mo
+                {plan.brands} brands - {plan.rendersPerMonth.toLocaleString()} renders/mo
               </p>
               <a href={CAL_URL} className={`${isAgency ? `${styles.btnBlue} ${styles.btnPro}` : styles.btnInk}`}>
                 get started on a call <span aria-hidden="true">↗</span>
