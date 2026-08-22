@@ -99,7 +99,7 @@ export function Pricing() {
                 <Check>{plan.brands} client brands</Check>
                 <Check>{plan.rendersPerMonth.toLocaleString()} rendered ads every month</Check>
                 <Check>extra brand +${plan.extraBrandMonthly}/mo</Check>
-                <Check>performance loop: import metrics, get lessons</Check>
+                <Check>performance loop (beta): import metrics, get lessons</Check>
                 {isAgency && <Check>everything in Starter</Check>}
               </div>
             </div>

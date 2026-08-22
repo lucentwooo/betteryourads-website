@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './page.module.css';
 
 type Row = { field: string; value: string; wide?: boolean };
@@ -32,6 +32,9 @@ const TABS = [
   { key: 'concept', label: 'Concept block', rows: CONCEPT_ROWS },
 ] as const;
 
+/** Static copy of the template in public/ - keep in sync with the rows above. */
+const DOWNLOAD_HREF = '/ad-creative-brief-template.md';
+
 function toPlainText(rows: Row[]): string {
   return rows.map((r) => `${r.field}: ${r.value}`).join('\n');
 }
@@ -39,13 +42,19 @@ function toPlainText(rows: Row[]): string {
 export function TemplateTabs() {
   const [tab, setTab] = useState<(typeof TABS)[number]['key']>('header');
   const [copied, setCopied] = useState(false);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const active = TABS.find((t) => t.key === tab)!;
+
+  useEffect(() => () => {
+    if (timer.current) clearTimeout(timer.current);
+  }, []);
 
   async function copy() {
     try {
       await navigator.clipboard.writeText(toPlainText(active.rows));
       setCopied(true);
-      setTimeout(() => setCopied(false), 1600);
+      if (timer.current) clearTimeout(timer.current);
+      timer.current = setTimeout(() => setCopied(false), 1600);
     } catch {
       /* clipboard unavailable — user can still select the text */
     }
@@ -60,9 +69,14 @@ export function TemplateTabs() {
           <i />
         </span>
         <span className={styles.chromeTitle}>creative-brief - template</span>
-        <button type="button" onClick={copy} className={styles.copyBtn}>
-          {copied ? 'copied ✓' : 'copy'}
-        </button>
+        <span className={styles.chromeActions}>
+          <a href={DOWNLOAD_HREF} download className={styles.copyBtn}>
+            download .md
+          </a>
+          <button type="button" onClick={copy} className={styles.copyBtn} aria-live="polite">
+            {copied ? 'copied ✓' : 'copy'}
+          </button>
+        </span>
       </div>
 
       <div role="tablist" aria-label="Template parts" className={styles.tabs}>
@@ -70,6 +84,8 @@ export function TemplateTabs() {
           <button
             key={t.key}
             role="tab"
+            id={`brief-tab-${t.key}`}
+            aria-controls={`brief-panel-${t.key}`}
             type="button"
             aria-selected={tab === t.key}
             onClick={() => setTab(t.key)}
@@ -80,7 +96,7 @@ export function TemplateTabs() {
         ))}
       </div>
 
-      <div>
+      <div role="tabpanel" id={`brief-panel-${active.key}`} aria-labelledby={`brief-tab-${active.key}`}>
         {active.rows.map((row) =>
           row.wide ? (
             <div key={row.field} className={styles.wideRow}>

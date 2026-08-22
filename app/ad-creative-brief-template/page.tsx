@@ -3,7 +3,7 @@ import { Nav } from '@/components/Nav/Nav';
 import { Faq, type FaqItem } from '@/components/Faq/Faq';
 import { Footer } from '@/components/Footer/Footer';
 import Link from 'next/link';
-import { CAL_URL } from '@/lib/site';
+import { CAL_URL, SITE_URL } from '@/lib/site';
 import { TemplateTabs } from './TemplateTabs';
 import styles from './page.module.css';
 
@@ -11,7 +11,9 @@ const PATH = '/ad-creative-brief-template';
 
 const TITLE = 'Ad Creative Brief Template for Meta Ads (Free, Copy-Paste)';
 const DESCRIPTION =
-  'A one-page ad creative brief template built for agencies running Meta ads: the brand header, ranked concept blocks with visual notes and three copy variations - plus a filled-in example.';
+  'A one-page ad creative brief template built for agencies running Facebook and Instagram ads: the brand header, ranked concept blocks with visual notes and three copy variations - plus a filled-in example and a downloadable file.';
+const PUBLISHED = '2026-08-22';
+const MODIFIED = '2026-08-22';
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -23,6 +25,8 @@ export const metadata: Metadata = {
     siteName: 'Loopy',
     title: TITLE,
     description: DESCRIPTION,
+    publishedTime: PUBLISHED,
+    modifiedTime: MODIFIED,
   },
   twitter: {
     card: 'summary_large_image',
@@ -112,14 +116,43 @@ const FAQS: FaqItem[] = [
   },
 ];
 
-const faqJsonLd = {
+// Article (what this page is) + BreadcrumbList (where it sits) + FAQPage (the
+// question-first passages AI answer engines quote). Organization/WebSite live in
+// the root layout and are referenced by @id.
+const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: FAQS.map((item) => ({
-    '@type': 'Question',
-    name: item.q,
-    acceptedAnswer: { '@type': 'Answer', text: item.a },
-  })),
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${SITE_URL}${PATH}#article`,
+      headline: TITLE,
+      description: DESCRIPTION,
+      url: `${SITE_URL}${PATH}`,
+      datePublished: PUBLISHED,
+      dateModified: MODIFIED,
+      inLanguage: 'en',
+      isAccessibleForFree: true,
+      author: { '@id': `${SITE_URL}/#organization` },
+      publisher: { '@id': `${SITE_URL}/#organization` },
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      about: ['ad creative brief', 'Facebook ad brief template', 'Meta ads creative brief'],
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Loopy', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Ad creative brief template', item: `${SITE_URL}${PATH}` },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: FAQS.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: item.a },
+      })),
+    },
+  ],
 };
 
 const TOC = [
@@ -144,7 +177,7 @@ export default function BriefTemplatePage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, '\\u003c') }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
       />
       <Nav page="content" />
       <main>
@@ -164,7 +197,7 @@ export default function BriefTemplatePage() {
               <i aria-hidden="true" />
               <span>2-part anatomy</span>
               <i aria-hidden="true" />
-              <span>copy-paste ready</span>
+              <span>copy-paste or download</span>
               <i aria-hidden="true" />
               <span>worked example</span>
             </div>
@@ -173,16 +206,16 @@ export default function BriefTemplatePage() {
             <div className={styles.heroArt} aria-hidden="true">
               <div className={`${styles.artCard} ${styles.artCardA}`}>
                 <span className={`${styles.artBadge} ${styles.artBadgeBlue}`}>header</span>
-                <b style={{ background: '#C4622D' }} />
-                <b style={{ background: '#3E2723' }} />
-                <b style={{ background: '#FDF9F3' }} />
-                <em>objective</em>
+                <span className={styles.artSwatch} style={{ background: '#C4622D' }} />
+                <span className={styles.artSwatch} style={{ background: '#3E2723' }} />
+                <span className={styles.artSwatch} style={{ background: '#FDF9F3' }} />
+                <span className={styles.artLabel}>objective</span>
               </div>
               <div className={`${styles.artCard} ${styles.artCardB}`}>
                 <span className={`${styles.artBadge} ${styles.artBadgeCoral}`}>concept</span>
-                <u />
-                <u />
-                <strong>V1 - V2 - V3</strong>
+                <span className={styles.artLine} />
+                <span className={styles.artLine} />
+                <span className={styles.artVariants}>V1 - V2 - V3</span>
               </div>
             </div>
           </div>
@@ -242,8 +275,8 @@ export default function BriefTemplatePage() {
             <section id="template" className={styles.section}>
               <h2>Copy-paste template</h2>
               <p className={styles.sectionLede}>
-                Duplicate into your project tool or client doc. Switch between the two parts below, or copy the whole
-                thing as text.
+                Built for Facebook and Instagram placements. Switch between the two parts below and copy either as
+                text, or download the whole template as a Markdown file for your project tool or client doc.
               </p>
               <TemplateTabs />
             </section>
