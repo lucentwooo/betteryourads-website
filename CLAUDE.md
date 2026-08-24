@@ -55,10 +55,11 @@ on the site (JetBrains Mono was removed 2026-07).
 **Ad imagery is data-driven where it repeats.** `lib/creatives.ts` holds the hero ad
 wall columns (`HERO_WALL_A/B`, brand `ad-01`s) and the final-CTA marquee
 (`CTA_MARQUEE`, brand `ad-02`s) — each rendered twice for seamless -50% translate
-loops. Real Salesgraph renders live in `public/salesgraph/` (mechanism cards + batch
-grid, hard-coded in their sections); the reference Canva ad is
-`public/reference/canva-ad.jpg`. `lib/creatives.test.ts` asserts every path exists on
-disk.
+loops. Real Loopy app UI (brand profile, research, ranked board, what's working,
+brief concept card - all for the Svens Island client) lives in `public/app/`, hard-coded
+in Mechanism + BatchGrid; captured at 2x via the app repo's
+`scripts/capture-marketing-ui-*.mjs` (never via generation clicks). No Salesgraph
+examples remain on the landing. `lib/creatives.test.ts` asserts every path exists on disk.
 
 **All CTAs are plain links to the founder call.** `lib/site.ts` exports `CAL_URL`
 (https://cal.com/loopy/20min) and `SITE_URL` — no Cal embed, no forms.

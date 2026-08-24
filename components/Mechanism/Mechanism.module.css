@@ -21,7 +21,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 48px;
   align-items: center;
-  min-height: 400px;
+  min-height: 560px;
 }
 .card1 {
   position: sticky;
@@ -47,6 +47,16 @@
   border: 1px solid var(--border-card);
   box-shadow: var(--shadow-featured);
 }
+.card4 {
+  position: sticky;
+  top: 144px;
+  margin-top: 32px;
+  grid-template-columns: 5fr 7fr;
+  align-items: start;
+  background: var(--bg);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-featured);
+}
 
 .badge {
   display: inline-block;
@@ -64,6 +74,11 @@
   color: var(--loopy-periwinkle);
   background: rgba(157, 180, 255, 0.12);
   border: 1px solid rgba(157, 180, 255, 0.3);
+}
+.badgeViolet {
+  color: var(--loopy-violet);
+  background: rgba(123, 97, 255, 0.1);
+  border: 1px solid rgba(123, 97, 255, 0.3);
 }
 .badgeCoral {
   color: var(--loopy-coral);
@@ -123,7 +138,7 @@
   color: var(--fg-muted);
 }
 .browserViewport {
-  height: 280px;
+  height: 160px;
   background: var(--loopy-parchment);
   overflow: hidden;
 }
@@ -134,7 +149,7 @@
   }
   97%,
   100% {
-    transform: translateY(calc(-100% + 280px));
+    transform: translateY(calc(-100% + 160px));
   }
 }
 .siteScroll {
@@ -143,60 +158,58 @@
   display: block;
   animation: siteScroll 70s linear infinite alternate;
 }
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+/* real crops of the app's brand profile (colors + typography panels) */
+.extracted {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 12px;
+  align-items: start;
 }
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-full);
-  padding: 5px 11px;
-  font-size: 12px;
-  white-space: nowrap;
-  color: var(--fg-2);
-}
-.swatch {
-  width: 13px;
-  height: 13px;
-  border-radius: 4px;
-}
-
-/* --- card 02 visual: screenshot = ad pair --- */
-.visual2 {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
-  padding: 12px 0;
-}
-.pair {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-.pairFigure {
+.extractedFigure {
   margin: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+.extractedShot {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
+}
+.extractedNote {
+  grid-column: 1 / -1;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--fg-3);
+}
+.extractedNote b {
+  font-weight: 600;
+  color: var(--fg-2);
+}
+
+/* --- card 02 visual: research crop (on dark) --- */
+.visual2 {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0;
+}
+.researchFigure {
+  margin: 0;
+  width: 340px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   align-items: center;
 }
-.uiShot {
-  width: 200px;
+.researchShot {
+  width: 100%;
   height: auto;
-  border-radius: 10px;
   display: block;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-}
-.adShot {
-  width: 210px;
-  height: auto;
-  border-radius: var(--radius-ad);
-  display: block;
+  border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 .pairCaption {
@@ -204,46 +217,34 @@
   font-weight: 600;
   color: rgba(255, 255, 255, 0.6);
 }
-.equals {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--loopy-periwinkle);
-}
-.neverRedrawn {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--loopy-mint);
-}
 
-/* --- card 03 visual: reference → reskin --- */
-.pair3 {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  justify-content: center;
-}
-.refFigure {
-  margin: 0;
-  width: 158px;
+/* --- card 03 visual: stage tabs + ranked board rows --- */
+.visual3 {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
+  align-items: flex-end;
 }
-.reskinFigure {
-  margin: 0;
-  width: 230px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.stagesShot {
+  width: 300px;
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
-.refAd {
+.boardFrame {
+  width: 100%;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  background: var(--bg);
+}
+.boardShot {
   width: 100%;
   height: auto;
-  border-radius: var(--radius-ad);
-  border: 1px solid var(--border-card);
   display: block;
+  -webkit-mask-image: linear-gradient(to right, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 82%, transparent 100%);
 }
 .caption {
   font-size: 11.5px;
@@ -251,14 +252,35 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  align-self: flex-start;
 }
 .refMark {
   color: var(--loopy-coral);
 }
-.arrow3 {
-  font-size: 24px;
-  color: var(--accent);
-  font-weight: 700;
+
+/* --- card 04 visual: what's working --- */
+.visual4 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.loopFrame {
+  width: 100%;
+  padding: 14px 16px 10px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
+  background: var(--bg);
+  overflow: hidden;
+}
+.loopShot {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.loopMark {
+  color: var(--loopy-violet);
+  font-size: 9px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -273,7 +295,7 @@
   }
   .card {
     position: static;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     padding: 28px 22px;
     gap: 28px;
     min-height: 0;
@@ -285,20 +307,38 @@
   .badge {
     font-size: 14px;
   }
-  .chip {
+  .extractedNote {
     font-size: 14px;
   }
-  .pair {
-    flex-direction: column;
+  .researchFigure {
+    width: 100%;
   }
-  .pair3 {
-    flex-direction: column;
+  .extracted {
+    grid-template-columns: 1fr 1fr;
   }
-  .pair3 .arrow3 {
-    transform: rotate(90deg);
+  /* wide UI crops scroll sideways instead of shrinking past legibility */
+  .visual3,
+  .visual4 {
+    min-width: 0;
   }
-  .pairCaption,
-  .neverRedrawn {
+  .boardFrame,
+  .loopFrame {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .boardShot {
+    min-width: 620px;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .loopShot {
+    min-width: 700px;
+  }
+  .stagesShot {
+    width: 100%;
+  }
+  .pairCaption {
     font-size: 14px;
   }
   .caption {

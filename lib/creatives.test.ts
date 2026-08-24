@@ -14,9 +14,9 @@ describe('creatives catalogue', () => {
     expect(HERO_WALL_B.some((c) => a.has(c.src))).toBe(false);
   });
 
-  it('marquee covers all 11 brands plus the salesgraph render', () => {
-    expect(CTA_MARQUEE).toHaveLength(12);
-    expect(CTA_MARQUEE.at(-1)?.src).toBe('/salesgraph/ad-4.png');
+  it('marquee covers all 11 brands and nothing else', () => {
+    expect(CTA_MARQUEE).toHaveLength(11);
+    expect(CTA_MARQUEE.every((c) => c.src.startsWith('/creatives/'))).toBe(true);
   });
 
   it('wall ads carry alt text; marquee ads are decorative', () => {

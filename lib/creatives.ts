@@ -34,7 +34,7 @@ export const HERO_WALL_B: Creative[] = [
   { src: '/creatives/notion/ad-03.jpg', alt: 'Second demo Meta ad in the Notion brand', width: 600, height: 600 },
 ];
 
-/** Final-CTA background marquee — brand ad-02s plus one Salesgraph render.
+/** Final-CTA background marquee — brand ad-02s.
  *  Decorative (rendered aria-hidden, cropped square). */
 export const CTA_MARQUEE: Creative[] = [
   ...['asana', 'chirp', 'clickup', 'grammarly', 'gusto', 'kinsta', 'mailchimp', 'monday-com', 'notion', 'slack', 'zapier'].map(
@@ -45,5 +45,4 @@ export const CTA_MARQUEE: Creative[] = [
       height: 600,
     }),
   ),
-  { src: '/salesgraph/ad-4.png', alt: '', width: 1254, height: 1254 },
 ];
