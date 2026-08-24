@@ -27,36 +27,127 @@
   margin: 0;
   text-wrap: pretty;
 }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-top: 48px;
-}
-.figure {
-  margin: 0;
+/* the brief itself: one real concept card from the app */
+.brief {
+  margin: 48px auto 0;
+  max-width: 880px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  transition: transform var(--dur-base) var(--ease);
+  gap: 14px;
 }
-.figure:hover {
-  transform: translateY(-4px);
+.briefFrame {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-featured);
+  overflow: hidden;
+  background: var(--bg);
 }
-.offset {
-  grid-column: 2;
-}
-.ad {
+.briefShot {
   width: 100%;
   height: auto;
-  border-radius: var(--radius-card);
-  border: 1px solid var(--border-card);
   display: block;
 }
-.caption {
+.briefCaption {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--fg-3);
+  text-align: center;
+  text-wrap: pretty;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.gridLabel {
+  margin: 64px 0 0;
   font-size: 13px;
   font-weight: 600;
   color: var(--fg-2);
+}
+.grid {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+.concept {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px 18px 20px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-card);
+  background: var(--bg);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--dur-base) var(--ease);
+}
+.concept:hover {
+  transform: translateY(-4px);
+}
+.conceptHead {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--radius-chip);
+  padding: 4px 9px;
+  border: 1px solid transparent;
+}
+.tagPain {
+  color: var(--loopy-coral);
+  background: var(--loopy-coral-soft);
+  border-color: var(--loopy-coral-border);
+}
+.tagDesire {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
+}
+.tagObjection {
+  color: var(--fg-2);
+  background: var(--bg-raised);
+  border-color: var(--border);
+}
+.tagScale {
+  color: #8a6400;
+  background: #fff6d6;
+  border-color: #f3e3a8;
+}
+.conceptMeta {
+  font-size: 12px;
+  color: var(--fg-muted);
+}
+.variations {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.variation {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 8px;
+  align-items: baseline;
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  text-wrap: pretty;
+}
+.vLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--fg-muted);
 }
 .fineprint {
   margin: 24px 0 0;
@@ -68,16 +159,29 @@
   .section {
     padding: 64px 24px;
   }
-  .grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
+  .brief {
     margin-top: 32px;
   }
-  .offset {
-    grid-column: auto;
-  }
-  .caption {
+  .briefCaption,
+  .gridLabel {
     font-size: 14px;
+  }
+  .gridLabel {
+    margin-top: 40px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .tag,
+  .conceptMeta,
+  .vLabel {
+    font-size: 14px;
+  }
+  .variation {
+    font-size: 16px;
+    grid-template-columns: 28px 1fr;
   }
   .fineprint {
     font-size: 14px;
